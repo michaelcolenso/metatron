@@ -1,0 +1,46 @@
+name: Deploy Portfolio Site
+
+on:
+  push:
+    paths:
+      - "images/**" # Trigger when changes are made to the /images folder
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Set up Node.js (for image optimization tools)
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      # Install image optimization tools
+      - name: Install dependencies
+        run: |
+          npm install -g imagemin-cli
+          npm install -g imagemin-mozjpeg imagemin-pngquant
+
+      # Optimize images
+      - name: Optimize images
+        run: |
+          imagemin images/* --out-dir docs/images
+          echo "Images optimized and moved to /docs/images"
+
+      # Build the site (if needed)
+      - name: Build site
+        run: |
+          # Add any build steps here (e.g., minify CSS/JS)
+          echo "Site built"
+
+      # Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
