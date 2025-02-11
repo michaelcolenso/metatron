@@ -11,57 +11,52 @@ permissions:
   id-token: write
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
-
     steps:
-      # Checkout the repository
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
-      # Debug: Show initial directory state
-      - name: Show starting state
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Debug - Show Structure Before
         run: |
-          echo "=== Current directory content ==="
+          echo "=== WORKSPACE CONTENTS ==="
+          pwd
           ls -la
-          echo "=== Docs directory content ==="
+          echo ""
+          echo "=== DOCS DIRECTORY ==="
           ls -la docs/
-          echo "=== Images in docs/images ==="
+          echo ""
+          echo "=== IMAGES DIRECTORY ==="
           ls -la docs/images/
-          echo "=== Source images ==="
-          ls -la images/
+          echo ""
+          echo "=== FILE SIZES ==="
+          du -h docs/images/*
 
-      # Deploy to GitHub Pages
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3.8.0
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs
-          force_orphan: true
-          enable_jekyll: false
-          full_commit_message: 'Deploy: ${{ github.event.head_commit.message }}'
+          path: docs
 
-      # Verify deployment
-      - name: Verify deployment files
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      - name: Debug - Verify Deployment
         run: |
-          # Wait for GitHub Pages to update
-          sleep 30
-          
-          # Create a temp directory and check the gh-pages branch
-          tmp_dir=$(mktemp -d)
-          cd $tmp_dir
-          
-          echo "=== Cloning gh-pages branch ==="
-          git clone --single-branch --branch gh-pages https://github.com/michaelcolenso/metatron.git
-          cd metatron
-          
-          echo "=== Deployed files: ==="
-          ls -la
-          echo "=== Deployed images: ==="
-          ls -la images/
-          
-          # Cleanup
-          cd ../..
-          rm -rf $tmp_dir
+          echo "=== CHECKING DEPLOYMENT ==="
+          DEPLOYMENT_URL="${{ steps.deployment.outputs.page_url }}"
+          echo "Deployed to: $DEPLOYMENT_URL"
+          echo ""
+          echo "=== TESTING IMAGE ACCESS ==="
+          for img in docs/images/*; do
+            filename=$(basename "$img")
+            url="${DEPLOYMENT_URL}images/$filename"
+            echo "Testing: $url"
+            curl -I "$url"
+            echo ""
+          done
