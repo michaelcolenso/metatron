@@ -7,8 +7,8 @@ on:
     paths:
       - "images/**"
   schedule:
-    - cron: "0 0 * * 0" # Weekly rebuild to ensure everything is fresh
-  workflow_dispatch: # Manual trigger option
+    - cron: "0 0 * * 0" # Weekly rebuild
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -38,6 +38,15 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           cache: "npm"
 
+      - name: Initialize npm project
+        run: |
+          # Create package.json if it doesn't exist
+          if [ ! -f "package.json" ]; then
+            npm init -y
+            # Update package.json with required dependencies
+            npm pkg set dependencies.exiftool-vendored="^22.0.0"
+          fi
+
       - name: Cache processed images
         uses: actions/cache@v3
         with:
@@ -49,12 +58,15 @@ jobs:
             ${{ env.IMAGE_CACHE_KEY }}-
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
       - name: Process and optimize images
         run: |
           # Install image processing tools
           sudo apt-get update && sudo apt-get install -y imagemagick exiftool
+
+          # Configure ImageMagick policy to allow PDF operations if needed
+          sudo sed -i 's/rights="none" pattern="PDF"/rights="read|write" pattern="PDF"/' /etc/ImageMagick-6/policy.xml
 
           # Create processing script
           cat << 'EOF' > process-images.sh
@@ -147,7 +159,6 @@ jobs:
               const stats = fs.statSync(filepath);
               const metadata = await getImageMetadata(filepath);
               
-              // Get creation date from EXIF or fallback to file stats
               const createDate = metadata.CreateDate 
                 ? new Date(metadata.CreateDate)
                 : stats.birthtime;
