@@ -21,43 +21,70 @@ jobs:
         with:
           fetch-depth: 0
 
+      # Debug: Show initial state
+      - name: Initial state
+        run: |
+          echo "Current directory structure:"
+          tree || ls -R
+          echo "Initial docs directory:"
+          ls -la docs/ || echo "No docs directory"
+
       # First, ensure the docs/images directory exists and is empty
       - name: Prepare images directory
         run: |
           rm -rf docs/images
           mkdir -p docs/images
+          echo "Created fresh docs/images directory"
+          ls -la docs/
 
       # Copy all images first
       - name: Copy images
         run: |
-          cp -v images/* docs/images/
-          echo "Images copied:"
+          echo "Source images:"
+          ls -la images/
+          echo "Copying images..."
+          cp -rv images/* docs/images/
+          echo "Destination images:"
           ls -la docs/images/
 
       # Now install dependencies for image optimization
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y jpegoptim optipng
+          sudo apt-get install -y jpegoptim optipng tree
           echo "Installed image optimization tools"
 
-      # Optimize images in place
+      # Optimize images in place with detailed logging
       - name: Optimize images
         run: |
-          echo "Optimizing JPEG images..."
-          find docs/images/ -type f -name "*.jpg" -exec jpegoptim --max=85 {} \;
-          echo "Optimizing PNG images..."
-          find docs/images/ -type f -name "*.png" -exec optipng -quiet {} \;
-          echo "Optimization complete. Final image sizes:"
-          ls -lh docs/images/
-
-      # Create a debug listing of all files
-      - name: Debug file listing
-        run: |
-          echo "Content of docs directory:"
-          ls -R docs/
-          echo "File sizes:"
+          echo "Starting image optimization..."
+          echo "Before optimization sizes:"
           du -h docs/images/*
+          
+          echo "Optimizing JPEG images..."
+          for img in docs/images/*.jpg; do
+            echo "Optimizing $img"
+            jpegoptim --max=85 "$img"
+          done
+          
+          echo "Optimizing PNG images..."
+          for img in docs/images/*.png; do
+            if [ -f "$img" ]; then
+              echo "Optimizing $img"
+              optipng -quiet "$img"
+            fi
+          done
+          
+          echo "After optimization sizes:"
+          du -h docs/images/*
+
+      # Debug: Show complete directory structure
+      - name: Show final structure
+        run: |
+          echo "Final directory structure:"
+          tree || ls -R
+          echo "Final docs/images contents:"
+          ls -la docs/images/
 
       # Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
@@ -69,11 +96,19 @@ jobs:
           enable_jekyll: false
           full_commit_message: 'Deploy: ${{ github.event.head_commit.message }}'
 
-      # Verify deployment content
+      # Wait a moment for deployment to complete
+      - name: Wait for deployment
+        run: sleep 30
+
+      # Final verification
       - name: Verify deployment
         run: |
-          echo "Checking gh-pages branch content..."
+          echo "Checking gh-pages branch..."
           git fetch origin gh-pages
           git checkout gh-pages
-          echo "Content of images directory in gh-pages:"
-          ls -la images/ || echo "No images directory found in gh-pages"
+          echo "Content of gh-pages root:"
+          ls -la
+          echo "Content of images directory:"
+          ls -la images/ || echo "No images directory found"
+          echo "Complete directory structure:"
+          tree || ls -R
