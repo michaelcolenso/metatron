@@ -2,37 +2,32 @@ const photoList = [
     {
         "name": "2025-02-10_22-59-39.jpg",
         "date": "2025-02-10",
-        "title": "February 9, 2025"
+        "title": "February 10, 2025"
     },
     {
         "name": "2023-03-01_21-03-58.jpg",
         "date": "2023-03-01",
-        "title": "February 28, 2023"
+        "title": "March 1, 2023"
     },
     {
         "name": "2022-01-04_06-43-19.jpg",
         "date": "2022-01-04",
-        "title": "January 3, 2022"
+        "title": "January 4, 2022"
     },
     {
         "name": "2021-03-27_05-26-50.jpg",
         "date": "2021-03-27",
-        "title": "March 26, 2021"
+        "title": "March 27, 2021"
     },
     {
         "name": "2017-01-31_02-17-15.jpg",
         "date": "2017-01-31",
-        "title": "January 30, 2017"
+        "title": "January 31, 2017"
     },
     {
         "name": "2016-12-05_20-16-41.jpg",
         "date": "2016-12-05",
-        "title": "December 4, 2016"
-    },
-    {
-        "name": "2016-09-13_02-14-27.jpg",
-        "date": "2016-09-13",
-        "title": "September 12, 2016"
+        "title": "December 5, 2016"
     },
     {
         "name": "2016-09-13_02-14-27.jpg",
@@ -42,36 +37,36 @@ const photoList = [
     {
         "name": "2015-10-18_00-16-38.jpg",
         "date": "2015-10-18",
-        "title": "October 17, 2015"
+        "title": "October 18, 2015"
     },
     {
         "name": "2015-09-02_21-04-11.jpg",
         "date": "2015-09-02",
-        "title": "September 1, 2015"
+        "title": "September 2, 2015"
     },
     {
         "name": "2015-09-01_05-15-25.jpg",
         "date": "2015-09-01",
-        "title": "August 31, 2015"
+        "title": "September 1, 2015"
     },
     {
         "name": "2015-08-27_02-03-03.jpg",
         "date": "2015-08-27",
-        "title": "August 26, 2015"
+        "title": "August 27, 2015"
     },
     {
         "name": "2015-08-24_04-54-31.jpg",
         "date": "2015-08-24",
-        "title": "August 23, 2015"
+        "title": "August 24, 2015"
     },
     {
         "name": "2012-03-06_23-17-28.jpg",
         "date": "2012-03-06",
-        "title": "March 5, 2012"
+        "title": "March 6, 2012"
     },
     {
         "name": "2011-01-19_15-35-45.jpg",
         "date": "2011-01-19",
-        "title": "January 18, 2011"
+        "title": "January 19, 2011"
     }
 ];
