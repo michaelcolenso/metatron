@@ -30,6 +30,11 @@ const photoList = [
         "title": "December 5, 2016"
     },
     {
+        "name": "2016-09-13_02-14-27.jpg",
+        "date": "2016-09-13",
+        "title": "September 13, 2016"
+    },
+    {
         "name": "2015-10-18_00-16-38.jpg",
         "date": "2015-10-18",
         "title": "October 18, 2015"
