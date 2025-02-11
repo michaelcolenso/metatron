@@ -2,8 +2,11 @@ name: Deploy Portfolio Site
 
 on:
   push:
+    branches:
+      - main  # or your default branch name
     paths:
-      - "images/**" # Trigger when changes are made to the /images folder
+      - "images/**"
+      - "docs/**"
 
 jobs:
   deploy:
@@ -14,29 +17,33 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # Set up Node.js (for image optimization tools)
+      # Create necessary directories
+      - name: Create directories
+        run: |
+          mkdir -p docs/images
+          
+      # Set up Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
 
-      # Install image optimization tools
+      # Install dependencies locally
       - name: Install dependencies
         run: |
-          npm install -g imagemin-cli
-          npm install -g imagemin-mozjpeg imagemin-pngquant
+          npm init -y
+          npm install imagemin imagemin-cli imagemin-mozjpeg imagemin-pngquant
 
       # Optimize images
       - name: Optimize images
         run: |
-          imagemin images/* --out-dir docs/images
+          npx imagemin images/* --out-dir=docs/images
           echo "Images optimized and moved to /docs/images"
 
       # Build the site (if needed)
       - name: Build site
         run: |
           # Add any build steps here (e.g., minify CSS/JS)
-
           echo "Site built"
 
       # Deploy to GitHub Pages
@@ -45,3 +52,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs
+          force_orphan: true  # This ensures a clean deployment
