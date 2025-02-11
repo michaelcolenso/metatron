@@ -1,0 +1,12 @@
+{
+  "name": "metatron",
+  "version": "1.0.0",
+  "description": "Photography portfolio site",
+  "scripts": {
+    "update-images": "node scripts/update-images.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michaelcolenso/metatron.git"
+  }
+}
