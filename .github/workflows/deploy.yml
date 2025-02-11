@@ -4,11 +4,7 @@ on:
   push:
     branches:
       - main
-    paths:
-      - "images/**"
-      - "docs/**"
 
-# Add permissions block
 permissions:
   contents: write
   pages: write
@@ -25,11 +21,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      # Create necessary directories
-      - name: Create directories
-        run: |
-          mkdir -p docs/images
-          
       # Set up Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v3
@@ -42,17 +33,12 @@ jobs:
           npm init -y
           npm install imagemin imagemin-cli imagemin-mozjpeg imagemin-pngquant
 
-      # Optimize images
-      - name: Optimize images
+      # Copy and optimize images
+      - name: Process images
         run: |
-          npx imagemin images/* --out-dir=docs/images
-          echo "Images optimized and moved to /docs/images"
-
-      # Build the site (if needed)
-      - name: Build site
-        run: |
-          # Add any build steps here (e.g., minify CSS/JS)
-          echo "Site built"
+          mkdir -p docs/images
+          cp images/* docs/images/
+          npx imagemin docs/images/* --out-dir=docs/images
 
       # Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
