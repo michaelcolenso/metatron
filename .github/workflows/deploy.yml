@@ -96,19 +96,25 @@ jobs:
           enable_jekyll: false
           full_commit_message: 'Deploy: ${{ github.event.head_commit.message }}'
 
-      # Wait a moment for deployment to complete
-      - name: Wait for deployment
-        run: sleep 30
-
-      # Final verification
+      # Verify deployment (in a clean directory)
       - name: Verify deployment
         run: |
           echo "Checking gh-pages branch..."
-          git fetch origin gh-pages
-          git checkout gh-pages
+          # Create a temporary directory for verification
+          tmp_dir=$(mktemp -d)
+          cd $tmp_dir
+          
+          # Clone the gh-pages branch fresh
+          git clone --single-branch --branch gh-pages https://github.com/michaelcolenso/metatron.git
+          cd metatron
+          
           echo "Content of gh-pages root:"
           ls -la
           echo "Content of images directory:"
           ls -la images/ || echo "No images directory found"
           echo "Complete directory structure:"
           tree || ls -R
+          
+          # Cleanup
+          cd ../..
+          rm -rf $tmp_dir
