@@ -21,19 +21,19 @@ function formatDate(dateStr) {
 }
 
 // Create photo card element
-function createPhotoCard(image) {
+function createPhotoCard(photo) {
     const card = document.createElement('div');
     card.className = 'photo-card';
     
     const img = document.createElement('img');
-    img.src = `images/${image.name}`;
-    img.alt = image.title;
+    img.src = `images/${photo.name}`;
+    img.alt = photo.title;
     img.loading = 'lazy';
     
     const info = document.createElement('div');
     info.className = 'photo-info';
     info.innerHTML = `
-        <div class="photo-date">${formatDate(image.date)}</div>
+        <div class="photo-date">${formatDate(photo.date)}</div>
     `;
     
     card.appendChild(img);
@@ -42,44 +42,44 @@ function createPhotoCard(image) {
     // Add click handler for modal
     card.addEventListener('click', () => {
         modalImg.src = img.src;
-        modalCaption.textContent = `${image.title} - ${formatDate(image.date)}`;
+        modalCaption.textContent = `${photo.title} - ${formatDate(photo.date)}`;
         modal.style.display = "block";
     });
     
     return card;
 }
 
-// Filter and sort images
-function filterAndSortImages() {
+// Filter and sort photos
+function filterAndSortPhotos() {
     const searchTerm = searchInput.value.toLowerCase();
     const sortValue = sortSelect.value;
     
-    let filteredImages = images.filter(image => 
-        image.title.toLowerCase().includes(searchTerm) ||
-        image.date.includes(searchTerm)
+    let filteredPhotos = photoList.filter(photo => 
+        photo.title.toLowerCase().includes(searchTerm) ||
+        photo.date.includes(searchTerm)
     );
     
     switch(sortValue) {
         case 'date-desc':
-            filteredImages.sort((a, b) => new Date(b.date) - new Date(a.date));
+            filteredPhotos.sort((a, b) => new Date(b.date) - new Date(a.date));
             break;
         case 'date-asc':
-            filteredImages.sort((a, b) => new Date(a.date) - new Date(b.date));
+            filteredPhotos.sort((a, b) => new Date(a.date) - new Date(b.date));
             break;
         case 'name':
-            filteredImages.sort((a, b) => a.title.localeCompare(b.title));
+            filteredPhotos.sort((a, b) => a.title.localeCompare(b.title));
             break;
     }
     
-    return filteredImages;
+    return filteredPhotos;
 }
 
 // Render photo grid
 function renderPhotoGrid() {
-    const filteredImages = filterAndSortImages();
+    const filteredPhotos = filterAndSortPhotos();
     photoGrid.innerHTML = '';
-    filteredImages.forEach(image => {
-        photoGrid.appendChild(createPhotoCard(image));
+    filteredPhotos.forEach(photo => {
+        photoGrid.appendChild(createPhotoCard(photo));
     });
 }
 

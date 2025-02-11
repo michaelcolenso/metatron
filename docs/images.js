@@ -1,4 +1,4 @@
-const images = [
+const photoList = [
     {
         name: '2015-08-27_02-03-03.jpg',
         date: '2015-08-27',
