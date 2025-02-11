@@ -9,10 +9,38 @@
 </head>
 
 <body>
-  <h1>My Photography Portfolio</h1>
-  <div id="photo-grid">
-    <!-- Images will be dynamically loaded here -->
+  <header>
+    <h1>Photography Portfolio</h1>
+    <div class="controls">
+      <div class="search-box">
+        <input type="text" id="search" placeholder="Search images...">
+      </div>
+      <div class="sort-controls">
+        <label for="sort">Sort by:</label>
+        <select id="sort">
+          <option value="date-desc">Newest First</option>
+          <option value="date-asc">Oldest First</option>
+          <option value="name">Name</option>
+        </select>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div id="photo-grid"></div>
+  </main>
+
+  <footer>
+    <p>© <span id="year"></span> Photography Portfolio. All rights reserved.</p>
+  </footer>
+
+  <!-- Modal for image preview -->
+  <div id="modal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="modal-img">
+    <div id="modal-caption"></div>
   </div>
+
   <script src="script.js"></script>
 </body>
 
