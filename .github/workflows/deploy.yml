@@ -21,70 +21,17 @@ jobs:
         with:
           fetch-depth: 0
 
-      # Debug: Show initial state
-      - name: Initial state
+      # Debug: Show initial directory state
+      - name: Show starting state
         run: |
-          echo "Current directory structure:"
-          tree || ls -R
-          echo "Initial docs directory:"
-          ls -la docs/ || echo "No docs directory"
-
-      # First, ensure the docs/images directory exists and is empty
-      - name: Prepare images directory
-        run: |
-          rm -rf docs/images
-          mkdir -p docs/images
-          echo "Created fresh docs/images directory"
+          echo "=== Current directory content ==="
+          ls -la
+          echo "=== Docs directory content ==="
           ls -la docs/
-
-      # Copy all images first
-      - name: Copy images
-        run: |
-          echo "Source images:"
+          echo "=== Images in docs/images ==="
+          ls -la docs/images/
+          echo "=== Source images ==="
           ls -la images/
-          echo "Copying images..."
-          cp -rv images/* docs/images/
-          echo "Destination images:"
-          ls -la docs/images/
-
-      # Now install dependencies for image optimization
-      - name: Install dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y jpegoptim optipng tree
-          echo "Installed image optimization tools"
-
-      # Optimize images in place with detailed logging
-      - name: Optimize images
-        run: |
-          echo "Starting image optimization..."
-          echo "Before optimization sizes:"
-          du -h docs/images/*
-          
-          echo "Optimizing JPEG images..."
-          for img in docs/images/*.jpg; do
-            echo "Optimizing $img"
-            jpegoptim --max=85 "$img"
-          done
-          
-          echo "Optimizing PNG images..."
-          for img in docs/images/*.png; do
-            if [ -f "$img" ]; then
-              echo "Optimizing $img"
-              optipng -quiet "$img"
-            fi
-          done
-          
-          echo "After optimization sizes:"
-          du -h docs/images/*
-
-      # Debug: Show complete directory structure
-      - name: Show final structure
-        run: |
-          echo "Final directory structure:"
-          tree || ls -R
-          echo "Final docs/images contents:"
-          ls -la docs/images/
 
       # Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
@@ -96,24 +43,24 @@ jobs:
           enable_jekyll: false
           full_commit_message: 'Deploy: ${{ github.event.head_commit.message }}'
 
-      # Verify deployment (in a clean directory)
-      - name: Verify deployment
+      # Verify deployment
+      - name: Verify deployment files
         run: |
-          echo "Checking gh-pages branch..."
-          # Create a temporary directory for verification
+          # Wait for GitHub Pages to update
+          sleep 30
+          
+          # Create a temp directory and check the gh-pages branch
           tmp_dir=$(mktemp -d)
           cd $tmp_dir
           
-          # Clone the gh-pages branch fresh
+          echo "=== Cloning gh-pages branch ==="
           git clone --single-branch --branch gh-pages https://github.com/michaelcolenso/metatron.git
           cd metatron
           
-          echo "Content of gh-pages root:"
+          echo "=== Deployed files: ==="
           ls -la
-          echo "Content of images directory:"
-          ls -la images/ || echo "No images directory found"
-          echo "Complete directory structure:"
-          tree || ls -R
+          echo "=== Deployed images: ==="
+          ls -la images/
           
           # Cleanup
           cd ../..
