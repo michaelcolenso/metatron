@@ -21,6 +21,18 @@ jobs:
         with:
           fetch-depth: 0
 
+      # Debug: List contents before
+      - name: List contents before
+        run: |
+          echo "Current directory:"
+          pwd
+          echo "Contents of current directory:"
+          ls -la
+          echo "Contents of images directory:"
+          ls -la images/
+          echo "Contents of docs directory:"
+          ls -la docs/
+
       # Set up Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v3
@@ -31,14 +43,25 @@ jobs:
       - name: Install dependencies
         run: |
           npm init -y
-          npm install imagemin imagemin-cli imagemin-mozjpeg imagemin-pngquant
+          npm install imagemin-cli imagemin-mozjpeg imagemin-pngquant
 
-      # Copy and optimize images
+      # Copy and optimize images - with debugging
       - name: Process images
         run: |
+          echo "Creating docs/images directory..."
           mkdir -p docs/images
-          cp images/* docs/images/
-          npx imagemin docs/images/* --out-dir=docs/images
+          
+          echo "Copying images..."
+          cp -v images/* docs/images/
+          
+          echo "Contents of docs/images after copy:"
+          ls -la docs/images/
+          
+          echo "Optimizing images..."
+          ./node_modules/.bin/imagemin docs/images/* --out-dir=docs/images
+          
+          echo "Final contents of docs/images:"
+          ls -la docs/images/
 
       # Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
@@ -47,3 +70,11 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs
           force_orphan: true
+          
+      # Debug: List contents after
+      - name: List contents after
+        run: |
+          echo "Contents of docs directory after deployment:"
+          ls -la docs/
+          echo "Contents of docs/images after deployment:"
+          ls -la docs/images/
