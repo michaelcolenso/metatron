@@ -7,17 +7,13 @@ on:
     paths:
       - "images/**"
   schedule:
-    - cron: "0 0 * * 0" # Weekly rebuild
+    - cron: "0 0 * * 0"
   workflow_dispatch:
 
 permissions:
   contents: write
   pages: write
   id-token: write
-
-env:
-  NODE_VERSION: "20"
-  IMAGE_CACHE_KEY: photos-v1
 
 jobs:
   update-and-deploy:
@@ -29,139 +25,85 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: "npm"
+          node-version: "20"
 
-      - name: Initialize npm project
+      - name: Setup project
         run: |
-          # Create package.json if it doesn't exist
-          if [ ! -f "package.json" ]; then
-            npm init -y
-            # Update package.json with required dependencies
-            npm pkg set dependencies.exiftool-vendored="^22.0.0"
-          fi
+          # Create minimal package.json
+          echo '{
+            "name": "photo-portfolio",
+            "version": "1.0.0",
+            "private": true,
+            "dependencies": {
+              "exiftool-vendored": "^22.0.0"
+            }
+          }' > package.json
 
-      - name: Cache processed images
-        uses: actions/cache@v3
-        with:
-          path: |
-            docs/images
-            .image-cache
-          key: ${{ env.IMAGE_CACHE_KEY }}-${{ hashFiles('images/**') }}
-          restore-keys: |
-            ${{ env.IMAGE_CACHE_KEY }}-
+          # Install dependencies
+          npm install
 
-      - name: Install dependencies
-        run: npm install
-
-      - name: Process and optimize images
+      - name: Install system dependencies
         run: |
-          # Install image processing tools
-          sudo apt-get update && sudo apt-get install -y imagemagick exiftool
+          sudo apt-get update
+          sudo apt-get install -y imagemagick exiftool
 
-          # Configure ImageMagick policy to allow PDF operations if needed
+          # Configure ImageMagick policy
           sudo sed -i 's/rights="none" pattern="PDF"/rights="read|write" pattern="PDF"/' /etc/ImageMagick-6/policy.xml
 
-          # Create processing script
-          cat << 'EOF' > process-images.sh
-          #!/bin/bash
-
+      - name: Process images
+        run: |
           mkdir -p docs/images
-          mkdir -p .image-cache
-
-          # Counter for statistics
-          new_images=0
-          updated_images=0
-          total_images=0
 
           for img in images/*; do
             if [ -f "$img" ]; then
               filename=$(basename "$img")
-              cache_hash=$(sha256sum "$img" | cut -d' ' -f1)
-              cache_file=".image-cache/${cache_hash}"
+              echo "Processing: $filename"
               
-              ((total_images++))
+              # Strip metadata except copyright and date
+              exiftool -all:all= -tagsfromfile @ -copyright -createdate "$img" -o "temp_${filename}"
               
-              # Process image if not in cache
-              if [ ! -f "$cache_file" ]; then
-                echo "Processing: $filename"
-                
-                if [ ! -f "docs/images/${filename}" ]; then
-                  ((new_images++))
-                else
-                  ((updated_images++))
-                fi
-                
-                # Strip metadata except copyright and date
-                exiftool -all:all= -tagsfromfile @ -copyright -createdate "$img" -o "temp_${filename}"
-                
-                # Optimize image and create multiple sizes
-                convert "temp_${filename}" -strip -quality 85 -resize "1920x1920>" "docs/images/${filename}"
-                convert "temp_${filename}" -strip -quality 85 -resize "800x800>" "docs/images/medium_${filename}"
-                convert "temp_${filename}" -strip -quality 85 -resize "400x400>" "docs/images/thumb_${filename}"
-                
-                # Create WebP versions
-                convert "docs/images/${filename}" -quality 85 "docs/images/${filename%.*}.webp"
-                convert "docs/images/medium_${filename}" -quality 85 "docs/images/medium_${filename%.*}.webp"
-                convert "docs/images/thumb_${filename}" -quality 85 "docs/images/thumb_${filename%.*}.webp"
-                
-                rm "temp_${filename}"
-                touch "$cache_file"
-              else
-                echo "Using cached version: $filename"
-              fi
+              # Create multiple sizes
+              convert "temp_${filename}" -strip -quality 85 -resize "1920x1920>" "docs/images/${filename}"
+              convert "temp_${filename}" -strip -quality 85 -resize "800x800>" "docs/images/medium_${filename}"
+              convert "temp_${filename}" -strip -quality 85 -resize "400x400>" "docs/images/thumb_${filename}"
+              
+              # Create WebP versions
+              convert "docs/images/${filename}" -quality 85 "docs/images/${filename%.*}.webp"
+              convert "docs/images/medium_${filename}" -quality 85 "docs/images/medium_${filename%.*}.webp"
+              convert "docs/images/thumb_${filename}" -quality 85 "docs/images/thumb_${filename%.*}.webp"
+              
+              rm "temp_${filename}"
             fi
           done
 
-          # Export statistics
-          echo "NEW_IMAGES=$new_images" >> $GITHUB_ENV
-          echo "UPDATED_IMAGES=$updated_images" >> $GITHUB_ENV
-          echo "TOTAL_IMAGES=$total_images" >> $GITHUB_ENV
-          EOF
-
-          chmod +x process-images.sh
-          ./process-images.sh
-
-      - name: Update image list
+      - name: Generate image list
         run: |
-          # Create enhanced image list script
           cat << 'EOF' > create-image-list.js
           const fs = require('fs');
           const path = require('path');
           const { ExifTool } = require('exiftool-vendored');
           const exiftool = new ExifTool();
 
-          const imageDir = 'images';
-          const outputFile = 'docs/images.js';
-
-          async function getImageMetadata(filepath) {
-            try {
-              const metadata = await exiftool.read(filepath);
-              return metadata;
-            } catch (error) {
-              console.warn(`Warning: No EXIF for ${filepath}`, error);
-              return {};
-            }
-          }
-
           async function generateImageList() {
+            const imageDir = 'images';
             const files = fs.readdirSync(imageDir)
               .filter(file => /\.(jpg|jpeg|png)$/i.test(file));
             
             const imageList = await Promise.all(files.map(async file => {
               const filepath = path.join(imageDir, file);
               const stats = fs.statSync(filepath);
-              const metadata = await getImageMetadata(filepath);
+              let metadata;
               
-              const createDate = metadata.CreateDate 
-                ? new Date(metadata.CreateDate)
-                : stats.birthtime;
+              try {
+                metadata = await exiftool.read(filepath);
+              } catch (error) {
+                console.warn(`No EXIF for ${filepath}`);
+                metadata = {};
+              }
               
               const title = path.basename(file, path.extname(file))
                 .replace(/[-_]/g, ' ')
@@ -170,11 +112,7 @@ jobs:
               return {
                 name: file,
                 title,
-                date: createDate.toISOString(),
-                dimensions: {
-                  width: metadata.ImageWidth || null,
-                  height: metadata.ImageHeight || null
-                },
+                date: (metadata.CreateDate ? new Date(metadata.CreateDate) : stats.birthtime).toISOString(),
                 camera: metadata.Model || null,
                 exposure: metadata.ExposureTime || null,
                 aperture: metadata.FNumber || null,
@@ -188,12 +126,12 @@ jobs:
               };
             }));
             
-            // Sort by date descending
             imageList.sort((a, b) => new Date(b.date) - new Date(a.date));
             
-            // Write the image list
-            const output = `const photoList = ${JSON.stringify(imageList, null, 2)};\n`;
-            fs.writeFileSync(outputFile, output);
+            fs.writeFileSync(
+              'docs/images.js', 
+              `const photoList = ${JSON.stringify(imageList, null, 2)};\n`
+            );
             
             await exiftool.end();
           }
@@ -201,7 +139,6 @@ jobs:
           generateImageList().catch(console.error);
           EOF
 
-          # Run the script
           node create-image-list.js
 
       - name: Commit changes
@@ -211,18 +148,12 @@ jobs:
             git config --local user.name "GitHub Action"
             
             git add docs/images/* docs/images.js
-            git commit -m "Auto-update image list and optimize photos
-
-            Stats:
-            - New images: ${{ env.NEW_IMAGES }}
-            - Updated: ${{ env.UPDATED_IMAGES }}
-            - Total processed: ${{ env.TOTAL_IMAGES }}
+            git commit -m "Update photo gallery
             
-            Changes:
-            - Generated multiple image sizes
+            - Generated responsive image sizes
             - Created WebP versions
             - Updated image metadata
-            - Optimized image quality"
+            - Optimized for web delivery"
             
             git push
           fi
@@ -238,31 +169,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-
-      - name: Create deployment summary
-        if: always()
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const { owner, repo } = context.repo;
-            const run_id = context.runId;
-            const run_url = `https://github.com/${owner}/${repo}/actions/runs/${run_id}`;
-
-            const summary = `## 📸 Photo Processing Summary
-
-            ### Statistics
-            - New images added: ${process.env.NEW_IMAGES || 0}
-            - Images updated: ${process.env.UPDATED_IMAGES || 0}
-            - Total images processed: ${process.env.TOTAL_IMAGES || 0}
-
-            ### Details
-            - Multiple sizes generated for responsive loading
-            - WebP versions created for modern browsers
-            - EXIF metadata preserved and enhanced
-            - Images optimized for web delivery
-
-            [View Full Run Details](${run_url})`;
-
-            await core.summary
-              .addRaw(summary)
-              .write();
