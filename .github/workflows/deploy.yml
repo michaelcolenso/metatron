@@ -1,9 +1,11 @@
-name: Deploy Portfolio Site
+name: Update and Deploy Photos
 
 on:
   push:
     branches:
       - main
+    paths:
+      - 'images/**'
 
 permissions:
   contents: write
@@ -11,35 +13,41 @@ permissions:
   id-token: write
 
 jobs:
-  build-and-deploy:
+  update-and-deploy:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Update image list and copy files
+        run: |
+          npm run update-images
+          
+          # Check if there are changes
+          if [[ -n "$(git status --porcelain)" ]]; then
+            # Configure Git
+            git config --local user.email "action@github.com"
+            git config --local user.name "GitHub Action"
+            
+            # Add and commit changes
+            git add docs/images/* docs/images.js
+            git commit -m "Auto-update image list and copy new photos"
+            git push
+          fi
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
-
-      - name: Debug - Show Structure Before
-        run: |
-          echo "=== WORKSPACE CONTENTS ==="
-          pwd
-          ls -la
-          echo ""
-          echo "=== DOCS DIRECTORY ==="
-          ls -la docs/
-          echo ""
-          echo "=== IMAGES DIRECTORY ==="
-          ls -la docs/images/
-          echo ""
-          echo "=== FILE SIZES ==="
-          du -h docs/images/*
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
@@ -49,18 +57,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-
-      - name: Debug - Verify Deployment
-        run: |
-          echo "=== CHECKING DEPLOYMENT ==="
-          DEPLOYMENT_URL="${{ steps.deployment.outputs.page_url }}"
-          echo "Deployed to: $DEPLOYMENT_URL"
-          echo ""
-          echo "=== TESTING IMAGE ACCESS ==="
-          for img in docs/images/*; do
-            filename=$(basename "$img")
-            url="${DEPLOYMENT_URL}images/$filename"
-            echo "Testing: $url"
-            curl -I "$url"
-            echo ""
-          done
