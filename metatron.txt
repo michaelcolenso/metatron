@@ -1,0 +1,771 @@
+./README.md
+---
+# Metatron
+
+## Description
+Metatron is a project that [brief description of what your project does].
+
+## Installation
+```bash
+# Add installation instructions here
+```
+
+## Usage
+```bash
+# Add usage examples here
+```
+
+## Features
+- Feature 1
+- Feature 2
+- Feature 3
+
+## Contributing
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+This project is licensed under the terms in the LICENSE file.
+
+## Contact
+[Your contact information or how to reach out with questions]
+
+---
+./metatron.txt
+---
+
+
+---
+./package.json
+---
+{
+  "name": "metatron",
+  "version": "1.0.0",
+  "description": "Photography portfolio site",
+  "scripts": {
+    "update-images": "node scripts/update-images.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michaelcolenso/metatron.git"
+  }
+}
+
+---
+./docs/images.js
+---
+const photoList = [
+  {
+    "name": "2025-02-10_22-59-39.jpg",
+    "title": "2025 02 10 22 59 39",
+    "date": "2025-02-11T08:23:37.351Z",
+    "camera": null,
+    "exposure": null,
+    "aperture": null,
+    "iso": null,
+    "hasWebP": true,
+    "sizes": {
+      "thumb": "thumb_2025-02-10_22-59-39.jpg",
+      "medium": "medium_2025-02-10_22-59-39.jpg",
+      "full": "2025-02-10_22-59-39.jpg"
+    }
+  },
+  {
+    "name": "2023-03-01_21-03-58.jpg",
+    "title": "2023 03 01 21 03 58",
+    "date": "2025-02-11T08:23:37.350Z",
+    "camera": null,
+    "exposure": null,
+    "aperture": null,
+    "iso": null,
+    "hasWebP": true,
+    "sizes": {
+      "thumb": "thumb_2023-03-01_21-03-58.jpg",
+      "medium": "medium_2023-03-01_21-03-58.jpg",
+      "full": "2023-03-01_21-03-58.jpg"
+    }
+  },
+  {
+    "name": "2022-01-04_06-43-19.jpg",
+    "title": "2022 01 04 06 43 19",
+    "date": "2025-02-11T08:23:37.349Z",
+    "camera": null,
+    "exposure": null,
+    "aperture": null,
+    "iso": null,
+    "hasWebP": true,
+    "sizes": {
+      "thumb": "thumb_2022-01-04_06-43-19.jpg",
+      "medium": "medium_2022-01-04_06-43-19.jpg",
+      "full": "2022-01-04_06-43-19.jpg"
+    }
+  },
+  {
+    "name": "2021-03-27_05-26-50.jpg",
+    "title": "2021 03 27 05 26 50",
+    "date": "2025-02-11T08:23:37.348Z",
+    "camera": null,
+    "exposure": null,
+    "aperture": null,
+    "iso": null,
+    "hasWebP": true,
+    "sizes": {
+      "thumb": "thumb_2021-03-27_05-26-50.jpg",
+      "medium": "medium_2021-03-27_05-26-50.jpg",
+      "full": "2021-03-27_05-26-50.jpg"
+    }
+  },
+  {
+    "name": "2017-01-31_02-17-15.jpg",
+    "title": "2017 01 31 02 17 15",
+    "date": "2025-02-11T08:23:37.347Z",
+    "camera": null,
+    "exposure": null,
+    "aperture": null,
+    "iso": null,
+    "hasWebP": true,
+    "sizes": {
+      "thumb": "thumb_2017-01-31_02-17-15.jpg",
+      "medium": "medium_2017-01-31_02-17-15.jpg",
+      "full": "2017-01-31_02-17-15.jpg"
+    }
+  },
+  {
+    "name": "2017-12-04_13-37-38.jpg",
+    "title": "2017 12 04 13 37 38",
+    "date": "2025-02-11T08:23:37.347Z",
+    "camera": null,
+    "exposure": null,
+    "aperture": null,
+    "iso": null,
+    "hasWebP": true,
+    "sizes": {
+      "thumb": "thumb_2017-12-04_13-37-38.jpg",
+      "medium": "medium_2017-12-04_13-37-38.jpg",
+      "full": "2017-12-04_13-37-38.jpg"
+    }
+  },
+  {
+    "name": "2016-12-04_02-09-16.jpg",
+    "title": "2016 12 04 02 09 16",
+    "date": "2025-02-11T08:23:37.346Z",
+    "camera": null,
+    "exposure": null,
+    "aperture": null,
+    "iso": null,
+    "hasWebP": true,
+    "sizes": {
+      "thumb": "thumb_2016-12-04_02-09-16.jpg",
+      "medium": "medium_2016-12-04_02-09-16.jpg",
+      "full": "2016-12-04_02-09-16.jpg"
+    }
+  },
+  {
+    "name": "2016-12-05_20-16-41.jpg",
+    "title": "2016 12 05 20 16 41",
+    "date": "2025-02-11T08:23:37.346Z",
+    "camera": null,
+    "exposure": null,
+    "aperture": null,
+    "iso": null,
+    "hasWebP": true,
+    "sizes": {
+      "thumb": "thumb_2016-12-05_20-16-41.jpg",
+      "medium": "medium_2016-12-05_20-16-41.jpg",
+      "full": "2016-12-05_20-16-41.jpg"
+    }
+  },
+  {
+    "name": "2015-11-15_02-55-15.jpg",
+    "title": "2015 11 15 02 55 15",
+    "date": "2025-02-11T08:23:37.345Z",
+    "camera": null,
+    "exposure": null,
+    "aperture": null,
+    "iso": null,
+    "hasWebP": true,
+    "sizes": {
+      "thumb": "thumb_2015-11-15_02-55-15.jpg",
+      "medium": "medium_2015-11-15_02-55-15.jpg",
+      "full": "2015-11-15_02-55-15.jpg"
+    }
+  },
+  {
+    "name": "2016-09-13_02-14-27.jpg",
+    "title": "2016 09 13 02 14 27",
+    "date": "2025-02-11T08:23:37.345Z",
+    "camera": null,
+    "exposure": null,
+    "aperture": null,
+    "iso": null,
+    "hasWebP": true,
+    "sizes": {
+      "thumb": "thumb_2016-09-13_02-14-27.jpg",
+      "medium": "medium_2016-09-13_02-14-27.jpg",
+      "full": "2016-09-13_02-14-27.jpg"
+    }
+  },
+  {
+    "name": "2016-11-03_16-39-25.jpg",
+    "title": "2016 11 03 16 39 25",
+    "date": "2025-02-11T08:23:37.345Z",
+    "camera": null,
+    "exposure": null,
+    "aperture": null,
+    "iso": null,
+    "hasWebP": true,
+    "sizes": {
+      "thumb": "thumb_2016-11-03_16-39-25.jpg",
+      "medium": "medium_2016-11-03_16-39-25.jpg",
+      "full": "2016-11-03_16-39-25.jpg"
+    }
+  },
+  {
+    "name": "2015-09-01_05-15-25.jpg",
+    "title": "2015 09 01 05 15 25",
+    "date": "2025-02-11T08:23:37.344Z",
+    "camera": null,
+    "exposure": null,
+    "aperture": null,
+    "iso": null,
+    "hasWebP": true,
+    "sizes": {
+      "thumb": "thumb_2015-09-01_05-15-25.jpg",
+      "medium": "medium_2015-09-01_05-15-25.jpg",
+      "full": "2015-09-01_05-15-25.jpg"
+    }
+  },
+  {
+    "name": "2015-09-02_21-04-11.jpg",
+    "title": "2015 09 02 21 04 11",
+    "date": "2025-02-11T08:23:37.344Z",
+    "camera": null,
+    "exposure": null,
+    "aperture": null,
+    "iso": null,
+    "hasWebP": true,
+    "sizes": {
+      "thumb": "thumb_2015-09-02_21-04-11.jpg",
+      "medium": "medium_2015-09-02_21-04-11.jpg",
+      "full": "2015-09-02_21-04-11.jpg"
+    }
+  },
+  {
+    "name": "2015-10-18_00-16-38.jpg",
+    "title": "2015 10 18 00 16 38",
+    "date": "2025-02-11T08:23:37.344Z",
+    "camera": null,
+    "exposure": null,
+    "aperture": null,
+    "iso": null,
+    "hasWebP": true,
+    "sizes": {
+      "thumb": "thumb_2015-10-18_00-16-38.jpg",
+      "medium": "medium_2015-10-18_00-16-38.jpg",
+      "full": "2015-10-18_00-16-38.jpg"
+    }
+  },
+  {
+    "name": "2015-08-24_04-54-31.jpg",
+    "title": "2015 08 24 04 54 31",
+    "date": "2025-02-11T08:23:37.343Z",
+    "camera": null,
+    "exposure": null,
+    "aperture": null,
+    "iso": null,
+    "hasWebP": true,
+    "sizes": {
+      "thumb": "thumb_2015-08-24_04-54-31.jpg",
+      "medium": "medium_2015-08-24_04-54-31.jpg",
+      "full": "2015-08-24_04-54-31.jpg"
+    }
+  },
+  {
+    "name": "2015-08-27_02-03-03.jpg",
+    "title": "2015 08 27 02 03 03",
+    "date": "2025-02-11T08:23:37.343Z",
+    "camera": null,
+    "exposure": null,
+    "aperture": null,
+    "iso": null,
+    "hasWebP": true,
+    "sizes": {
+      "thumb": "thumb_2015-08-27_02-03-03.jpg",
+      "medium": "medium_2015-08-27_02-03-03.jpg",
+      "full": "2015-08-27_02-03-03.jpg"
+    }
+  },
+  {
+    "name": "2015-08-31_20-26-27.jpg",
+    "title": "2015 08 31 20 26 27",
+    "date": "2025-02-11T08:23:37.343Z",
+    "camera": null,
+    "exposure": null,
+    "aperture": null,
+    "iso": null,
+    "hasWebP": true,
+    "sizes": {
+      "thumb": "thumb_2015-08-31_20-26-27.jpg",
+      "medium": "medium_2015-08-31_20-26-27.jpg",
+      "full": "2015-08-31_20-26-27.jpg"
+    }
+  },
+  {
+    "name": "2011-02-06_05-51-23.jpg",
+    "title": "2011 02 06 05 51 23",
+    "date": "2025-02-11T08:23:37.342Z",
+    "camera": null,
+    "exposure": null,
+    "aperture": null,
+    "iso": null,
+    "hasWebP": true,
+    "sizes": {
+      "thumb": "thumb_2011-02-06_05-51-23.jpg",
+      "medium": "medium_2011-02-06_05-51-23.jpg",
+      "full": "2011-02-06_05-51-23.jpg"
+    }
+  },
+  {
+    "name": "2012-03-06_23-17-28.jpg",
+    "title": "2012 03 06 23 17 28",
+    "date": "2025-02-11T08:23:37.342Z",
+    "camera": null,
+    "exposure": null,
+    "aperture": null,
+    "iso": null,
+    "hasWebP": true,
+    "sizes": {
+      "thumb": "thumb_2012-03-06_23-17-28.jpg",
+      "medium": "medium_2012-03-06_23-17-28.jpg",
+      "full": "2012-03-06_23-17-28.jpg"
+    }
+  },
+  {
+    "name": "2012-07-19_01-05-46.jpg",
+    "title": "2012 07 19 01 05 46",
+    "date": "2025-02-11T08:23:37.342Z",
+    "camera": null,
+    "exposure": null,
+    "aperture": null,
+    "iso": null,
+    "hasWebP": true,
+    "sizes": {
+      "thumb": "thumb_2012-07-19_01-05-46.jpg",
+      "medium": "medium_2012-07-19_01-05-46.jpg",
+      "full": "2012-07-19_01-05-46.jpg"
+    }
+  },
+  {
+    "name": "2015-08-16_20-41-00.jpg",
+    "title": "2015 08 16 20 41 00",
+    "date": "2025-02-11T08:23:37.342Z",
+    "camera": null,
+    "exposure": null,
+    "aperture": null,
+    "iso": null,
+    "hasWebP": true,
+    "sizes": {
+      "thumb": "thumb_2015-08-16_20-41-00.jpg",
+      "medium": "medium_2015-08-16_20-41-00.jpg",
+      "full": "2015-08-16_20-41-00.jpg"
+    }
+  },
+  {
+    "name": "2011-01-19_15-35-45.jpg",
+    "title": "2011 01 19 15 35 45",
+    "date": "2025-02-11T08:23:37.341Z",
+    "camera": null,
+    "exposure": null,
+    "aperture": null,
+    "iso": null,
+    "hasWebP": true,
+    "sizes": {
+      "thumb": "thumb_2011-01-19_15-35-45.jpg",
+      "medium": "medium_2011-01-19_15-35-45.jpg",
+      "full": "2011-01-19_15-35-45.jpg"
+    }
+  }
+];
+
+
+---
+./docs/index.html
+---
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Photography Portfolio</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Trigger deployment -->
+</head>
+
+<body>
+  <header>
+    <h1>Photography Portfolio</h1>
+    <div class="controls">
+      <div class="search-box">
+        <input type="text" id="search" placeholder="Search images...">
+      </div>
+      <div class="sort-controls">
+        <label for="sort">Sort by:</label>
+        <select id="sort">
+          <option value="date-desc">Newest First</option>
+          <option value="date-asc">Oldest First</option>
+          <option value="name">Name</option>
+        </select>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div id="photo-grid"></div>
+  </main>
+
+  <footer>
+    <p>© <span id="year"></span> Photography Portfolio. All rights reserved.</p>
+  </footer>
+
+  <!-- Modal for image preview -->
+  <div id="modal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="modal-img">
+    <div id="modal-caption"></div>
+  </div>
+
+  <script src="images.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>
+
+---
+./docs/script.js
+---
+// DOM Elements
+const photoGrid = document.getElementById("photo-grid");
+const searchInput = document.getElementById("search");
+const sortSelect = document.getElementById("sort");
+const modal = document.getElementById("modal");
+const modalImg = document.getElementById("modal-img");
+const modalCaption = document.getElementById("modal-caption");
+const closeBtn = document.querySelector(".close");
+
+// Set current year in footer
+document.getElementById("year").textContent = new Date().getFullYear();
+
+// Format date for display
+function formatDate(dateStr) {
+    const date = new Date(dateStr);
+    return date.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    });
+}
+
+// Create photo card element
+function createPhotoCard(photo) {
+    const card = document.createElement('div');
+    card.className = 'photo-card';
+    
+    const img = document.createElement('img');
+    img.src = `images/${photo.name}`;
+    img.alt = photo.title;
+    img.loading = 'lazy';
+    
+    const info = document.createElement('div');
+    info.className = 'photo-info';
+    info.innerHTML = `
+        <div class="photo-date">${formatDate(photo.date)}</div>
+    `;
+    
+    card.appendChild(img);
+    card.appendChild(info);
+    
+    // Add click handler for modal
+    card.addEventListener('click', () => {
+        modalImg.src = img.src;
+        modalCaption.textContent = `${photo.title} - ${formatDate(photo.date)}`;
+        modal.style.display = "block";
+    });
+    
+    return card;
+}
+
+// Filter and sort photos
+function filterAndSortPhotos() {
+    const searchTerm = searchInput.value.toLowerCase();
+    const sortValue = sortSelect.value;
+    
+    let filteredPhotos = photoList.filter(photo => 
+        photo.title.toLowerCase().includes(searchTerm) ||
+        photo.date.includes(searchTerm)
+    );
+    
+    switch(sortValue) {
+        case 'date-desc':
+            filteredPhotos.sort((a, b) => new Date(b.date) - new Date(a.date));
+            break;
+        case 'date-asc':
+            filteredPhotos.sort((a, b) => new Date(a.date) - new Date(b.date));
+            break;
+        case 'name':
+            filteredPhotos.sort((a, b) => a.title.localeCompare(b.title));
+            break;
+    }
+    
+    return filteredPhotos;
+}
+
+// Render photo grid
+function renderPhotoGrid() {
+    const filteredPhotos = filterAndSortPhotos();
+    photoGrid.innerHTML = '';
+    filteredPhotos.forEach(photo => {
+        photoGrid.appendChild(createPhotoCard(photo));
+    });
+}
+
+// Event listeners
+searchInput.addEventListener('input', renderPhotoGrid);
+sortSelect.addEventListener('change', renderPhotoGrid);
+
+closeBtn.addEventListener('click', () => {
+    modal.style.display = "none";
+});
+
+modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+        modal.style.display = "none";
+    }
+});
+
+// Initial render
+renderPhotoGrid();
+
+---
+./docs/styles.css
+---
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 1rem 0;
+    flex-wrap: wrap;
+}
+
+.search-box input,
+.sort-controls select {
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+#photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.photo-card {
+    position: relative;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.photo-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.photo-card img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    display: block;
+}
+
+.photo-info {
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.photo-date {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.9);
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.modal-content {
+    max-width: 90%;
+    max-height: 90vh;
+    margin: auto;
+    display: block;
+    object-fit: contain;
+}
+
+.close {
+    position: absolute;
+    right: 35px;
+    top: 15px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#modal-caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: white;
+    padding: 10px 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .controls {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    #photo-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+}
+
+/* Loading animation */
+@keyframes pulse {
+    0% { opacity: 0.6; }
+    50% { opacity: 1; }
+    100% { opacity: 0.6; }
+}
+
+.loading {
+    animation: pulse 1.5s infinite;
+}
+
+footer {
+    text-align: center;
+    padding: 2rem 0;
+    color: #666;
+}
+
+---
+./scripts/update-images.js
+---
+const fs = require('fs');
+const path = require('path');
+
+// Function to extract date from filename (format: YYYY-MM-DD_HH-mm-ss.jpg)
+function extractDate(filename) {
+    const match = filename.match(/(\d{4}-\d{2}-\d{2})_/);
+    return match ? match[1] : null;
+}
+
+// Function to format the date for display
+function formatDate(dateStr) {
+    const date = new Date(dateStr);
+    return date.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    });
+}
+
+// Function to generate the image list
+function generateImageList(sourceDir) {
+    // Read all files in the images directory
+    const files = fs.readdirSync(sourceDir)
+        .filter(file => /\.(jpg|jpeg|png)$/i.test(file));
+
+    // Create image objects with metadata
+    const images = files.map(filename => {
+        const date = extractDate(filename);
+        return {
+            name: filename,
+            date: date,
+            title: date ? formatDate(date) : filename
+        };
+    });
+
+    // Sort by date (newest first)
+    images.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+    // Generate JavaScript code
+    const jsContent = `const photoList = ${JSON.stringify(images, null, 4)};`;
+
+    return jsContent;
+}
+
+// Main execution
+try {
+    const sourceDir = path.join(__dirname, '..', 'images');
+    const outputFile = path.join(__dirname, '..', 'docs', 'images.js');
+    
+    console.log('Generating image list...');
+    const jsContent = generateImageList(sourceDir);
+    
+    fs.writeFileSync(outputFile, jsContent);
+    console.log('Successfully updated images.js');
+    
+    // Also copy new images to docs/images
+    const docsImagesDir = path.join(__dirname, '..', 'docs', 'images');
+    if (!fs.existsSync(docsImagesDir)) {
+        fs.mkdirSync(docsImagesDir, { recursive: true });
+    }
+    
+    const files = fs.readdirSync(sourceDir)
+        .filter(file => /\.(jpg|jpeg|png)$/i.test(file));
+    
+    files.forEach(file => {
+        const sourcePath = path.join(sourceDir, file);
+        const destPath = path.join(docsImagesDir, file);
+        fs.copyFileSync(sourcePath, destPath);
+        console.log(`Copied: ${file}`);
+    });
+    
+    console.log('All images copied to docs/images');
+} catch (error) {
+    console.error('Error:', error.message);
+    process.exit(1);
+}
+
+---
