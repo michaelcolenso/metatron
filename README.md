@@ -1,6 +1,6 @@
 # Metatron
 
-Metatron is a lightweight photography portfolio built with static HTML, CSS, and vanilla JavaScript. The project powers a searchable, filterable gallery that can be deployed as a GitHub Pages site from the `docs/` directory. It includes tooling to keep image metadata in sync and optimised thumbnails for the web.
+photos by michaelcolenso
 
 ## Table of contents
 - [Features](#features)
