@@ -112,6 +112,10 @@ header {
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
     .controls {
         flex-direction: column;
         align-items: center;
@@ -120,6 +124,24 @@ header {
 
     #photo-grid {
         column-count: 1;
+        padding: 10px;
+        column-gap: 0;
+    }
+
+    .photo-card {
+        margin-bottom: 15px;
+    }
+
+    .photo-card img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .close {
+        right: 15px;
+        top: 10px;
+        font-size: 35px;
     }
 }
 
