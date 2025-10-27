@@ -2,7 +2,7 @@ const photoList = [
   {
     "name": "2023-03-01_21-03-58.jpg",
     "title": "2023 03 01 21 03 58",
-    "date": "2025-10-27T01:32:13.644Z",
+    "date": "2025-10-27T10:57:05.378Z",
     "camera": null,
     "exposure": null,
     "aperture": null,
@@ -17,7 +17,7 @@ const photoList = [
   {
     "name": "2022-01-04_06-43-19.jpg",
     "title": "2022 01 04 06 43 19",
-    "date": "2025-10-27T01:32:13.643Z",
+    "date": "2025-10-27T10:57:05.377Z",
     "camera": null,
     "exposure": null,
     "aperture": null,
@@ -32,7 +32,7 @@ const photoList = [
   {
     "name": "2021-03-27_05-26-50.jpg",
     "title": "2021 03 27 05 26 50",
-    "date": "2025-10-27T01:32:13.642Z",
+    "date": "2025-10-27T10:57:05.376Z",
     "camera": null,
     "exposure": null,
     "aperture": null,
@@ -47,7 +47,7 @@ const photoList = [
   {
     "name": "2017-12-04_13-37-38.jpg",
     "title": "2017 12 04 13 37 38",
-    "date": "2025-10-27T01:32:13.641Z",
+    "date": "2025-10-27T10:57:05.375Z",
     "camera": null,
     "exposure": null,
     "aperture": null,
@@ -62,7 +62,7 @@ const photoList = [
   {
     "name": "2018-08-01_03-54-17.jpg",
     "title": "2018 08 01 03 54 17",
-    "date": "2025-10-27T01:32:13.641Z",
+    "date": "2025-10-27T10:57:05.375Z",
     "camera": null,
     "exposure": null,
     "aperture": null,
@@ -77,7 +77,7 @@ const photoList = [
   {
     "name": "2018-10-10_04-36-09.jpg",
     "title": "2018 10 10 04 36 09",
-    "date": "2025-10-27T01:32:13.641Z",
+    "date": "2025-10-27T10:57:05.375Z",
     "camera": null,
     "exposure": null,
     "aperture": null,
@@ -90,24 +90,9 @@ const photoList = [
     }
   },
   {
-    "name": "2016-12-05_20-16-41.jpg",
-    "title": "2016 12 05 20 16 41",
-    "date": "2025-10-27T01:32:13.640Z",
-    "camera": null,
-    "exposure": null,
-    "aperture": null,
-    "iso": null,
-    "hasWebP": true,
-    "sizes": {
-      "thumb": "thumb_2016-12-05_20-16-41.jpg",
-      "medium": "medium_2016-12-05_20-16-41.jpg",
-      "full": "2016-12-05_20-16-41.jpg"
-    }
-  },
-  {
     "name": "2017-01-31_02-17-15.jpg",
     "title": "2017 01 31 02 17 15",
-    "date": "2025-10-27T01:32:13.640Z",
+    "date": "2025-10-27T10:57:05.374Z",
     "camera": null,
     "exposure": null,
     "aperture": null,
@@ -122,7 +107,7 @@ const photoList = [
   {
     "name": "2016-11-03_16-39-25.jpg",
     "title": "2016 11 03 16 39 25",
-    "date": "2025-10-27T01:32:13.639Z",
+    "date": "2025-10-27T10:57:05.373Z",
     "camera": null,
     "exposure": null,
     "aperture": null,
@@ -137,7 +122,7 @@ const photoList = [
   {
     "name": "2016-12-04_02-09-16.jpg",
     "title": "2016 12 04 02 09 16",
-    "date": "2025-10-27T01:32:13.639Z",
+    "date": "2025-10-27T10:57:05.373Z",
     "camera": null,
     "exposure": null,
     "aperture": null,
@@ -150,9 +135,24 @@ const photoList = [
     }
   },
   {
+    "name": "2016-12-05_20-16-41.jpg",
+    "title": "2016 12 05 20 16 41",
+    "date": "2025-10-27T10:57:05.373Z",
+    "camera": null,
+    "exposure": null,
+    "aperture": null,
+    "iso": null,
+    "hasWebP": true,
+    "sizes": {
+      "thumb": "thumb_2016-12-05_20-16-41.jpg",
+      "medium": "medium_2016-12-05_20-16-41.jpg",
+      "full": "2016-12-05_20-16-41.jpg"
+    }
+  },
+  {
     "name": "2015-10-18_00-16-38.jpg",
     "title": "2015 10 18 00 16 38",
-    "date": "2025-10-27T01:32:13.638Z",
+    "date": "2025-10-27T10:57:05.372Z",
     "camera": null,
     "exposure": null,
     "aperture": null,
@@ -167,7 +167,7 @@ const photoList = [
   {
     "name": "2015-11-15_02-55-15.jpg",
     "title": "2015 11 15 02 55 15",
-    "date": "2025-10-27T01:32:13.638Z",
+    "date": "2025-10-27T10:57:05.372Z",
     "camera": null,
     "exposure": null,
     "aperture": null,
@@ -182,7 +182,7 @@ const photoList = [
   {
     "name": "2016-09-13_02-14-27.jpg",
     "title": "2016 09 13 02 14 27",
-    "date": "2025-10-27T01:32:13.638Z",
+    "date": "2025-10-27T10:57:05.372Z",
     "camera": null,
     "exposure": null,
     "aperture": null,
@@ -195,24 +195,9 @@ const photoList = [
     }
   },
   {
-    "name": "2015-08-27_02-03-03.jpg",
-    "title": "2015 08 27 02 03 03",
-    "date": "2025-10-27T01:32:13.637Z",
-    "camera": null,
-    "exposure": null,
-    "aperture": null,
-    "iso": null,
-    "hasWebP": true,
-    "sizes": {
-      "thumb": "thumb_2015-08-27_02-03-03.jpg",
-      "medium": "medium_2015-08-27_02-03-03.jpg",
-      "full": "2015-08-27_02-03-03.jpg"
-    }
-  },
-  {
     "name": "2015-08-31_20-26-27.jpg",
     "title": "2015 08 31 20 26 27",
-    "date": "2025-10-27T01:32:13.637Z",
+    "date": "2025-10-27T10:57:05.371Z",
     "camera": null,
     "exposure": null,
     "aperture": null,
@@ -227,7 +212,7 @@ const photoList = [
   {
     "name": "2015-09-01_05-15-25.jpg",
     "title": "2015 09 01 05 15 25",
-    "date": "2025-10-27T01:32:13.637Z",
+    "date": "2025-10-27T10:57:05.371Z",
     "camera": null,
     "exposure": null,
     "aperture": null,
@@ -242,7 +227,7 @@ const photoList = [
   {
     "name": "2015-09-02_21-04-11.jpg",
     "title": "2015 09 02 21 04 11",
-    "date": "2025-10-27T01:32:13.637Z",
+    "date": "2025-10-27T10:57:05.371Z",
     "camera": null,
     "exposure": null,
     "aperture": null,
@@ -257,7 +242,7 @@ const photoList = [
   {
     "name": "2015-08-16_20-41-00.jpg",
     "title": "2015 08 16 20 41 00",
-    "date": "2025-10-27T01:32:13.636Z",
+    "date": "2025-10-27T10:57:05.370Z",
     "camera": null,
     "exposure": null,
     "aperture": null,
@@ -272,7 +257,7 @@ const photoList = [
   {
     "name": "2015-08-24_04-54-31.jpg",
     "title": "2015 08 24 04 54 31",
-    "date": "2025-10-27T01:32:13.636Z",
+    "date": "2025-10-27T10:57:05.370Z",
     "camera": null,
     "exposure": null,
     "aperture": null,
@@ -285,9 +270,24 @@ const photoList = [
     }
   },
   {
+    "name": "2015-08-27_02-03-03.jpg",
+    "title": "2015 08 27 02 03 03",
+    "date": "2025-10-27T10:57:05.370Z",
+    "camera": null,
+    "exposure": null,
+    "aperture": null,
+    "iso": null,
+    "hasWebP": true,
+    "sizes": {
+      "thumb": "thumb_2015-08-27_02-03-03.jpg",
+      "medium": "medium_2015-08-27_02-03-03.jpg",
+      "full": "2015-08-27_02-03-03.jpg"
+    }
+  },
+  {
     "name": "2011-01-19_15-35-45.jpg",
     "title": "2011 01 19 15 35 45",
-    "date": "2025-10-27T01:32:13.635Z",
+    "date": "2025-10-27T10:57:05.369Z",
     "camera": null,
     "exposure": null,
     "aperture": null,
@@ -302,7 +302,7 @@ const photoList = [
   {
     "name": "2011-02-06_05-51-23.jpg",
     "title": "2011 02 06 05 51 23",
-    "date": "2025-10-27T01:32:13.635Z",
+    "date": "2025-10-27T10:57:05.369Z",
     "camera": null,
     "exposure": null,
     "aperture": null,
@@ -317,7 +317,7 @@ const photoList = [
   {
     "name": "2012-03-06_23-17-28.jpg",
     "title": "2012 03 06 23 17 28",
-    "date": "2025-10-27T01:32:13.635Z",
+    "date": "2025-10-27T10:57:05.369Z",
     "camera": null,
     "exposure": null,
     "aperture": null,
@@ -332,7 +332,7 @@ const photoList = [
   {
     "name": "2012-07-19_01-05-46.jpg",
     "title": "2012 07 19 01 05 46",
-    "date": "2025-10-27T01:32:13.635Z",
+    "date": "2025-10-27T10:57:05.369Z",
     "camera": null,
     "exposure": null,
     "aperture": null,
@@ -342,6 +342,21 @@ const photoList = [
       "thumb": "thumb_2012-07-19_01-05-46.jpg",
       "medium": "medium_2012-07-19_01-05-46.jpg",
       "full": "2012-07-19_01-05-46.jpg"
+    }
+  },
+  {
+    "name": "IMG_0614 1_Original.jpeg",
+    "title": "IMG 0614 1 Original",
+    "date": "2023-08-02T05:29:08.000Z",
+    "camera": "Canon EOS Rebel T7",
+    "exposure": "1/40",
+    "aperture": 4,
+    "iso": 2500,
+    "hasWebP": true,
+    "sizes": {
+      "thumb": "thumb_IMG_0614 1_Original.jpeg",
+      "medium": "medium_IMG_0614 1_Original.jpeg",
+      "full": "IMG_0614 1_Original.jpeg"
     }
   },
   {
@@ -357,6 +372,21 @@ const photoList = [
       "thumb": "thumb_IMG_0639_Original.jpeg",
       "medium": "medium_IMG_0639_Original.jpeg",
       "full": "IMG_0639_Original.jpeg"
+    }
+  },
+  {
+    "name": "IMG_2986_Original.jpeg",
+    "title": "IMG 2986 Original",
+    "date": "2022-08-05T21:14:19.000Z",
+    "camera": "Canon EOS Rebel T7",
+    "exposure": "1/60",
+    "aperture": 2.8,
+    "iso": 200,
+    "hasWebP": true,
+    "sizes": {
+      "thumb": "thumb_IMG_2986_Original.jpeg",
+      "medium": "medium_IMG_2986_Original.jpeg",
+      "full": "IMG_2986_Original.jpeg"
     }
   },
   {
@@ -390,6 +420,36 @@ const photoList = [
     }
   },
   {
+    "name": "IMG_9705_Original.jpeg",
+    "title": "IMG 9705 Original",
+    "date": "2021-05-14T02:58:18.000Z",
+    "camera": "iPhone 12 Pro",
+    "exposure": "1/187",
+    "aperture": 2.4,
+    "iso": 25,
+    "hasWebP": true,
+    "sizes": {
+      "thumb": "thumb_IMG_9705_Original.jpeg",
+      "medium": "medium_IMG_9705_Original.jpeg",
+      "full": "IMG_9705_Original.jpeg"
+    }
+  },
+  {
+    "name": "IMG_7709_Original.jpeg",
+    "title": "IMG 7709 Original",
+    "date": "2021-03-05T18:53:45.000Z",
+    "camera": "iPhone 12 Pro",
+    "exposure": "1/1348",
+    "aperture": 2.2,
+    "iso": 25,
+    "hasWebP": true,
+    "sizes": {
+      "thumb": "thumb_IMG_7709_Original.jpeg",
+      "medium": "medium_IMG_7709_Original.jpeg",
+      "full": "IMG_7709_Original.jpeg"
+    }
+  },
+  {
     "name": "IMG_7578_Original.jpeg",
     "title": "IMG 7578 Original",
     "date": "2021-03-03T16:35:17.000Z",
@@ -402,6 +462,111 @@ const photoList = [
       "thumb": "thumb_IMG_7578_Original.jpeg",
       "medium": "medium_IMG_7578_Original.jpeg",
       "full": "IMG_7578_Original.jpeg"
+    }
+  },
+  {
+    "name": "IMG_7007_Original.jpeg",
+    "title": "IMG 7007 Original",
+    "date": "2021-02-22T22:32:24.000Z",
+    "camera": "iPhone 12 Pro",
+    "exposure": "1/190",
+    "aperture": 2.2,
+    "iso": 25,
+    "hasWebP": true,
+    "sizes": {
+      "thumb": "thumb_IMG_7007_Original.jpeg",
+      "medium": "medium_IMG_7007_Original.jpeg",
+      "full": "IMG_7007_Original.jpeg"
+    }
+  },
+  {
+    "name": "IMG_7006_Original.jpeg",
+    "title": "IMG 7006 Original",
+    "date": "2021-02-22T22:31:28.000Z",
+    "camera": "iPhone 12 Pro",
+    "exposure": "1/122",
+    "aperture": 2.2,
+    "iso": 25,
+    "hasWebP": true,
+    "sizes": {
+      "thumb": "thumb_IMG_7006_Original.jpeg",
+      "medium": "medium_IMG_7006_Original.jpeg",
+      "full": "IMG_7006_Original.jpeg"
+    }
+  },
+  {
+    "name": "IMG_2201_Original.jpeg",
+    "title": "IMG 2201 Original",
+    "date": "2017-12-21T16:53:14.000Z",
+    "camera": "iPhone 7",
+    "exposure": "1/32258",
+    "aperture": 1.8,
+    "iso": 25,
+    "hasWebP": true,
+    "sizes": {
+      "thumb": "thumb_IMG_2201_Original.jpeg",
+      "medium": "medium_IMG_2201_Original.jpeg",
+      "full": "IMG_2201_Original.jpeg"
+    }
+  },
+  {
+    "name": "IMG_3987_Original.jpeg",
+    "title": "IMG 3987 Original",
+    "date": "2016-09-21T21:32:34.000Z",
+    "camera": "iPad Pro",
+    "exposure": "1/120",
+    "aperture": 2.4,
+    "iso": 25,
+    "hasWebP": true,
+    "sizes": {
+      "thumb": "thumb_IMG_3987_Original.jpeg",
+      "medium": "medium_IMG_3987_Original.jpeg",
+      "full": "IMG_3987_Original.jpeg"
+    }
+  },
+  {
+    "name": "IMG_3929_Original.jpeg",
+    "title": "IMG 3929 Original",
+    "date": "2016-09-15T03:09:22.000Z",
+    "camera": null,
+    "exposure": null,
+    "aperture": null,
+    "iso": null,
+    "hasWebP": true,
+    "sizes": {
+      "thumb": "thumb_IMG_3929_Original.jpeg",
+      "medium": "medium_IMG_3929_Original.jpeg",
+      "full": "IMG_3929_Original.jpeg"
+    }
+  },
+  {
+    "name": "P1050757_Original.jpeg",
+    "title": "P1050757 Original",
+    "date": "2012-11-04T13:18:08.000Z",
+    "camera": "DMC-LX5",
+    "exposure": "1/4000",
+    "aperture": 8,
+    "iso": 1600,
+    "hasWebP": true,
+    "sizes": {
+      "thumb": "thumb_P1050757_Original.jpeg",
+      "medium": "medium_P1050757_Original.jpeg",
+      "full": "P1050757_Original.jpeg"
+    }
+  },
+  {
+    "name": "_MG_0479 1_Original.jpeg",
+    "title": " MG 0479 1 Original",
+    "date": "2012-08-31T20:50:04.000Z",
+    "camera": "Canon EOS DIGITAL REBEL XT",
+    "exposure": "1/4000",
+    "aperture": 4,
+    "iso": 400,
+    "hasWebP": true,
+    "sizes": {
+      "thumb": "thumb__MG_0479 1_Original.jpeg",
+      "medium": "medium__MG_0479 1_Original.jpeg",
+      "full": "_MG_0479 1_Original.jpeg"
     }
   },
   {
@@ -492,6 +657,51 @@ const photoList = [
       "thumb": "thumb_IMG_5308_Original.jpeg",
       "medium": "medium_IMG_5308_Original.jpeg",
       "full": "IMG_5308_Original.jpeg"
+    }
+  },
+  {
+    "name": "IMG_5251_Original.jpeg",
+    "title": "IMG 5251 Original",
+    "date": "2009-01-09T10:54:20.000Z",
+    "camera": "Canon EOS DIGITAL REBEL XT",
+    "exposure": "1/640",
+    "aperture": 5.6,
+    "iso": 800,
+    "hasWebP": true,
+    "sizes": {
+      "thumb": "thumb_IMG_5251_Original.jpeg",
+      "medium": "medium_IMG_5251_Original.jpeg",
+      "full": "IMG_5251_Original.jpeg"
+    }
+  },
+  {
+    "name": "IMG_5250_Original.jpeg",
+    "title": "IMG 5250 Original",
+    "date": "2009-01-09T10:54:18.000Z",
+    "camera": "Canon EOS DIGITAL REBEL XT",
+    "exposure": "1/800",
+    "aperture": 5.6,
+    "iso": 800,
+    "hasWebP": true,
+    "sizes": {
+      "thumb": "thumb_IMG_5250_Original.jpeg",
+      "medium": "medium_IMG_5250_Original.jpeg",
+      "full": "IMG_5250_Original.jpeg"
+    }
+  },
+  {
+    "name": "IMG_5249_Original.jpeg",
+    "title": "IMG 5249 Original",
+    "date": "2009-01-09T10:54:15.000Z",
+    "camera": "Canon EOS DIGITAL REBEL XT",
+    "exposure": "1/1000",
+    "aperture": 5,
+    "iso": 800,
+    "hasWebP": true,
+    "sizes": {
+      "thumb": "thumb_IMG_5249_Original.jpeg",
+      "medium": "medium_IMG_5249_Original.jpeg",
+      "full": "IMG_5249_Original.jpeg"
     }
   },
   {
