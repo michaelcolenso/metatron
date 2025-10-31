@@ -42,7 +42,29 @@ function createPhotoCard(photo) {
   // Add click handler for modal
   card.addEventListener("click", () => {
     modalImg.src = img.src;
-    modalCaption.textContent = `${photo.title} - ${formatDate(photo.date)}`;
+
+    // Build caption with EXIF data
+    let captionHTML = `<div class="modal-title">${photo.title}</div>`;
+
+    // Add date if available
+    if (photo.date) {
+      captionHTML += `<div class="modal-date">${formatDate(photo.date)}</div>`;
+    }
+
+    // Add EXIF metadata if available
+    const exifParts = [];
+    if (photo.camera) exifParts.push(photo.camera);
+    if (photo.lens) exifParts.push(photo.lens);
+    if (photo.focalLength) exifParts.push(photo.focalLength);
+    if (photo.aperture) exifParts.push(photo.aperture);
+    if (photo.exposure) exifParts.push(photo.exposure);
+    if (photo.iso) exifParts.push(photo.iso);
+
+    if (exifParts.length > 0) {
+      captionHTML += `<div class="modal-exif">${exifParts.join(' · ')}</div>`;
+    }
+
+    modalCaption.innerHTML = captionHTML;
     modal.style.display = "block";
   });
 
