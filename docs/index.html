@@ -24,11 +24,17 @@
           <option value="name">Name</option>
         </select>
       </div>
+      <div class="layout-controls" role="group" aria-label="Layout options">
+        <button type="button" class="layout-option is-active" data-layout="masonry" aria-pressed="true">Masonry</button>
+        <button type="button" class="layout-option" data-layout="grid" aria-pressed="false">Grid</button>
+        <button type="button" class="layout-option" data-layout="collage" aria-pressed="false">Collage</button>
+        <button type="button" class="layout-option" data-layout="filmstrip" aria-pressed="false">Filmstrip</button>
+      </div>
     </div>
   </header>
 
   <main>
-    <div id="photo-grid"></div>
+    <div id="photo-grid" class="layout-masonry"></div>
   </main>
 
   <footer>
