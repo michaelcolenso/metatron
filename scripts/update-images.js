@@ -2,15 +2,27 @@ const fs = require('fs');
 const path = require('path');
 const ExifReader = require('exifreader');
 
-// Function to extract date from filename (format: YYYY-MM-DD_HH-mm-ss.jpg)
-function extractDate(filename) {
+function extractDateFromFilename(filename) {
     const match = filename.match(/(\d{4}-\d{2}-\d{2})_/);
-    return match ? match[1] : null;
+    if (!match) {
+        return null;
+    }
+
+    const [year, month, day] = match[1].split('-').map(Number);
+    const date = new Date(Date.UTC(year, month - 1, day));
+    return Number.isNaN(date.getTime()) ? null : date.toISOString();
 }
 
-// Function to format the date for display
-function formatDate(dateStr) {
+function formatDateForTitle(dateStr) {
+    if (!dateStr) {
+        return null;
+    }
+
     const date = new Date(dateStr);
+    if (Number.isNaN(date.getTime())) {
+        return null;
+    }
+
     return date.toLocaleDateString('en-US', {
         year: 'numeric',
         month: 'long',
@@ -18,90 +30,146 @@ function formatDate(dateStr) {
     });
 }
 
-// Function to extract EXIF data from an image file
+function humaniseFilename(filename) {
+    const name = path.parse(filename).name;
+    const cleaned = name.replace(/[\s_-]+/g, ' ').trim();
+    if (!cleaned) {
+        return filename;
+    }
+
+    return cleaned
+        .split(' ')
+        .map(word => word ? word[0].toUpperCase() + word.slice(1) : '')
+        .join(' ');
+}
+
+function normaliseExifDate(rawValue) {
+    if (!rawValue) {
+        return null;
+    }
+
+    const value = Array.isArray(rawValue) ? rawValue[0] : rawValue;
+    if (value instanceof Date) {
+        return Number.isNaN(value.getTime()) ? null : value.toISOString();
+    }
+
+    if (typeof value !== 'string') {
+        return null;
+    }
+
+    const match = value.match(/(\d{4})(?::|-)?(\d{2})(?::|-)?(\d{2})(?:[ T](\d{2}):(\d{2}):(\d{2}))?/);
+    if (!match) {
+        return null;
+    }
+
+    const [, year, month, day, hour = '00', minute = '00', second = '00'] = match;
+    const date = new Date(Date.UTC(
+        Number(year),
+        Number(month) - 1,
+        Number(day),
+        Number(hour),
+        Number(minute),
+        Number(second)
+    ));
+
+    return Number.isNaN(date.getTime()) ? null : date.toISOString();
+}
+
+function extractCaptureDate(tags) {
+    const candidates = [
+        tags.DateTimeOriginal,
+        tags.CreateDate,
+        tags.DateCreated,
+        tags.DateTimeDigitized,
+        tags.ModifyDate
+    ];
+
+    for (const tag of candidates) {
+        const isoDate = normaliseExifDate(tag?.description ?? tag?.value);
+        if (isoDate) {
+            return isoDate;
+        }
+    }
+
+    return null;
+}
+
 function extractExifData(filePath) {
+    const defaults = {
+        captureDate: null,
+        camera: null,
+        exposure: null,
+        aperture: null,
+        iso: null,
+        focalLength: null,
+        lens: null
+    };
+
     try {
         const fileBuffer = fs.readFileSync(filePath);
         const tags = ExifReader.load(fileBuffer);
 
-        // Extract relevant EXIF data
-        const exifData = {
-            camera: null,
-            exposure: null,
-            aperture: null,
-            iso: null,
-            focalLength: null,
-            lens: null
-        };
+        const exifData = { ...defaults };
+        exifData.captureDate = extractCaptureDate(tags);
 
-        // Camera model
-        if (tags.Model && tags.Model.description) {
+        if (tags.Model?.description) {
             const make = tags.Make?.description || '';
             const model = tags.Model.description;
-            exifData.camera = make ? `${make} ${model}` : model;
+            exifData.camera = make ? `${make} ${model}`.trim() : model;
         }
 
-        // Exposure time (shutter speed)
-        if (tags.ExposureTime && tags.ExposureTime.description) {
+        if (tags.ExposureTime?.description) {
             exifData.exposure = tags.ExposureTime.description;
         }
 
-        // Aperture (f-stop)
-        if (tags.FNumber && tags.FNumber.description) {
+        if (tags.FNumber?.description) {
             const fNumber = tags.FNumber.description;
             exifData.aperture = fNumber.startsWith('f/') ? fNumber : `f/${fNumber}`;
-        } else if (tags.ApertureValue && tags.ApertureValue.description) {
+        } else if (tags.ApertureValue?.description) {
             const apertureValue = tags.ApertureValue.description;
             exifData.aperture = apertureValue.startsWith('f/') ? apertureValue : `f/${apertureValue}`;
         }
 
-        // ISO
-        if (tags.ISOSpeedRatings && tags.ISOSpeedRatings.description) {
+        if (tags.ISOSpeedRatings?.description) {
             exifData.iso = `ISO ${tags.ISOSpeedRatings.description}`;
-        } else if (tags.PhotographicSensitivity && tags.PhotographicSensitivity.description) {
+        } else if (tags.PhotographicSensitivity?.description) {
             exifData.iso = `ISO ${tags.PhotographicSensitivity.description}`;
         }
 
-        // Focal length
-        if (tags.FocalLength && tags.FocalLength.description) {
+        if (tags.FocalLength?.description) {
             exifData.focalLength = tags.FocalLength.description;
         }
 
-        // Lens
-        if (tags.LensModel && tags.LensModel.description) {
+        if (tags.LensModel?.description) {
             exifData.lens = tags.LensModel.description;
         }
 
         return exifData;
     } catch (error) {
         console.warn(`Could not extract EXIF from ${path.basename(filePath)}: ${error.message}`);
-        return {
-            camera: null,
-            exposure: null,
-            aperture: null,
-            iso: null,
-            focalLength: null,
-            lens: null
-        };
+        return defaults;
     }
 }
 
-// Function to generate the image list
 function generateImageList(sourceDir) {
-    // Read all files in the images directory
     const files = fs.readdirSync(sourceDir)
         .filter(file => /\.(jpg|jpeg|png)$/i.test(file));
 
-    // Create image objects with metadata
     const images = files.map(filename => {
         const filePath = path.join(sourceDir, filename);
-        const date = extractDate(filename);
-        const exifData = extractExifData(filePath);
+        const { captureDate, ...exifData } = extractExifData(filePath);
+        const filenameDate = extractDateFromFilename(filename);
+        let imageDate = filenameDate || captureDate;
+        if (!imageDate) {
+            const stats = fs.statSync(filePath);
+            imageDate = stats.birthtime ? stats.birthtime.toISOString() : null;
+        }
+        const title = formatDateForTitle(imageDate) || humaniseFilename(filename);
 
         return {
             name: filename,
-            date: date,
-            title: date ? formatDate(date) : filename,
+            date: imageDate,
+            title,
             ...exifData,
             hasWebP: false,
             sizes: {
@@ -112,16 +180,15 @@ function generateImageList(sourceDir) {
         };
     });
 
-    // Sort by date (newest first)
-    images.sort((a, b) => new Date(b.date) - new Date(a.date));
+    images.sort((a, b) => {
+        const dateA = a.date ? new Date(a.date).getTime() : -Infinity;
+        const dateB = b.date ? new Date(b.date).getTime() : -Infinity;
+        return dateB - dateA;
+    });
 
-    // Generate JavaScript code
-    const jsContent = `const photoList = ${JSON.stringify(images, null, 2)};`;
-
-    return jsContent;
+    return `const photoList = ${JSON.stringify(images, null, 2)};`;
 }
 
-// Main execution
 try {
     const sourceDir = path.join(__dirname, '..', 'images');
     const outputFile = path.join(__dirname, '..', 'docs', 'images.js');
@@ -132,7 +199,6 @@ try {
     fs.writeFileSync(outputFile, jsContent);
     console.log('Successfully updated images.js with EXIF data');
 
-    // Also copy new images to docs/images
     const docsImagesDir = path.join(__dirname, '..', 'docs', 'images');
     if (!fs.existsSync(docsImagesDir)) {
         fs.mkdirSync(docsImagesDir, { recursive: true });

@@ -31,7 +31,9 @@ document.getElementById("year").textContent = new Date().getFullYear();
 
 // Format date for display
 function formatDate(dateStr) {
+  if (!dateStr) return "";
   const date = new Date(dateStr);
+  if (Number.isNaN(date.getTime())) return "";
   return date.toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
@@ -58,9 +60,10 @@ function createPhotoCard(photo) {
 
   const info = document.createElement("div");
   info.className = "photo-info";
+  const formattedDate = formatDate(photo.date);
   info.innerHTML = `
         <div class="photo-title">${photo.title}</div>
-        <div class="photo-date">${formatDate(photo.date)}</div>
+        ${formattedDate ? `<div class="photo-date">${formattedDate}</div>` : ""}
     `;
 
   card.appendChild(img);
@@ -74,8 +77,9 @@ function createPhotoCard(photo) {
     let captionHTML = `<div class="modal-title">${photo.title}</div>`;
 
     // Add date if available
-    if (photo.date) {
-      captionHTML += `<div class="modal-date">${formatDate(photo.date)}</div>`;
+    const modalDate = formatDate(photo.date);
+    if (modalDate) {
+      captionHTML += `<div class="modal-date">${modalDate}</div>`;
     }
 
     // Add EXIF metadata if available
@@ -100,21 +104,46 @@ function createPhotoCard(photo) {
 
 // Filter and sort photos
 function filterAndSortPhotos() {
-  const searchTerm = searchInput.value.toLowerCase();
+  const searchTerm = searchInput.value.trim().toLowerCase();
   const sortValue = sortSelect.value;
 
-  let filteredPhotos = photoList.filter(
-    (photo) =>
-      photo.title.toLowerCase().includes(searchTerm) ||
-      photo.date.includes(searchTerm)
-  );
+  let filteredPhotos = photoList.filter((photo) => {
+    const titleMatch = photo.title?.toLowerCase().includes(searchTerm);
+    const rawDate = typeof photo.date === "string" ? photo.date.toLowerCase() : "";
+    const prettyDate = formatDate(photo.date).toLowerCase();
+    return (
+      titleMatch ||
+      rawDate.includes(searchTerm) ||
+      prettyDate.includes(searchTerm)
+    );
+  });
+
+  const getTimestamp = (photo) => {
+    if (!photo.date) return null;
+    const value = new Date(photo.date);
+    return Number.isNaN(value.getTime()) ? null : value.getTime();
+  };
 
   switch (sortValue) {
     case "date-desc":
-      filteredPhotos.sort((a, b) => new Date(b.date) - new Date(a.date));
+      filteredPhotos.sort((a, b) => {
+        const timeA = getTimestamp(a);
+        const timeB = getTimestamp(b);
+        if (timeA === null && timeB === null) return 0;
+        if (timeA === null) return 1;
+        if (timeB === null) return -1;
+        return timeB - timeA;
+      });
       break;
     case "date-asc":
-      filteredPhotos.sort((a, b) => new Date(a.date) - new Date(b.date));
+      filteredPhotos.sort((a, b) => {
+        const timeA = getTimestamp(a);
+        const timeB = getTimestamp(b);
+        if (timeA === null && timeB === null) return 0;
+        if (timeA === null) return 1;
+        if (timeB === null) return -1;
+        return timeA - timeB;
+      });
       break;
     case "name":
       filteredPhotos.sort((a, b) => a.title.localeCompare(b.title));
