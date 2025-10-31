@@ -1,752 +1,444 @@
 const photoList = [
   {
-    "name": "kiss2.jpg",
-    "title": "Kiss2",
-    "date": "2025-10-27T12:01:40.216Z",
-    "camera": null,
-    "exposure": null,
-    "aperture": null,
-    "iso": null,
-    "hasWebP": true,
+    "name": "IMG_0295.JPG",
+    "date": null,
+    "title": "IMG_0295.JPG",
+    "camera": "Apple iPhone XS",
+    "exposure": "1/169",
+    "aperture": "f/2.4",
+    "iso": "ISO 16",
+    "focalLength": "6 mm",
+    "lens": "iPhone XS back dual camera 6mm f/2.4",
+    "hasWebP": false,
     "sizes": {
-      "thumb": "thumb_kiss2.jpg",
-      "medium": "medium_kiss2.jpg",
-      "full": "kiss2.jpg"
+      "thumb": "thumb_IMG_0295.JPG",
+      "medium": "medium_IMG_0295.JPG",
+      "full": "IMG_0295.JPG"
     }
   },
   {
-    "name": "2022-01-04_06-43-19.jpg",
-    "title": "2022 01 04 06 43 19",
-    "date": "2025-10-27T12:01:40.111Z",
-    "camera": null,
-    "exposure": null,
-    "aperture": null,
-    "iso": null,
-    "hasWebP": true,
-    "sizes": {
-      "thumb": "thumb_2022-01-04_06-43-19.jpg",
-      "medium": "medium_2022-01-04_06-43-19.jpg",
-      "full": "2022-01-04_06-43-19.jpg"
-    }
-  },
-  {
-    "name": "2023-03-01_21-03-58.jpg",
-    "title": "2023 03 01 21 03 58",
-    "date": "2025-10-27T12:01:40.111Z",
-    "camera": null,
-    "exposure": null,
-    "aperture": null,
-    "iso": null,
-    "hasWebP": true,
-    "sizes": {
-      "thumb": "thumb_2023-03-01_21-03-58.jpg",
-      "medium": "medium_2023-03-01_21-03-58.jpg",
-      "full": "2023-03-01_21-03-58.jpg"
-    }
-  },
-  {
-    "name": "2021-03-27_05-26-50.jpg",
-    "title": "2021 03 27 05 26 50",
-    "date": "2025-10-27T12:01:40.110Z",
-    "camera": null,
-    "exposure": null,
-    "aperture": null,
-    "iso": null,
-    "hasWebP": true,
-    "sizes": {
-      "thumb": "thumb_2021-03-27_05-26-50.jpg",
-      "medium": "medium_2021-03-27_05-26-50.jpg",
-      "full": "2021-03-27_05-26-50.jpg"
-    }
-  },
-  {
-    "name": "2018-08-01_03-54-17.jpg",
-    "title": "2018 08 01 03 54 17",
-    "date": "2025-10-27T12:01:40.109Z",
-    "camera": null,
-    "exposure": null,
-    "aperture": null,
-    "iso": null,
-    "hasWebP": true,
-    "sizes": {
-      "thumb": "thumb_2018-08-01_03-54-17.jpg",
-      "medium": "medium_2018-08-01_03-54-17.jpg",
-      "full": "2018-08-01_03-54-17.jpg"
-    }
-  },
-  {
-    "name": "2018-10-10_04-36-09.jpg",
-    "title": "2018 10 10 04 36 09",
-    "date": "2025-10-27T12:01:40.109Z",
-    "camera": null,
-    "exposure": null,
-    "aperture": null,
-    "iso": null,
-    "hasWebP": true,
-    "sizes": {
-      "thumb": "thumb_2018-10-10_04-36-09.jpg",
-      "medium": "medium_2018-10-10_04-36-09.jpg",
-      "full": "2018-10-10_04-36-09.jpg"
-    }
-  },
-  {
-    "name": "2017-01-31_02-17-15.jpg",
-    "title": "2017 01 31 02 17 15",
-    "date": "2025-10-27T12:01:40.108Z",
-    "camera": null,
-    "exposure": null,
-    "aperture": null,
-    "iso": null,
-    "hasWebP": true,
-    "sizes": {
-      "thumb": "thumb_2017-01-31_02-17-15.jpg",
-      "medium": "medium_2017-01-31_02-17-15.jpg",
-      "full": "2017-01-31_02-17-15.jpg"
-    }
-  },
-  {
-    "name": "2017-12-04_13-37-38.jpg",
-    "title": "2017 12 04 13 37 38",
-    "date": "2025-10-27T12:01:40.108Z",
-    "camera": null,
-    "exposure": null,
-    "aperture": null,
-    "iso": null,
-    "hasWebP": true,
-    "sizes": {
-      "thumb": "thumb_2017-12-04_13-37-38.jpg",
-      "medium": "medium_2017-12-04_13-37-38.jpg",
-      "full": "2017-12-04_13-37-38.jpg"
-    }
-  },
-  {
-    "name": "2016-11-03_16-39-25.jpg",
-    "title": "2016 11 03 16 39 25",
-    "date": "2025-10-27T12:01:40.107Z",
-    "camera": null,
-    "exposure": null,
-    "aperture": null,
-    "iso": null,
-    "hasWebP": true,
-    "sizes": {
-      "thumb": "thumb_2016-11-03_16-39-25.jpg",
-      "medium": "medium_2016-11-03_16-39-25.jpg",
-      "full": "2016-11-03_16-39-25.jpg"
-    }
-  },
-  {
-    "name": "2016-12-04_02-09-16.jpg",
-    "title": "2016 12 04 02 09 16",
-    "date": "2025-10-27T12:01:40.107Z",
-    "camera": null,
-    "exposure": null,
-    "aperture": null,
-    "iso": null,
-    "hasWebP": true,
-    "sizes": {
-      "thumb": "thumb_2016-12-04_02-09-16.jpg",
-      "medium": "medium_2016-12-04_02-09-16.jpg",
-      "full": "2016-12-04_02-09-16.jpg"
-    }
-  },
-  {
-    "name": "2016-12-05_20-16-41.jpg",
-    "title": "2016 12 05 20 16 41",
-    "date": "2025-10-27T12:01:40.107Z",
-    "camera": null,
-    "exposure": null,
-    "aperture": null,
-    "iso": null,
-    "hasWebP": true,
-    "sizes": {
-      "thumb": "thumb_2016-12-05_20-16-41.jpg",
-      "medium": "medium_2016-12-05_20-16-41.jpg",
-      "full": "2016-12-05_20-16-41.jpg"
-    }
-  },
-  {
-    "name": "2015-10-18_00-16-38.jpg",
-    "title": "2015 10 18 00 16 38",
-    "date": "2025-10-27T12:01:40.106Z",
-    "camera": null,
-    "exposure": null,
-    "aperture": null,
-    "iso": null,
-    "hasWebP": true,
-    "sizes": {
-      "thumb": "thumb_2015-10-18_00-16-38.jpg",
-      "medium": "medium_2015-10-18_00-16-38.jpg",
-      "full": "2015-10-18_00-16-38.jpg"
-    }
-  },
-  {
-    "name": "2015-11-15_02-55-15.jpg",
-    "title": "2015 11 15 02 55 15",
-    "date": "2025-10-27T12:01:40.106Z",
-    "camera": null,
-    "exposure": null,
-    "aperture": null,
-    "iso": null,
-    "hasWebP": true,
-    "sizes": {
-      "thumb": "thumb_2015-11-15_02-55-15.jpg",
-      "medium": "medium_2015-11-15_02-55-15.jpg",
-      "full": "2015-11-15_02-55-15.jpg"
-    }
-  },
-  {
-    "name": "2016-09-13_02-14-27.jpg",
-    "title": "2016 09 13 02 14 27",
-    "date": "2025-10-27T12:01:40.106Z",
-    "camera": null,
-    "exposure": null,
-    "aperture": null,
-    "iso": null,
-    "hasWebP": true,
-    "sizes": {
-      "thumb": "thumb_2016-09-13_02-14-27.jpg",
-      "medium": "medium_2016-09-13_02-14-27.jpg",
-      "full": "2016-09-13_02-14-27.jpg"
-    }
-  },
-  {
-    "name": "2015-08-31_20-26-27.jpg",
-    "title": "2015 08 31 20 26 27",
-    "date": "2025-10-27T12:01:40.105Z",
-    "camera": null,
-    "exposure": null,
-    "aperture": null,
-    "iso": null,
-    "hasWebP": true,
-    "sizes": {
-      "thumb": "thumb_2015-08-31_20-26-27.jpg",
-      "medium": "medium_2015-08-31_20-26-27.jpg",
-      "full": "2015-08-31_20-26-27.jpg"
-    }
-  },
-  {
-    "name": "2015-09-01_05-15-25.jpg",
-    "title": "2015 09 01 05 15 25",
-    "date": "2025-10-27T12:01:40.105Z",
-    "camera": null,
-    "exposure": null,
-    "aperture": null,
-    "iso": null,
-    "hasWebP": true,
-    "sizes": {
-      "thumb": "thumb_2015-09-01_05-15-25.jpg",
-      "medium": "medium_2015-09-01_05-15-25.jpg",
-      "full": "2015-09-01_05-15-25.jpg"
-    }
-  },
-  {
-    "name": "2015-09-02_21-04-11.jpg",
-    "title": "2015 09 02 21 04 11",
-    "date": "2025-10-27T12:01:40.105Z",
-    "camera": null,
-    "exposure": null,
-    "aperture": null,
-    "iso": null,
-    "hasWebP": true,
-    "sizes": {
-      "thumb": "thumb_2015-09-02_21-04-11.jpg",
-      "medium": "medium_2015-09-02_21-04-11.jpg",
-      "full": "2015-09-02_21-04-11.jpg"
-    }
-  },
-  {
-    "name": "2015-08-24_04-54-31.jpg",
-    "title": "2015 08 24 04 54 31",
-    "date": "2025-10-27T12:01:40.104Z",
-    "camera": null,
-    "exposure": null,
-    "aperture": null,
-    "iso": null,
-    "hasWebP": true,
-    "sizes": {
-      "thumb": "thumb_2015-08-24_04-54-31.jpg",
-      "medium": "medium_2015-08-24_04-54-31.jpg",
-      "full": "2015-08-24_04-54-31.jpg"
-    }
-  },
-  {
-    "name": "2015-08-27_02-03-03.jpg",
-    "title": "2015 08 27 02 03 03",
-    "date": "2025-10-27T12:01:40.104Z",
-    "camera": null,
-    "exposure": null,
-    "aperture": null,
-    "iso": null,
-    "hasWebP": true,
-    "sizes": {
-      "thumb": "thumb_2015-08-27_02-03-03.jpg",
-      "medium": "medium_2015-08-27_02-03-03.jpg",
-      "full": "2015-08-27_02-03-03.jpg"
-    }
-  },
-  {
-    "name": "2011-01-19_15-35-45.jpg",
-    "title": "2011 01 19 15 35 45",
-    "date": "2025-10-27T12:01:40.103Z",
-    "camera": null,
-    "exposure": null,
-    "aperture": null,
-    "iso": null,
-    "hasWebP": true,
-    "sizes": {
-      "thumb": "thumb_2011-01-19_15-35-45.jpg",
-      "medium": "medium_2011-01-19_15-35-45.jpg",
-      "full": "2011-01-19_15-35-45.jpg"
-    }
-  },
-  {
-    "name": "2011-02-06_05-51-23.jpg",
-    "title": "2011 02 06 05 51 23",
-    "date": "2025-10-27T12:01:40.103Z",
-    "camera": null,
-    "exposure": null,
-    "aperture": null,
-    "iso": null,
-    "hasWebP": true,
-    "sizes": {
-      "thumb": "thumb_2011-02-06_05-51-23.jpg",
-      "medium": "medium_2011-02-06_05-51-23.jpg",
-      "full": "2011-02-06_05-51-23.jpg"
-    }
-  },
-  {
-    "name": "2012-03-06_23-17-28.jpg",
-    "title": "2012 03 06 23 17 28",
-    "date": "2025-10-27T12:01:40.103Z",
-    "camera": null,
-    "exposure": null,
-    "aperture": null,
-    "iso": null,
-    "hasWebP": true,
-    "sizes": {
-      "thumb": "thumb_2012-03-06_23-17-28.jpg",
-      "medium": "medium_2012-03-06_23-17-28.jpg",
-      "full": "2012-03-06_23-17-28.jpg"
-    }
-  },
-  {
-    "name": "2012-07-19_01-05-46.jpg",
-    "title": "2012 07 19 01 05 46",
-    "date": "2025-10-27T12:01:40.103Z",
-    "camera": null,
-    "exposure": null,
-    "aperture": null,
-    "iso": null,
-    "hasWebP": true,
-    "sizes": {
-      "thumb": "thumb_2012-07-19_01-05-46.jpg",
-      "medium": "medium_2012-07-19_01-05-46.jpg",
-      "full": "2012-07-19_01-05-46.jpg"
-    }
-  },
-  {
-    "name": "2015-08-16_20-41-00.jpg",
-    "title": "2015 08 16 20 41 00",
-    "date": "2025-10-27T12:01:40.103Z",
-    "camera": null,
-    "exposure": null,
-    "aperture": null,
-    "iso": null,
-    "hasWebP": true,
-    "sizes": {
-      "thumb": "thumb_2015-08-16_20-41-00.jpg",
-      "medium": "medium_2015-08-16_20-41-00.jpg",
-      "full": "2015-08-16_20-41-00.jpg"
-    }
-  },
-  {
-    "name": "IMG_0614 1_Original.jpeg",
-    "title": "IMG 0614 1 Original",
-    "date": "2023-08-02T05:29:08.000Z",
-    "camera": "Canon EOS Rebel T7",
-    "exposure": "1/40",
-    "aperture": 4,
-    "iso": 2500,
-    "hasWebP": true,
-    "sizes": {
-      "thumb": "thumb_IMG_0614 1_Original.jpeg",
-      "medium": "medium_IMG_0614 1_Original.jpeg",
-      "full": "IMG_0614 1_Original.jpeg"
-    }
-  },
-  {
-    "name": "IMG_0639_Original.jpeg",
-    "title": "IMG 0639 Original",
-    "date": "2023-03-11T16:38:33.000Z",
-    "camera": "Canon EOS Rebel T7",
-    "exposure": "1/1250",
-    "aperture": 1.4,
-    "iso": 100,
-    "hasWebP": true,
-    "sizes": {
-      "thumb": "thumb_IMG_0639_Original.jpeg",
-      "medium": "medium_IMG_0639_Original.jpeg",
-      "full": "IMG_0639_Original.jpeg"
-    }
-  },
-  {
-    "name": "IMG_2986_Original.jpeg",
-    "title": "IMG 2986 Original",
-    "date": "2022-08-05T21:14:19.000Z",
-    "camera": "Canon EOS Rebel T7",
+    "name": "IMG_0503.jpeg",
+    "date": null,
+    "title": "IMG_0503.jpeg",
+    "camera": "Apple iPhone 12 Pro",
     "exposure": "1/60",
-    "aperture": 2.8,
-    "iso": 200,
-    "hasWebP": true,
+    "aperture": "f/2.4",
+    "iso": "ISO 200",
+    "focalLength": "1.5399999618512084 mm",
+    "lens": "iPhone 12 Pro back triple camera 1.54mm f/2.4",
+    "hasWebP": false,
     "sizes": {
-      "thumb": "thumb_IMG_2986_Original.jpeg",
-      "medium": "medium_IMG_2986_Original.jpeg",
-      "full": "IMG_2986_Original.jpeg"
+      "thumb": "thumb_IMG_0503.jpeg",
+      "medium": "medium_IMG_0503.jpeg",
+      "full": "IMG_0503.jpeg"
     }
   },
   {
-    "name": "IMG_2456_Original.jpeg",
-    "title": "IMG 2456 Original",
-    "date": "2022-02-21T19:00:10.000Z",
-    "camera": "Canon EOS Rebel T7",
-    "exposure": "1/60",
-    "aperture": 1.6,
-    "iso": 1250,
-    "hasWebP": true,
+    "name": "IMG_0999.jpeg",
+    "date": null,
+    "title": "IMG_0999.jpeg",
+    "camera": "Canon Canon EOS Rebel T7",
+    "exposure": "1/4000",
+    "aperture": "f/1.6",
+    "iso": "ISO 400",
+    "focalLength": "50 mm",
+    "lens": "EF50mm f/1.4 USM",
+    "hasWebP": false,
     "sizes": {
-      "thumb": "thumb_IMG_2456_Original.jpeg",
-      "medium": "medium_IMG_2456_Original.jpeg",
-      "full": "IMG_2456_Original.jpeg"
+      "thumb": "thumb_IMG_0999.jpeg",
+      "medium": "medium_IMG_0999.jpeg",
+      "full": "IMG_0999.jpeg"
     }
   },
   {
-    "name": "IMG_1625.jpg",
-    "title": "IMG 1625",
-    "date": "2021-12-31T19:38:21.000Z",
-    "camera": "Canon EOS Rebel T7",
+    "name": "IMG_1006 Copy.JPG",
+    "date": null,
+    "title": "IMG_1006 Copy.JPG",
+    "camera": "Canon Canon EOS Rebel T7",
+    "exposure": "1/2500",
+    "aperture": "f/3.2",
+    "iso": "ISO 400",
+    "focalLength": "50 mm",
+    "lens": null,
+    "hasWebP": false,
+    "sizes": {
+      "thumb": "thumb_IMG_1006 Copy.JPG",
+      "medium": "medium_IMG_1006 Copy.JPG",
+      "full": "IMG_1006 Copy.JPG"
+    }
+  },
+  {
+    "name": "IMG_1149 Copy.JPG",
+    "date": null,
+    "title": "IMG_1149 Copy.JPG",
+    "camera": "Canon Canon EOS Rebel T7",
     "exposure": "1/400",
-    "aperture": 13,
-    "iso": 100,
-    "hasWebP": true,
+    "aperture": "f/7.1",
+    "iso": "ISO 100",
+    "focalLength": "50 mm",
+    "lens": null,
+    "hasWebP": false,
     "sizes": {
-      "thumb": "thumb_IMG_1625.jpg",
-      "medium": "medium_IMG_1625.jpg",
-      "full": "IMG_1625.jpg"
+      "thumb": "thumb_IMG_1149 Copy.JPG",
+      "medium": "medium_IMG_1149 Copy.JPG",
+      "full": "IMG_1149 Copy.JPG"
     }
   },
   {
-    "name": "IMG_1149 Copy_Original.jpeg",
-    "title": "IMG 1149 Copy Original",
-    "date": "2021-11-21T15:37:27.000Z",
-    "camera": "Canon EOS Rebel T7",
-    "exposure": "1/400",
-    "aperture": 7.1,
-    "iso": 100,
-    "hasWebP": true,
-    "sizes": {
-      "thumb": "thumb_IMG_1149 Copy_Original.jpeg",
-      "medium": "medium_IMG_1149 Copy_Original.jpeg",
-      "full": "IMG_1149 Copy_Original.jpeg"
-    }
-  },
-  {
-    "name": "IMG_9705_Original.jpeg",
-    "title": "IMG 9705 Original",
-    "date": "2021-05-14T02:58:18.000Z",
-    "camera": "iPhone 12 Pro",
-    "exposure": "1/187",
-    "aperture": 2.4,
-    "iso": 25,
-    "hasWebP": true,
-    "sizes": {
-      "thumb": "thumb_IMG_9705_Original.jpeg",
-      "medium": "medium_IMG_9705_Original.jpeg",
-      "full": "IMG_9705_Original.jpeg"
-    }
-  },
-  {
-    "name": "IMG_7709_Original.jpeg",
-    "title": "IMG 7709 Original",
-    "date": "2021-03-05T18:53:45.000Z",
-    "camera": "iPhone 12 Pro",
-    "exposure": "1/1348",
-    "aperture": 2.2,
-    "iso": 25,
-    "hasWebP": true,
-    "sizes": {
-      "thumb": "thumb_IMG_7709_Original.jpeg",
-      "medium": "medium_IMG_7709_Original.jpeg",
-      "full": "IMG_7709_Original.jpeg"
-    }
-  },
-  {
-    "name": "IMG_7578_Original.jpeg",
-    "title": "IMG 7578 Original",
-    "date": "2021-03-03T16:35:17.000Z",
-    "camera": "iPhone 12 Pro",
-    "exposure": "1/2132",
-    "aperture": 1.6,
-    "iso": 32,
-    "hasWebP": true,
-    "sizes": {
-      "thumb": "thumb_IMG_7578_Original.jpeg",
-      "medium": "medium_IMG_7578_Original.jpeg",
-      "full": "IMG_7578_Original.jpeg"
-    }
-  },
-  {
-    "name": "IMG_7007_Original.jpeg",
-    "title": "IMG 7007 Original",
-    "date": "2021-02-22T22:32:24.000Z",
-    "camera": "iPhone 12 Pro",
-    "exposure": "1/190",
-    "aperture": 2.2,
-    "iso": 25,
-    "hasWebP": true,
-    "sizes": {
-      "thumb": "thumb_IMG_7007_Original.jpeg",
-      "medium": "medium_IMG_7007_Original.jpeg",
-      "full": "IMG_7007_Original.jpeg"
-    }
-  },
-  {
-    "name": "IMG_7006_Original.jpeg",
-    "title": "IMG 7006 Original",
-    "date": "2021-02-22T22:31:28.000Z",
-    "camera": "iPhone 12 Pro",
-    "exposure": "1/122",
-    "aperture": 2.2,
-    "iso": 25,
-    "hasWebP": true,
-    "sizes": {
-      "thumb": "thumb_IMG_7006_Original.jpeg",
-      "medium": "medium_IMG_7006_Original.jpeg",
-      "full": "IMG_7006_Original.jpeg"
-    }
-  },
-  {
-    "name": "IMG_2201_Original.jpeg",
-    "title": "IMG 2201 Original",
-    "date": "2017-12-21T16:53:14.000Z",
-    "camera": "iPhone 7",
-    "exposure": "1/32258",
-    "aperture": 1.8,
-    "iso": 25,
-    "hasWebP": true,
-    "sizes": {
-      "thumb": "thumb_IMG_2201_Original.jpeg",
-      "medium": "medium_IMG_2201_Original.jpeg",
-      "full": "IMG_2201_Original.jpeg"
-    }
-  },
-  {
-    "name": "IMG_3987_Original.jpeg",
-    "title": "IMG 3987 Original",
-    "date": "2016-09-21T21:32:34.000Z",
-    "camera": "iPad Pro",
-    "exposure": "1/120",
-    "aperture": 2.4,
-    "iso": 25,
-    "hasWebP": true,
-    "sizes": {
-      "thumb": "thumb_IMG_3987_Original.jpeg",
-      "medium": "medium_IMG_3987_Original.jpeg",
-      "full": "IMG_3987_Original.jpeg"
-    }
-  },
-  {
-    "name": "IMG_3929_Original.jpeg",
-    "title": "IMG 3929 Original",
-    "date": "2016-09-15T03:09:22.000Z",
+    "name": "IMG_1230.JPG",
+    "date": null,
+    "title": "IMG_1230.JPG",
     "camera": null,
     "exposure": null,
     "aperture": null,
     "iso": null,
-    "hasWebP": true,
+    "focalLength": null,
+    "lens": null,
+    "hasWebP": false,
     "sizes": {
-      "thumb": "thumb_IMG_3929_Original.jpeg",
-      "medium": "medium_IMG_3929_Original.jpeg",
-      "full": "IMG_3929_Original.jpeg"
+      "thumb": "thumb_IMG_1230.JPG",
+      "medium": "medium_IMG_1230.JPG",
+      "full": "IMG_1230.JPG"
     }
   },
   {
-    "name": "P1050757_Original.jpeg",
-    "title": "P1050757 Original",
-    "date": "2012-11-04T13:18:08.000Z",
-    "camera": "DMC-LX5",
-    "exposure": "1/4000",
-    "aperture": 8,
-    "iso": 1600,
-    "hasWebP": true,
+    "name": "IMG_1262-EDIT.jpg",
+    "date": null,
+    "title": "IMG_1262-EDIT.jpg",
+    "camera": "Apple iPhone 12 Pro",
+    "exposure": "1/6849",
+    "aperture": "f/2.0",
+    "iso": "ISO 32",
+    "focalLength": "6 mm",
+    "lens": "iPhone 12 Pro back triple camera 6mm f/2",
+    "hasWebP": false,
     "sizes": {
-      "thumb": "thumb_P1050757_Original.jpeg",
-      "medium": "medium_P1050757_Original.jpeg",
-      "full": "P1050757_Original.jpeg"
+      "thumb": "thumb_IMG_1262-EDIT.jpg",
+      "medium": "medium_IMG_1262-EDIT.jpg",
+      "full": "IMG_1262-EDIT.jpg"
     }
   },
   {
-    "name": "_MG_0479 1_Original.jpeg",
-    "title": " MG 0479 1 Original",
-    "date": "2012-08-31T20:50:04.000Z",
-    "camera": "Canon EOS DIGITAL REBEL XT",
-    "exposure": "1/4000",
-    "aperture": 4,
-    "iso": 400,
-    "hasWebP": true,
+    "name": "IMG_1311.JPG",
+    "date": null,
+    "title": "IMG_1311.JPG",
+    "camera": "Apple iPhone 7",
+    "exposure": "1/2283",
+    "aperture": "f/1.8",
+    "iso": "ISO 20",
+    "focalLength": "3.99 mm",
+    "lens": "iPhone 7 back camera 3.99mm f/1.8",
+    "hasWebP": false,
     "sizes": {
-      "thumb": "thumb__MG_0479 1_Original.jpeg",
-      "medium": "medium__MG_0479 1_Original.jpeg",
-      "full": "_MG_0479 1_Original.jpeg"
+      "thumb": "thumb_IMG_1311.JPG",
+      "medium": "medium_IMG_1311.JPG",
+      "full": "IMG_1311.JPG"
     }
   },
   {
-    "name": "IMG_5322-EDIT_Original.jpeg",
-    "title": "IMG 5322 EDIT Original",
-    "date": "2009-01-09T22:07:44.000Z",
-    "camera": "Canon EOS DIGITAL REBEL XT",
-    "exposure": "1/640",
-    "aperture": 16,
-    "iso": 800,
-    "hasWebP": true,
+    "name": "IMG_1347.JPG",
+    "date": null,
+    "title": "IMG_1347.JPG",
+    "camera": "Apple iPhone 7",
+    "exposure": "1/2336",
+    "aperture": "f/1.8",
+    "iso": "ISO 20",
+    "focalLength": "3.99 mm",
+    "lens": "iPhone 7 back camera 3.99mm f/1.8",
+    "hasWebP": false,
     "sizes": {
-      "thumb": "thumb_IMG_5322-EDIT_Original.jpeg",
-      "medium": "medium_IMG_5322-EDIT_Original.jpeg",
-      "full": "IMG_5322-EDIT_Original.jpeg"
+      "thumb": "thumb_IMG_1347.JPG",
+      "medium": "medium_IMG_1347.JPG",
+      "full": "IMG_1347.JPG"
     }
   },
   {
-    "name": "IMG_5287-EDIT_Original.jpeg",
-    "title": "IMG 5287 EDIT Original",
-    "date": "2009-01-09T22:01:15.000Z",
-    "camera": "Canon EOS DIGITAL REBEL XT",
+    "name": "IMG_1654.JPG",
+    "date": null,
+    "title": "IMG_1654.JPG",
+    "camera": null,
+    "exposure": null,
+    "aperture": null,
+    "iso": null,
+    "focalLength": null,
+    "lens": null,
+    "hasWebP": false,
+    "sizes": {
+      "thumb": "thumb_IMG_1654.JPG",
+      "medium": "medium_IMG_1654.JPG",
+      "full": "IMG_1654.JPG"
+    }
+  },
+  {
+    "name": "IMG_2201 Copy Copy Copy.JPG",
+    "date": null,
+    "title": "IMG_2201 Copy Copy Copy.JPG",
+    "camera": "Apple iPhone 12 Pro",
+    "exposure": "1/4",
+    "aperture": "f/1.6",
+    "iso": "ISO 640",
+    "focalLength": "4.2 mm",
+    "lens": "iPhone 12 Pro back triple camera 4.2mm f/1.6",
+    "hasWebP": false,
+    "sizes": {
+      "thumb": "thumb_IMG_2201 Copy Copy Copy.JPG",
+      "medium": "medium_IMG_2201 Copy Copy Copy.JPG",
+      "full": "IMG_2201 Copy Copy Copy.JPG"
+    }
+  },
+  {
+    "name": "IMG_2961.JPG",
+    "date": null,
+    "title": "IMG_2961.JPG",
+    "camera": "Canon Canon EOS Rebel T7",
+    "exposure": "1/100",
+    "aperture": "f/6.3",
+    "iso": "ISO 400",
+    "focalLength": "35 mm",
+    "lens": null,
+    "hasWebP": false,
+    "sizes": {
+      "thumb": "thumb_IMG_2961.JPG",
+      "medium": "medium_IMG_2961.JPG",
+      "full": "IMG_2961.JPG"
+    }
+  },
+  {
+    "name": "IMG_3101.JPG",
+    "date": null,
+    "title": "IMG_3101.JPG",
+    "camera": "Canon Canon EOS DIGITAL REBEL XT",
+    "exposure": "1/400",
+    "aperture": "f/13.0",
+    "iso": "ISO 800",
+    "focalLength": "18 mm",
+    "lens": null,
+    "hasWebP": false,
+    "sizes": {
+      "thumb": "thumb_IMG_3101.JPG",
+      "medium": "medium_IMG_3101.JPG",
+      "full": "IMG_3101.JPG"
+    }
+  },
+  {
+    "name": "IMG_3120.JPG",
+    "date": null,
+    "title": "IMG_3120.JPG",
+    "camera": "Apple iPhone",
+    "exposure": null,
+    "aperture": "f/2.8",
+    "iso": null,
+    "focalLength": null,
+    "lens": null,
+    "hasWebP": false,
+    "sizes": {
+      "thumb": "thumb_IMG_3120.JPG",
+      "medium": "medium_IMG_3120.JPG",
+      "full": "IMG_3120.JPG"
+    }
+  },
+  {
+    "name": "IMG_3121.JPG",
+    "date": null,
+    "title": "IMG_3121.JPG",
+    "camera": "Apple iPhone",
+    "exposure": null,
+    "aperture": "f/2.8",
+    "iso": null,
+    "focalLength": null,
+    "lens": null,
+    "hasWebP": false,
+    "sizes": {
+      "thumb": "thumb_IMG_3121.JPG",
+      "medium": "medium_IMG_3121.JPG",
+      "full": "IMG_3121.JPG"
+    }
+  },
+  {
+    "name": "IMG_4641.JPG",
+    "date": null,
+    "title": "IMG_4641.JPG",
+    "camera": "Panasonic DMC-LX5",
+    "exposure": "8",
+    "aperture": "f/5.6",
+    "iso": "ISO 80",
+    "focalLength": "19.2 mm",
+    "lens": null,
+    "hasWebP": false,
+    "sizes": {
+      "thumb": "thumb_IMG_4641.JPG",
+      "medium": "medium_IMG_4641.JPG",
+      "full": "IMG_4641.JPG"
+    }
+  },
+  {
+    "name": "IMG_5287-EDIT.jpg",
+    "date": null,
+    "title": "IMG_5287-EDIT.jpg",
+    "camera": "Canon Canon EOS DIGITAL REBEL XT",
     "exposure": "1/250",
-    "aperture": 10,
-    "iso": 800,
-    "hasWebP": true,
+    "aperture": "f/10.0",
+    "iso": "ISO 800",
+    "focalLength": "18 mm",
+    "lens": null,
+    "hasWebP": false,
     "sizes": {
-      "thumb": "thumb_IMG_5287-EDIT_Original.jpeg",
-      "medium": "medium_IMG_5287-EDIT_Original.jpeg",
-      "full": "IMG_5287-EDIT_Original.jpeg"
+      "thumb": "thumb_IMG_5287-EDIT.jpg",
+      "medium": "medium_IMG_5287-EDIT.jpg",
+      "full": "IMG_5287-EDIT.jpg"
     }
   },
   {
-    "name": "IMG_5329 Copy_Original.jpeg",
-    "title": "IMG 5329 Copy Original",
-    "date": "2009-01-09T14:08:24.000Z",
-    "camera": "Canon EOS DIGITAL REBEL XT",
-    "exposure": "1/500",
-    "aperture": 14,
-    "iso": 800,
-    "hasWebP": true,
-    "sizes": {
-      "thumb": "thumb_IMG_5329 Copy_Original.jpeg",
-      "medium": "medium_IMG_5329 Copy_Original.jpeg",
-      "full": "IMG_5329 Copy_Original.jpeg"
-    }
-  },
-  {
-    "name": "IMG_5316 Copy Copy_Original.jpeg",
-    "title": "IMG 5316 Copy Copy Original",
-    "date": "2009-01-09T14:07:04.000Z",
-    "camera": "Canon EOS DIGITAL REBEL XT",
-    "exposure": "1/500",
-    "aperture": 14,
-    "iso": 800,
-    "hasWebP": true,
-    "sizes": {
-      "thumb": "thumb_IMG_5316 Copy Copy_Original.jpeg",
-      "medium": "medium_IMG_5316 Copy Copy_Original.jpeg",
-      "full": "IMG_5316 Copy Copy_Original.jpeg"
-    }
-  },
-  {
-    "name": "IMG_5310_Original.jpeg",
-    "title": "IMG 5310 Original",
-    "date": "2009-01-09T14:06:21.000Z",
-    "camera": "Canon EOS DIGITAL REBEL XT",
+    "name": "IMG_5308.JPG",
+    "date": null,
+    "title": "IMG_5308.JPG",
+    "camera": "Canon Canon EOS DIGITAL REBEL XT",
     "exposure": "1/400",
-    "aperture": 13,
-    "iso": 800,
-    "hasWebP": true,
+    "aperture": "f/16.0",
+    "iso": "ISO 800",
+    "focalLength": "28 mm",
+    "lens": null,
+    "hasWebP": false,
     "sizes": {
-      "thumb": "thumb_IMG_5310_Original.jpeg",
-      "medium": "medium_IMG_5310_Original.jpeg",
-      "full": "IMG_5310_Original.jpeg"
+      "thumb": "thumb_IMG_5308.JPG",
+      "medium": "medium_IMG_5308.JPG",
+      "full": "IMG_5308.JPG"
     }
   },
   {
-    "name": "IMG_5308_Original.jpeg",
-    "title": "IMG 5308 Original",
-    "date": "2009-01-09T14:06:11.000Z",
-    "camera": "Canon EOS DIGITAL REBEL XT",
+    "name": "IMG_5310.JPG",
+    "date": null,
+    "title": "IMG_5310.JPG",
+    "camera": "Canon Canon EOS DIGITAL REBEL XT",
     "exposure": "1/400",
-    "aperture": 16,
-    "iso": 800,
-    "hasWebP": true,
+    "aperture": "f/13.0",
+    "iso": "ISO 800",
+    "focalLength": "18 mm",
+    "lens": null,
+    "hasWebP": false,
     "sizes": {
-      "thumb": "thumb_IMG_5308_Original.jpeg",
-      "medium": "medium_IMG_5308_Original.jpeg",
-      "full": "IMG_5308_Original.jpeg"
+      "thumb": "thumb_IMG_5310.JPG",
+      "medium": "medium_IMG_5310.JPG",
+      "full": "IMG_5310.JPG"
     }
   },
   {
-    "name": "IMG_5251_Original.jpeg",
-    "title": "IMG 5251 Original",
-    "date": "2009-01-09T10:54:20.000Z",
-    "camera": "Canon EOS DIGITAL REBEL XT",
+    "name": "IMG_5316 Copy Copy.JPG",
+    "date": null,
+    "title": "IMG_5316 Copy Copy.JPG",
+    "camera": "Canon Canon EOS DIGITAL REBEL XT",
+    "exposure": "1/500",
+    "aperture": "f/14.0",
+    "iso": "ISO 800",
+    "focalLength": "22 mm",
+    "lens": null,
+    "hasWebP": false,
+    "sizes": {
+      "thumb": "thumb_IMG_5316 Copy Copy.JPG",
+      "medium": "medium_IMG_5316 Copy Copy.JPG",
+      "full": "IMG_5316 Copy Copy.JPG"
+    }
+  },
+  {
+    "name": "IMG_5322-EDIT.jpg",
+    "date": null,
+    "title": "IMG_5322-EDIT.jpg",
+    "camera": "Canon Canon EOS DIGITAL REBEL XT",
     "exposure": "1/640",
-    "aperture": 5.6,
-    "iso": 800,
-    "hasWebP": true,
+    "aperture": "f/16.0",
+    "iso": "ISO 800",
+    "focalLength": "18 mm",
+    "lens": null,
+    "hasWebP": false,
     "sizes": {
-      "thumb": "thumb_IMG_5251_Original.jpeg",
-      "medium": "medium_IMG_5251_Original.jpeg",
-      "full": "IMG_5251_Original.jpeg"
+      "thumb": "thumb_IMG_5322-EDIT.jpg",
+      "medium": "medium_IMG_5322-EDIT.jpg",
+      "full": "IMG_5322-EDIT.jpg"
     }
   },
   {
-    "name": "IMG_5250_Original.jpeg",
-    "title": "IMG 5250 Original",
-    "date": "2009-01-09T10:54:18.000Z",
-    "camera": "Canon EOS DIGITAL REBEL XT",
-    "exposure": "1/800",
-    "aperture": 5.6,
-    "iso": 800,
-    "hasWebP": true,
+    "name": "IMG_5329 Copy.JPG",
+    "date": null,
+    "title": "IMG_5329 Copy.JPG",
+    "camera": "Canon Canon EOS DIGITAL REBEL XT",
+    "exposure": "1/500",
+    "aperture": "f/14.0",
+    "iso": "ISO 800",
+    "focalLength": "18 mm",
+    "lens": null,
+    "hasWebP": false,
     "sizes": {
-      "thumb": "thumb_IMG_5250_Original.jpeg",
-      "medium": "medium_IMG_5250_Original.jpeg",
-      "full": "IMG_5250_Original.jpeg"
+      "thumb": "thumb_IMG_5329 Copy.JPG",
+      "medium": "medium_IMG_5329 Copy.JPG",
+      "full": "IMG_5329 Copy.JPG"
     }
   },
   {
-    "name": "IMG_5249_Original.jpeg",
-    "title": "IMG 5249 Original",
-    "date": "2009-01-09T10:54:15.000Z",
-    "camera": "Canon EOS DIGITAL REBEL XT",
-    "exposure": "1/1000",
-    "aperture": 5,
-    "iso": 800,
-    "hasWebP": true,
+    "name": "IMG_5329.JPG",
+    "date": null,
+    "title": "IMG_5329.JPG",
+    "camera": "Canon Canon EOS DIGITAL REBEL XT",
+    "exposure": "1/500",
+    "aperture": "f/14.0",
+    "iso": "ISO 800",
+    "focalLength": "18 mm",
+    "lens": null,
+    "hasWebP": false,
     "sizes": {
-      "thumb": "thumb_IMG_5249_Original.jpeg",
-      "medium": "medium_IMG_5249_Original.jpeg",
-      "full": "IMG_5249_Original.jpeg"
+      "thumb": "thumb_IMG_5329.JPG",
+      "medium": "medium_IMG_5329.JPG",
+      "full": "IMG_5329.JPG"
     }
   },
   {
-    "name": "OCT 08 088 Copy Copy.jpeg",
-    "title": "OCT 08 088 Copy Copy",
-    "date": "2008-10-11T07:28:26.000Z",
-    "camera": "Canon EOS DIGITAL REBEL XT",
-    "exposure": "1/320",
-    "aperture": 11,
-    "iso": 400,
-    "hasWebP": true,
+    "name": "IMG_7046-EFFECTS.jpg",
+    "date": null,
+    "title": "IMG_7046-EFFECTS.jpg",
+    "camera": "Apple iPhone 12 Pro",
+    "exposure": null,
+    "aperture": null,
+    "iso": null,
+    "focalLength": "6 mm",
+    "lens": null,
+    "hasWebP": false,
     "sizes": {
-      "thumb": "thumb_OCT 08 088 Copy Copy.jpeg",
-      "medium": "medium_OCT 08 088 Copy Copy.jpeg",
-      "full": "OCT 08 088 Copy Copy.jpeg"
+      "thumb": "thumb_IMG_7046-EFFECTS.jpg",
+      "medium": "medium_IMG_7046-EFFECTS.jpg",
+      "full": "IMG_7046-EFFECTS.jpg"
+    }
+  },
+  {
+    "name": "IMG_7577 Copy.JPG",
+    "date": null,
+    "title": "IMG_7577 Copy.JPG",
+    "camera": "Apple iPhone 12 Pro",
+    "exposure": "1/2053",
+    "aperture": "f/1.6",
+    "iso": "ISO 32",
+    "focalLength": "4.2 mm",
+    "lens": "iPhone 12 Pro back triple camera 4.2mm f/1.6",
+    "hasWebP": false,
+    "sizes": {
+      "thumb": "thumb_IMG_7577 Copy.JPG",
+      "medium": "medium_IMG_7577 Copy.JPG",
+      "full": "IMG_7577 Copy.JPG"
+    }
+  },
+  {
+    "name": "IMG_8159-EDIT.jpg",
+    "date": null,
+    "title": "IMG_8159-EDIT.jpg",
+    "camera": "Canon Canon EOS DIGITAL REBEL XT",
+    "exposure": "1/60",
+    "aperture": "f/5.6",
+    "iso": "ISO 800",
+    "focalLength": "55 mm",
+    "lens": null,
+    "hasWebP": false,
+    "sizes": {
+      "thumb": "thumb_IMG_8159-EDIT.jpg",
+      "medium": "medium_IMG_8159-EDIT.jpg",
+      "full": "IMG_8159-EDIT.jpg"
     }
   }
 ];

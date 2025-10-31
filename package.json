@@ -8,5 +8,8 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/michaelcolenso/metatron.git"
+  },
+  "dependencies": {
+    "exifreader": "^4.23.3"
   }
 }
