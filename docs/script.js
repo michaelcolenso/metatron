@@ -6,26 +6,6 @@ const modal = document.getElementById("modal");
 const modalImg = document.getElementById("modal-img");
 const modalCaption = document.getElementById("modal-caption");
 const closeBtn = document.querySelector(".close");
-const layoutButtons = document.querySelectorAll(".layout-option");
-
-const layoutClasses = [
-  "layout-masonry",
-  "layout-grid",
-  "layout-collage",
-  "layout-filmstrip",
-];
-
-const collageTilts = [-6, -3.5, -2, 0, 1.5, 3.5, 5.5];
-const collageAccentColors = [
-  "rgba(255, 215, 134, 0.75)",
-  "rgba(244, 114, 182, 0.65)",
-  "rgba(129, 140, 248, 0.7)",
-  "rgba(96, 165, 250, 0.6)",
-  "rgba(45, 212, 191, 0.55)",
-];
-
-let currentLayout = "masonry";
-
 // Set current year in footer
 document.getElementById("year").textContent = new Date().getFullYear();
 
@@ -41,40 +21,55 @@ function formatDate(dateStr) {
   });
 }
 
-// Create photo card element
+// Create photo element
 function createPhotoCard(photo) {
-  const card = document.createElement("div");
-  card.className = "photo-card";
-
-  const tilt = collageTilts[Math.floor(Math.random() * collageTilts.length)];
-  const accent =
-    collageAccentColors[Math.floor(Math.random() * collageAccentColors.length)];
-  card.dataset.tilt = tilt;
-  card.style.setProperty("--tilt", tilt);
-  card.style.setProperty("--accent-color", accent);
+  const item = document.createElement("figure");
+  item.className = "photo-item";
+  item.tabIndex = 0;
+  item.setAttribute("role", "button");
 
   const img = document.createElement("img");
   img.src = `images/${photo.name}`;
-  img.alt = photo.title;
+  img.alt = photo.title || "Photo";
   img.loading = "lazy";
+  img.decoding = "async";
 
-  const info = document.createElement("div");
-  info.className = "photo-info";
+  const ariaLabel = photo.title || photo.name || "View photo";
+  item.setAttribute("aria-label", ariaLabel);
+
+  item.appendChild(img);
+
   const formattedDate = formatDate(photo.date);
-  info.innerHTML = `
-        <div class="photo-title">${photo.title}</div>
-        ${formattedDate ? `<div class="photo-date">${formattedDate}</div>` : ""}
-    `;
 
-  card.appendChild(img);
-  card.appendChild(info);
+  if (photo.title || formattedDate) {
+    const overlay = document.createElement("figcaption");
+    overlay.className = "photo-overlay";
 
-  // Add click handler for modal
-  card.addEventListener("click", () => {
+    if (photo.title) {
+      const titleEl = document.createElement("div");
+      titleEl.className = "overlay-title";
+      titleEl.textContent = photo.title;
+      overlay.appendChild(titleEl);
+    }
+
+    if (formattedDate) {
+      const metaEl = document.createElement("div");
+      metaEl.className = "overlay-meta";
+      metaEl.textContent = formattedDate;
+      overlay.appendChild(metaEl);
+    }
+
+    item.appendChild(overlay);
+  }
+
+  const openModal = () => {
     modalImg.src = img.src;
+    modalImg.alt = img.alt;
 
     // Build caption with EXIF data
-    let captionHTML = `<div class="modal-title">${photo.title}</div>`;
+    let captionHTML = photo.title
+      ? `<div class="modal-title">${photo.title}</div>`
+      : "";
 
     // Add date if available
     const modalDate = formatDate(photo.date);
@@ -97,9 +92,23 @@ function createPhotoCard(photo) {
 
     modalCaption.innerHTML = captionHTML;
     modal.style.display = "block";
+  };
+
+  // Add click handler for modal
+  item.addEventListener("click", openModal);
+  item.addEventListener("keydown", (event) => {
+    if (
+      event.key === "Enter" ||
+      event.key === " " ||
+      event.key === "Spacebar" ||
+      event.key === "Space"
+    ) {
+      event.preventDefault();
+      openModal();
+    }
   });
 
-  return card;
+  return item;
 }
 
 // Filter and sort photos
@@ -156,40 +165,15 @@ function filterAndSortPhotos() {
 // Render photo grid
 function renderPhotoGrid() {
   const filteredPhotos = filterAndSortPhotos();
-  if (!photoGrid.classList.contains(`layout-${currentLayout}`)) {
-    layoutClasses.forEach((cls) => photoGrid.classList.remove(cls));
-    photoGrid.classList.add(`layout-${currentLayout}`);
-  }
   photoGrid.innerHTML = "";
   filteredPhotos.forEach((photo) => {
     photoGrid.appendChild(createPhotoCard(photo));
   });
 }
 
-function setLayout(layout) {
-  currentLayout = layout;
-
-  layoutButtons.forEach((button) => {
-    const isActive = button.dataset.layout === layout;
-    button.classList.toggle("is-active", isActive);
-    button.setAttribute("aria-pressed", String(isActive));
-  });
-
-  layoutClasses.forEach((cls) => photoGrid.classList.remove(cls));
-  photoGrid.classList.add(`layout-${layout}`);
-
-  renderPhotoGrid();
-}
-
 // Event listeners
 searchInput.addEventListener("input", renderPhotoGrid);
 sortSelect.addEventListener("change", renderPhotoGrid);
-
-layoutButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    setLayout(button.dataset.layout);
-  });
-});
 
 closeBtn.addEventListener("click", () => {
   modal.style.display = "none";
@@ -201,5 +185,8 @@ modal.addEventListener("click", (e) => {
   }
 });
 
+// Ensure masonry layout class is applied
+photoGrid.classList.add("layout-masonry");
+
 // Initial render
-setLayout(currentLayout);
+renderPhotoGrid();
