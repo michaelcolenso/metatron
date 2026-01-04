@@ -1,39 +1,5 @@
 const photoList = [
   {
-    "name": "IMG_1654.JPG",
-    "date": "2025-10-31T12:26:37.855Z",
-    "title": "October 31, 2025",
-    "camera": null,
-    "exposure": null,
-    "aperture": null,
-    "iso": null,
-    "focalLength": null,
-    "lens": null,
-    "hasWebP": false,
-    "sizes": {
-      "thumb": "thumb_IMG_1654.JPG",
-      "medium": "medium_IMG_1654.JPG",
-      "full": "IMG_1654.JPG"
-    }
-  },
-  {
-    "name": "IMG_1230.JPG",
-    "date": "2025-10-31T12:26:37.843Z",
-    "title": "October 31, 2025",
-    "camera": null,
-    "exposure": null,
-    "aperture": null,
-    "iso": null,
-    "focalLength": null,
-    "lens": null,
-    "hasWebP": false,
-    "sizes": {
-      "thumb": "thumb_IMG_1230.JPG",
-      "medium": "medium_IMG_1230.JPG",
-      "full": "IMG_1230.JPG"
-    }
-  },
-  {
     "name": "IMG_7046-EFFECTS.jpg",
     "date": "2022-11-22T16:18:51.000Z",
     "title": "November 22, 2022",
@@ -48,6 +14,40 @@ const photoList = [
       "thumb": "thumb_IMG_7046-EFFECTS.jpg",
       "medium": "medium_IMG_7046-EFFECTS.jpg",
       "full": "IMG_7046-EFFECTS.jpg"
+    }
+  },
+  {
+    "name": "IMG_5439 Copy.jpeg",
+    "date": "2022-08-20T19:14:35.000Z",
+    "title": "August 20, 2022",
+    "camera": "Apple iPhone 12 Pro",
+    "exposure": "1/122",
+    "aperture": "f/2.0",
+    "iso": "ISO 25",
+    "focalLength": "6 mm",
+    "lens": "iPhone 12 Pro back dual camera 6mm f/2",
+    "hasWebP": false,
+    "sizes": {
+      "thumb": "thumb_IMG_5439 Copy.jpeg",
+      "medium": "medium_IMG_5439 Copy.jpeg",
+      "full": "IMG_5439 Copy.jpeg"
+    }
+  },
+  {
+    "name": "IMG_2964_Original.jpeg",
+    "date": "2022-07-30T12:58:18.000Z",
+    "title": "July 30, 2022",
+    "camera": null,
+    "exposure": null,
+    "aperture": null,
+    "iso": null,
+    "focalLength": null,
+    "lens": null,
+    "hasWebP": false,
+    "sizes": {
+      "thumb": "thumb_IMG_2964_Original.jpeg",
+      "medium": "medium_IMG_2964_Original.jpeg",
+      "full": "IMG_2964_Original.jpeg"
     }
   },
   {
@@ -187,6 +187,23 @@ const photoList = [
     }
   },
   {
+    "name": "IMG_0452_Original.jpeg",
+    "date": "2020-09-03T13:31:36.000Z",
+    "title": "September 3, 2020",
+    "camera": "Apple iPhone XS",
+    "exposure": "1/60",
+    "aperture": "f/2.4",
+    "iso": "ISO 160",
+    "focalLength": "6 mm",
+    "lens": "iPhone XS back dual camera 6mm f/2.4",
+    "hasWebP": false,
+    "sizes": {
+      "thumb": "thumb_IMG_0452_Original.jpeg",
+      "medium": "medium_IMG_0452_Original.jpeg",
+      "full": "IMG_0452_Original.jpeg"
+    }
+  },
+  {
     "name": "IMG_0295.JPG",
     "date": "2020-08-26T19:00:32.000Z",
     "title": "August 26, 2020",
@@ -235,6 +252,40 @@ const photoList = [
       "thumb": "thumb_IMG_1347.JPG",
       "medium": "medium_IMG_1347.JPG",
       "full": "IMG_1347.JPG"
+    }
+  },
+  {
+    "name": "IMG_0763_Original.jpeg",
+    "date": "2017-10-26T16:11:29.000Z",
+    "title": "October 26, 2017",
+    "camera": "Apple iPhone 7",
+    "exposure": "1/5051",
+    "aperture": "f/1.8",
+    "iso": "ISO 20",
+    "focalLength": "3.99 mm",
+    "lens": "iPhone 7 back camera 3.99mm f/1.8",
+    "hasWebP": false,
+    "sizes": {
+      "thumb": "thumb_IMG_0763_Original.jpeg",
+      "medium": "medium_IMG_0763_Original.jpeg",
+      "full": "IMG_0763_Original.jpeg"
+    }
+  },
+  {
+    "name": "IMG_0732_Original.jpeg",
+    "date": "2016-02-17T11:20:50.000Z",
+    "title": "February 17, 2016",
+    "camera": "Apple iPhone 6",
+    "exposure": "1/13333",
+    "aperture": "f/2.2",
+    "iso": "ISO 32",
+    "focalLength": "4.15 mm",
+    "lens": "iPhone 6 back camera 4.15mm f/2.2",
+    "hasWebP": false,
+    "sizes": {
+      "thumb": "thumb_IMG_0732_Original.jpeg",
+      "medium": "medium_IMG_0732_Original.jpeg",
+      "full": "IMG_0732_Original.jpeg"
     }
   },
   {
@@ -439,6 +490,40 @@ const photoList = [
       "thumb": "thumb_IMG_3121.JPG",
       "medium": "medium_IMG_3121.JPG",
       "full": "IMG_3121.JPG"
+    }
+  },
+  {
+    "name": "IMG_1230.JPG",
+    "date": "1970-01-01T00:00:00.000Z",
+    "title": "January 1, 1970",
+    "camera": null,
+    "exposure": null,
+    "aperture": null,
+    "iso": null,
+    "focalLength": null,
+    "lens": null,
+    "hasWebP": false,
+    "sizes": {
+      "thumb": "thumb_IMG_1230.JPG",
+      "medium": "medium_IMG_1230.JPG",
+      "full": "IMG_1230.JPG"
+    }
+  },
+  {
+    "name": "IMG_1654.JPG",
+    "date": "1970-01-01T00:00:00.000Z",
+    "title": "January 1, 1970",
+    "camera": null,
+    "exposure": null,
+    "aperture": null,
+    "iso": null,
+    "focalLength": null,
+    "lens": null,
+    "hasWebP": false,
+    "sizes": {
+      "thumb": "thumb_IMG_1654.JPG",
+      "medium": "medium_IMG_1654.JPG",
+      "full": "IMG_1654.JPG"
     }
   }
 ];
