@@ -29,9 +29,24 @@ function imageUrl(filename) {
   return `images/${encodeURIComponent(filename)}`;
 }
 
+// Normalizes a photo's size-tier info to { file, jpg, webp, width, height }.
+// Defends against docs/images.js briefly reverting to the older catalogue
+// schema (sizes: { thumb, medium, full } as plain filename strings, no
+// webp/width/height) if a not-yet-updated CI run overwrites it before the
+// pipeline consolidation lands -- see AUDIT.md's "Blocker" note. Without
+// this, that schema would make sizeInfo undefined here and throw, breaking
+// the whole gallery rather than just losing WebP/responsive-size polish.
+function getSizeInfo(photo, tier) {
+  const modern = photo[tier];
+  if (modern && typeof modern === "object") {
+    return modern;
+  }
+  return { file: photo.sizes?.[tier] || photo.name };
+}
+
 // Build a <picture> (WebP + JPEG fallback) for one of a photo's size tiers
 function createPicture(photo, tier, altText, { eager = false } = {}) {
-  const sizeInfo = photo[tier];
+  const sizeInfo = getSizeInfo(photo, tier);
   const picture = document.createElement("picture");
 
   if (sizeInfo.webp) {
@@ -98,14 +113,24 @@ function createPhotoCard(photo) {
   }
 
   const openModal = () => {
+    const mediumInfo = getSizeInfo(photo, "medium");
+    const fullInfo = getSizeInfo(photo, "full");
+
     modalImg.alt = altText;
-    modalImg.src = imageUrl(photo.medium.jpg);
+    modalImg.src = imageUrl(mediumInfo.jpg || mediumInfo.file);
     // Let the browser pull the untouched full-resolution original instead
     // of the ~1400px medium tier when the viewport/DPR genuinely calls for
     // it (e.g. a large hi-DPI monitor), without forcing that download on
-    // everyone else opening the lightbox.
-    modalImg.srcset = `${imageUrl(photo.medium.jpg)} ${photo.medium.width}w, ${imageUrl(photo.full.file)} ${photo.full.width}w`;
-    modalImg.sizes = "90vw";
+    // everyone else opening the lightbox. Only offered when both tiers
+    // report real dimensions (the modern schema) -- the width descriptor
+    // is meaningless without them.
+    if (mediumInfo.width && fullInfo.width) {
+      modalImg.srcset = `${imageUrl(mediumInfo.jpg || mediumInfo.file)} ${mediumInfo.width}w, ${imageUrl(fullInfo.file)} ${fullInfo.width}w`;
+      modalImg.sizes = "90vw";
+    } else {
+      modalImg.removeAttribute("srcset");
+      modalImg.removeAttribute("sizes");
+    }
 
     modalCaption.innerHTML = "";
 

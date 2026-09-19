@@ -37,7 +37,7 @@ photos by michaelcolenso
 ```
 
 ## Prerequisites
-- [Node.js](https://nodejs.org/) 18 or newer (required for the maintenance script).
+- [Node.js](https://nodejs.org/) 20.9 or newer (required by `sharp`, used for thumbnail/WebP generation in the maintenance script).
 - Any static file server if you want to preview the site locally.
 
 ## Getting started

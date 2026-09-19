@@ -200,11 +200,19 @@ async function processImage(filename, sourceDir, docsImagesDir, standardBasename
             console.warn(`Skipping ${filename}: converted name ${outputName} collides with an existing source photo`);
             return null;
         }
-        try {
-            fullBuffer = await heicConvert({ buffer: originalBuffer, format: 'JPEG', quality: HEIC_FULL_QUALITY });
-        } catch (error) {
-            console.warn(`Skipping ${filename}: HEIC decode failed (${error.message})`);
-            return null;
+        // Some ".heic"/".heif"-named files are actually already JPEG (a
+        // common export/transfer mislabeling) -- detect that via the JPEG
+        // magic bytes before attempting a HEIC decode, so they're handled
+        // as what they really are instead of failing to decode.
+        const looksLikeJpeg = originalBuffer.length >= 3
+            && originalBuffer[0] === 0xFF && originalBuffer[1] === 0xD8 && originalBuffer[2] === 0xFF;
+        if (!looksLikeJpeg) {
+            try {
+                fullBuffer = await heicConvert({ buffer: originalBuffer, format: 'JPEG', quality: HEIC_FULL_QUALITY });
+            } catch (error) {
+                console.warn(`Skipping ${filename}: HEIC decode failed (${error.message})`);
+                return null;
+            }
         }
     }
 
@@ -293,11 +301,23 @@ async function generateImageList(sourceDir, docsImagesDir) {
     const standardBasenames = new Set(standardFiles);
 
     const heicFiles = allFiles.filter(file => HEIC_EXTENSIONS.test(file));
-    if (heicFiles.length > 0 && !INCLUDE_HEIC) {
-        console.log(`Skipping ${heicFiles.length} HEIC/HEIF source photo(s) (set INCLUDE_HEIC=1 to convert and publish them): ${heicFiles.join(', ')}`);
+    // Once a HEIC photo has been converted and published (its converted JPEG
+    // already exists in docs/images/), keep republishing it on every future
+    // run even without INCLUDE_HEIC=1 -- otherwise the opt-in would have to
+    // be remembered forever, and an ordinary maintenance run would silently
+    // un-publish it (removeStaleFiles would delete its derivatives and it
+    // would vanish from the catalogue).
+    const heicToProcess = heicFiles.filter(file => {
+        if (INCLUDE_HEIC) return true;
+        const convertedName = `${path.parse(file).name}.jpg`;
+        return fs.existsSync(path.join(docsImagesDir, convertedName));
+    });
+    const newHeicSkipped = heicFiles.filter(file => !heicToProcess.includes(file));
+    if (newHeicSkipped.length > 0) {
+        console.log(`Skipping ${newHeicSkipped.length} HEIC/HEIF source photo(s) (set INCLUDE_HEIC=1 to convert and publish them): ${newHeicSkipped.join(', ')}`);
     }
 
-    const filesToProcess = INCLUDE_HEIC ? [...standardFiles, ...heicFiles] : standardFiles;
+    const filesToProcess = [...standardFiles, ...heicToProcess];
 
     const images = [];
     const expectedFiles = [];
