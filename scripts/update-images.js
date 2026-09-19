@@ -176,7 +176,12 @@ async function buildDerivative(buffer, maxDimension, jpegQuality, webpQuality) {
     });
 
     const [jpeg, webp] = await Promise.all([
-        pipeline.clone().jpeg({ quality: jpegQuality, mozjpeg: true }).toBuffer({ resolveWithObject: true }),
+        // JPEG has no alpha channel; flatten against a documented white
+        // background instead of leaving it to sharp's implicit default, so
+        // a transparent PNG source doesn't silently pick up whatever the
+        // library defaults to. WebP supports alpha natively, so it's left
+        // untouched and remains the fully-correct candidate for it.
+        pipeline.clone().flatten({ background: '#ffffff' }).jpeg({ quality: jpegQuality, mozjpeg: true }).toBuffer({ resolveWithObject: true }),
         pipeline.clone().webp({ quality: webpQuality }).toBuffer({ resolveWithObject: true })
     ]);
 

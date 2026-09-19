@@ -61,11 +61,24 @@ function createPicture(photo, tiers, altText, { eager = false, sizes } = {}) {
   const multi = infos.length > 1;
   const picture = document.createElement("picture");
 
-  const buildSrcset = (urlKey) =>
-    infos
+  // A narrow source (<= a larger tier's max dimension) makes that tier's
+  // derivative the same width as a smaller tier's (withoutEnlargement means
+  // neither can exceed the source), producing two candidates with the same
+  // "w" descriptor -- an invalid srcset. Keep only the first (smallest,
+  // usually lightest-weight) candidate per distinct width.
+  const buildSrcset = (urlKey) => {
+    const seenWidths = new Set();
+    return infos
       .filter((info) => info[urlKey])
+      .filter((info) => {
+        if (!multi || !info.width) return true;
+        if (seenWidths.has(info.width)) return false;
+        seenWidths.add(info.width);
+        return true;
+      })
       .map((info) => (multi && info.width ? `${imageUrl(info[urlKey])} ${info.width}w` : imageUrl(info[urlKey])))
       .join(", ");
+  };
 
   if (infos.every((info) => info.webp)) {
     const source = document.createElement("source");
