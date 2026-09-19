@@ -118,6 +118,11 @@ header {
     background-color: rgba(0,0,0,0.9);
     padding: 20px;
     box-sizing: border-box;
+    /* A portrait image can reach 90vh, leaving little room for the
+       caption and "View full resolution" link below it -- without this,
+       both are simply clipped with no way to reach them on a short or
+       landscape viewport. */
+    overflow-y: auto;
 }
 
 .modal-content {
@@ -129,9 +134,12 @@ header {
 }
 
 .close {
-    position: absolute;
+    /* Fixed to the viewport, not .modal, so it can't scroll out of reach
+       now that .modal itself scrolls (see .modal's overflow-y). */
+    position: fixed;
     right: 35px;
     top: 15px;
+    z-index: 1001;
     color: #f1f1f1;
     font-size: 40px;
     font-weight: bold;
