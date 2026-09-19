@@ -1,0 +1,64 @@
+# PENDING: replace the contents of .github/workflows/deploy.yml with everything
+# below this line, then delete this file.
+#
+# This couldn't be pushed directly: GitHub requires the OAuth "workflow" scope
+# to touch any file under .github/workflows/, and neither the git credential
+# nor the GitHub App/API credential available in this session has it (both
+# were rejected with the identical "Insufficient scope: required repo
+# workflow" error). A human committing this same content through the GitHub
+# web UI, or a session with that scope granted, isn't subject to that
+# restriction. See AUDIT.md's "Blocker" note for the full context.
+#
+# ---8<--- copy from the next line down into .github/workflows/deploy.yml --->8---
+name: Update Photo Catalogue
+
+# GitHub Pages is configured as "Deploy from a branch" (main -> /docs, see
+# README.md), so publishing itself needs no workflow steps: any push to
+# main republishes automatically. This workflow's only job is regenerating
+# docs/images.js and docs/images/ from images/ using the same
+# scripts/update-images.js a contributor would run locally, and committing
+# the result.
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "images/**"
+  schedule:
+    - cron: "0 0 * * 0"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-catalogue:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Regenerate image catalogue
+        run: npm run update-images
+
+      - name: Commit changes
+        run: |
+          if [[ -n "$(git status --porcelain)" ]]; then
+            git config --local user.email "action@github.com"
+            git config --local user.name "GitHub Action"
+
+            git add docs/images docs/images.js
+            git commit -m "Update photo gallery catalogue"
+            git push
+          fi

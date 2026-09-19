@@ -11,7 +11,7 @@ Both write paths available in this session — `git push` and the GitHub API (vi
 
 Everything else in this PR (all of #1, the HEIC support in #4, all of #6, the AUDIT.md text you're reading) pushed fine and is live on `claude/audit-assessment-venq8f`. The **rewritten `.github/workflows/deploy.yml`** described as done in #2 and #3's Resolution notes exists only in this session, not on the branch. Two ways to get it in:
 1. Reconnect/re-grant this GitHub connection with the `workflow` scope included (via whichever GitHub connection setting applies to this session) and ask for the push to be retried, or
-2. Apply it yourself: replace the contents of `.github/workflows/deploy.yml` with the version in the PR's file diff comments / session transcript (it's short — checkout, setup Node, `npm ci`, `npm run update-images`, commit-if-changed; no ImageMagick/exiftool/Pages-deploy steps). A GitHub web UI edit-and-commit works fine for this, since a human committing through the browser isn't subject to the same OAuth app scope restriction.
+2. Apply it yourself: the exact intended content is committed at [`scripts/deploy-workflow.pending.yml`](scripts/deploy-workflow.pending.yml) (a plain file, not under `.github/workflows/`, so it pushed fine). Copy everything below its header comment into `.github/workflows/deploy.yml` through the GitHub web UI — a human committing through the browser isn't subject to the same OAuth app scope restriction — then delete the pending file.
 
 Until one of those happens, **the repository's live CI still runs the old, two-pipeline, ImageMagick-based workflow** described in #2/#3's original findings — the Resolution notes below describe the intended/prepared fix, not the current live state of that one file.
 
