@@ -3,7 +3,11 @@ const photoGrid = document.getElementById("photo-grid");
 const searchInput = document.getElementById("search");
 const sortSelect = document.getElementById("sort");
 const modal = document.getElementById("modal");
+const modalPicture = document.getElementById("modal-picture");
 const modalImg = document.getElementById("modal-img");
+const modalWebpSource = document.createElement("source");
+modalWebpSource.type = "image/webp";
+modalPicture.insertBefore(modalWebpSource, modalImg);
 const modalCaption = document.getElementById("modal-caption");
 const closeBtn = document.querySelector(".close");
 // Set current year in footer
@@ -44,26 +48,45 @@ function getSizeInfo(photo, tier) {
   return { file: photo.sizes?.[tier] || photo.name };
 }
 
-// Build a <picture> (WebP + JPEG fallback) for one of a photo's size tiers
-function createPicture(photo, tier, altText, { eager = false } = {}) {
-  const sizeInfo = getSizeInfo(photo, tier);
+// Build a <picture> (WebP + JPEG fallback) from one or more of a photo's
+// size tiers, smallest first. A single tier behaves as a plain fixed-size
+// image; multiple tiers add width-descriptor srcset candidates so the
+// browser can pick a sharper one on high-DPR displays instead of upscaling
+// the smallest tier (a 480px thumb rendered at 340 CSS px is soft on a 2x/3x
+// screen). `sizes` should describe the rendered width and is required
+// whenever more than one tier is passed.
+function createPicture(photo, tiers, altText, { eager = false, sizes } = {}) {
+  const infos = tiers.map((tier) => getSizeInfo(photo, tier));
+  const primary = infos[0];
+  const multi = infos.length > 1;
   const picture = document.createElement("picture");
 
-  if (sizeInfo.webp) {
+  const buildSrcset = (urlKey) =>
+    infos
+      .filter((info) => info[urlKey])
+      .map((info) => (multi && info.width ? `${imageUrl(info[urlKey])} ${info.width}w` : imageUrl(info[urlKey])))
+      .join(", ");
+
+  if (infos.every((info) => info.webp)) {
     const source = document.createElement("source");
     source.type = "image/webp";
-    source.srcset = imageUrl(sizeInfo.webp);
+    source.srcset = buildSrcset("webp");
+    if (multi && sizes) source.sizes = sizes;
     picture.appendChild(source);
   }
 
   const img = document.createElement("img");
-  img.src = imageUrl(sizeInfo.jpg || sizeInfo.file);
+  img.src = imageUrl(primary.jpg || primary.file);
+  if (multi && infos.every((info) => info.width && (info.jpg || info.file))) {
+    img.srcset = buildSrcset("jpg");
+    if (sizes) img.sizes = sizes;
+  }
   img.alt = altText;
   img.loading = eager ? "eager" : "lazy";
   img.decoding = "async";
-  if (sizeInfo.width && sizeInfo.height) {
-    img.width = sizeInfo.width;
-    img.height = sizeInfo.height;
+  if (primary.width && primary.height) {
+    img.width = primary.width;
+    img.height = primary.height;
   }
   picture.appendChild(img);
 
@@ -78,7 +101,12 @@ function createPhotoCard(photo) {
   item.setAttribute("role", "button");
 
   const altText = photo.title || "Photo";
-  const picture = createPicture(photo, "thumb", altText);
+  // thumb (480px) alone looks soft upscaled on 2x/3x displays for cards up
+  // to 340 CSS px wide; offering medium (1400px) too lets the browser pick
+  // based on actual device pixel density instead of always upscaling thumb.
+  const picture = createPicture(photo, ["thumb", "medium"], altText, {
+    sizes: "(max-width: 768px) 100vw, (max-width: 1024px) 280px, 340px",
+  });
 
   const ariaLabel = photo.title || photo.name || "View photo";
   item.setAttribute("aria-label", ariaLabel);
@@ -118,18 +146,19 @@ function createPhotoCard(photo) {
 
     modalImg.alt = altText;
     modalImg.src = imageUrl(mediumInfo.jpg || mediumInfo.file);
-    // Let the browser pull the untouched full-resolution original instead
-    // of the ~1400px medium tier when the viewport/DPR genuinely calls for
-    // it (e.g. a large hi-DPI monitor), without forcing that download on
-    // everyone else opening the lightbox. Only offered when both tiers
-    // report real dimensions (the modern schema) -- the width descriptor
-    // is meaningless without them.
-    if (mediumInfo.width && fullInfo.width) {
-      modalImg.srcset = `${imageUrl(mediumInfo.jpg || mediumInfo.file)} ${mediumInfo.width}w, ${imageUrl(fullInfo.file)} ${fullInfo.width}w`;
-      modalImg.sizes = "90vw";
+    modalImg.removeAttribute("srcset");
+    modalImg.removeAttribute("sizes");
+    // Offer medium in WebP too. There's deliberately no WebP "full" (see
+    // scripts/update-images.js), and a <picture> source with only one
+    // candidate is always chosen once its type matches -- so this can't be
+    // combined with a width-based srcset the way the grid's srcset is
+    // without hard-capping every WebP browser (nearly all of them) at
+    // medium forever. Full resolution is reached via the explicit link
+    // below instead, which works identically regardless of format.
+    if (mediumInfo.webp) {
+      modalWebpSource.srcset = imageUrl(mediumInfo.webp);
     } else {
-      modalImg.removeAttribute("srcset");
-      modalImg.removeAttribute("sizes");
+      modalWebpSource.removeAttribute("srcset");
     }
 
     modalCaption.innerHTML = "";
@@ -162,6 +191,16 @@ function createPhotoCard(photo) {
       exifEl.className = "modal-exif";
       exifEl.textContent = exifParts.join(" · ");
       modalCaption.appendChild(exifEl);
+    }
+
+    if (fullInfo.file) {
+      const fullLink = document.createElement("a");
+      fullLink.className = "modal-full-link";
+      fullLink.href = imageUrl(fullInfo.file);
+      fullLink.target = "_blank";
+      fullLink.rel = "noopener";
+      fullLink.textContent = "View full resolution";
+      modalCaption.appendChild(fullLink);
     }
 
     modal.style.display = "block";

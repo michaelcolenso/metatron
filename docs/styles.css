@@ -172,6 +172,19 @@ header {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
+.modal-full-link {
+    display: inline-block;
+    margin-top: 0.75rem;
+    font-size: 0.85rem;
+    color: #ccc;
+    text-decoration: underline;
+}
+
+.modal-full-link:hover,
+.modal-full-link:focus-visible {
+    color: #fff;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
     body {

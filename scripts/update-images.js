@@ -248,12 +248,15 @@ async function processImage(filename, sourceDir, docsImagesDir, standardBasename
         return null;
     }
 
-    const baseName = path.parse(outputName).name;
-    const ext = path.parse(outputName).ext || '.jpg';
-    const thumbJpegName = `thumb_${baseName}.jpg`;
-    const thumbWebpName = `thumb_${baseName}.webp`;
-    const mediumJpegName = `medium_${baseName}.jpg`;
-    const mediumWebpName = `medium_${baseName}.webp`;
+    // Keep the source extension in the derivative stem: two sources that
+    // share a name but differ only in extension (e.g. "photo.jpg" and
+    // "photo.png") would otherwise both produce "thumb_photo.jpg" etc. and
+    // silently overwrite each other's derivatives.
+    const derivativeStem = outputName.replace(/\.([^.]+)$/, '_$1');
+    const thumbJpegName = `thumb_${derivativeStem}.jpg`;
+    const thumbWebpName = `thumb_${derivativeStem}.webp`;
+    const mediumJpegName = `medium_${derivativeStem}.jpg`;
+    const mediumWebpName = `medium_${derivativeStem}.webp`;
 
     // Full tier: byte-identical copy of the original for standard formats
     // (never re-encode the showcase image), or the high-quality HEIC->JPEG

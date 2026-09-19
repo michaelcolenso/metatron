@@ -15,14 +15,14 @@ const photoList = [
       "height": 4032
     },
     "thumb": {
-      "jpg": "thumb_IMG_7046-EFFECTS.jpg",
-      "webp": "thumb_IMG_7046-EFFECTS.webp",
+      "jpg": "thumb_IMG_7046-EFFECTS_jpg.jpg",
+      "webp": "thumb_IMG_7046-EFFECTS_jpg.webp",
       "width": 360,
       "height": 480
     },
     "medium": {
-      "jpg": "medium_IMG_7046-EFFECTS.jpg",
-      "webp": "medium_IMG_7046-EFFECTS.webp",
+      "jpg": "medium_IMG_7046-EFFECTS_jpg.jpg",
+      "webp": "medium_IMG_7046-EFFECTS_jpg.webp",
       "width": 1050,
       "height": 1400
     }
@@ -43,14 +43,14 @@ const photoList = [
       "height": 2860
     },
     "thumb": {
-      "jpg": "thumb_IMG_5439 Copy.jpg",
-      "webp": "thumb_IMG_5439 Copy.webp",
+      "jpg": "thumb_IMG_5439 Copy_jpeg.jpg",
+      "webp": "thumb_IMG_5439 Copy_jpeg.webp",
       "width": 360,
       "height": 480
     },
     "medium": {
-      "jpg": "medium_IMG_5439 Copy.jpg",
-      "webp": "medium_IMG_5439 Copy.webp",
+      "jpg": "medium_IMG_5439 Copy_jpeg.jpg",
+      "webp": "medium_IMG_5439 Copy_jpeg.webp",
       "width": 1051,
       "height": 1400
     }
@@ -71,14 +71,14 @@ const photoList = [
       "height": 4000
     },
     "thumb": {
-      "jpg": "thumb_IMG_2964_Original.jpg",
-      "webp": "thumb_IMG_2964_Original.webp",
+      "jpg": "thumb_IMG_2964_Original_jpeg.jpg",
+      "webp": "thumb_IMG_2964_Original_jpeg.webp",
       "width": 480,
       "height": 320
     },
     "medium": {
-      "jpg": "medium_IMG_2964_Original.jpg",
-      "webp": "medium_IMG_2964_Original.webp",
+      "jpg": "medium_IMG_2964_Original_jpeg.jpg",
+      "webp": "medium_IMG_2964_Original_jpeg.webp",
       "width": 1400,
       "height": 933
     }
@@ -99,14 +99,14 @@ const photoList = [
       "height": 3088
     },
     "thumb": {
-      "jpg": "thumb_IMG_2961.jpg",
-      "webp": "thumb_IMG_2961.webp",
+      "jpg": "thumb_IMG_2961_JPG.jpg",
+      "webp": "thumb_IMG_2961_JPG.webp",
       "width": 480,
       "height": 480
     },
     "medium": {
-      "jpg": "medium_IMG_2961.jpg",
-      "webp": "medium_IMG_2961.webp",
+      "jpg": "medium_IMG_2961_JPG.jpg",
+      "webp": "medium_IMG_2961_JPG.webp",
       "width": 1400,
       "height": 1400
     }
@@ -127,14 +127,14 @@ const photoList = [
       "height": 2480
     },
     "thumb": {
-      "jpg": "thumb_IMG_1149 Copy.jpg",
-      "webp": "thumb_IMG_1149 Copy.webp",
+      "jpg": "thumb_IMG_1149 Copy_JPG.jpg",
+      "webp": "thumb_IMG_1149 Copy_JPG.webp",
       "width": 480,
       "height": 480
     },
     "medium": {
-      "jpg": "medium_IMG_1149 Copy.jpg",
-      "webp": "medium_IMG_1149 Copy.webp",
+      "jpg": "medium_IMG_1149 Copy_JPG.jpg",
+      "webp": "medium_IMG_1149 Copy_JPG.webp",
       "width": 1400,
       "height": 1400
     }
@@ -155,14 +155,14 @@ const photoList = [
       "height": 1506
     },
     "thumb": {
-      "jpg": "thumb_IMG_2201 Copy Copy Copy.jpg",
-      "webp": "thumb_IMG_2201 Copy Copy Copy.webp",
+      "jpg": "thumb_IMG_2201 Copy Copy Copy_JPG.jpg",
+      "webp": "thumb_IMG_2201 Copy Copy Copy_JPG.webp",
       "width": 480,
       "height": 360
     },
     "medium": {
-      "jpg": "medium_IMG_2201 Copy Copy Copy.jpg",
-      "webp": "medium_IMG_2201 Copy Copy Copy.webp",
+      "jpg": "medium_IMG_2201 Copy Copy Copy_JPG.jpg",
+      "webp": "medium_IMG_2201 Copy Copy Copy_JPG.webp",
       "width": 1400,
       "height": 1049
     }
@@ -183,14 +183,14 @@ const photoList = [
       "height": 2715
     },
     "thumb": {
-      "jpg": "thumb_IMG_1006 Copy.jpg",
-      "webp": "thumb_IMG_1006 Copy.webp",
+      "jpg": "thumb_IMG_1006 Copy_JPG.jpg",
+      "webp": "thumb_IMG_1006 Copy_JPG.webp",
       "width": 480,
       "height": 320
     },
     "medium": {
-      "jpg": "medium_IMG_1006 Copy.jpg",
-      "webp": "medium_IMG_1006 Copy.webp",
+      "jpg": "medium_IMG_1006 Copy_JPG.jpg",
+      "webp": "medium_IMG_1006 Copy_JPG.webp",
       "width": 1400,
       "height": 933
     }
@@ -211,14 +211,14 @@ const photoList = [
       "height": 4000
     },
     "thumb": {
-      "jpg": "thumb_IMG_0999.jpg",
-      "webp": "thumb_IMG_0999.webp",
+      "jpg": "thumb_IMG_0999_jpeg.jpg",
+      "webp": "thumb_IMG_0999_jpeg.webp",
       "width": 480,
       "height": 320
     },
     "medium": {
-      "jpg": "medium_IMG_0999.jpg",
-      "webp": "medium_IMG_0999.webp",
+      "jpg": "medium_IMG_0999_jpeg.jpg",
+      "webp": "medium_IMG_0999_jpeg.webp",
       "width": 1400,
       "height": 933
     }
@@ -239,14 +239,14 @@ const photoList = [
       "height": 2193
     },
     "thumb": {
-      "jpg": "thumb_IMG_1262-EDIT.jpg",
-      "webp": "thumb_IMG_1262-EDIT.webp",
+      "jpg": "thumb_IMG_1262-EDIT_jpg.jpg",
+      "webp": "thumb_IMG_1262-EDIT_jpg.webp",
       "width": 480,
       "height": 270
     },
     "medium": {
-      "jpg": "medium_IMG_1262-EDIT.jpg",
-      "webp": "medium_IMG_1262-EDIT.webp",
+      "jpg": "medium_IMG_1262-EDIT_jpg.jpg",
+      "webp": "medium_IMG_1262-EDIT_jpg.webp",
       "width": 1400,
       "height": 787
     }
@@ -267,14 +267,14 @@ const photoList = [
       "height": 2268
     },
     "thumb": {
-      "jpg": "thumb_IMG_0503.jpg",
-      "webp": "thumb_IMG_0503.webp",
+      "jpg": "thumb_IMG_0503_jpeg.jpg",
+      "webp": "thumb_IMG_0503_jpeg.webp",
       "width": 480,
       "height": 270
     },
     "medium": {
-      "jpg": "medium_IMG_0503.jpg",
-      "webp": "medium_IMG_0503.webp",
+      "jpg": "medium_IMG_0503_jpeg.jpg",
+      "webp": "medium_IMG_0503_jpeg.webp",
       "width": 1400,
       "height": 788
     }
@@ -295,14 +295,14 @@ const photoList = [
       "height": 1757
     },
     "thumb": {
-      "jpg": "thumb_IMG_7577 Copy.jpg",
-      "webp": "thumb_IMG_7577 Copy.webp",
+      "jpg": "thumb_IMG_7577 Copy_JPG.jpg",
+      "webp": "thumb_IMG_7577 Copy_JPG.webp",
       "width": 480,
       "height": 384
     },
     "medium": {
-      "jpg": "medium_IMG_7577 Copy.jpg",
-      "webp": "medium_IMG_7577 Copy.webp",
+      "jpg": "medium_IMG_7577 Copy_JPG.jpg",
+      "webp": "medium_IMG_7577 Copy_JPG.webp",
       "width": 1400,
       "height": 1120
     }
@@ -323,14 +323,14 @@ const photoList = [
       "height": 3134
     },
     "thumb": {
-      "jpg": "thumb_IMG_0452_Original.jpg",
-      "webp": "thumb_IMG_0452_Original.webp",
+      "jpg": "thumb_IMG_0452_Original_jpeg.jpg",
+      "webp": "thumb_IMG_0452_Original_jpeg.webp",
       "width": 384,
       "height": 480
     },
     "medium": {
-      "jpg": "medium_IMG_0452_Original.jpg",
-      "webp": "medium_IMG_0452_Original.webp",
+      "jpg": "medium_IMG_0452_Original_jpeg.jpg",
+      "webp": "medium_IMG_0452_Original_jpeg.webp",
       "width": 1119,
       "height": 1400
     }
@@ -351,14 +351,14 @@ const photoList = [
       "height": 4032
     },
     "thumb": {
-      "jpg": "thumb_IMG_0295.jpg",
-      "webp": "thumb_IMG_0295.webp",
+      "jpg": "thumb_IMG_0295_JPG.jpg",
+      "webp": "thumb_IMG_0295_JPG.webp",
       "width": 360,
       "height": 480
     },
     "medium": {
-      "jpg": "medium_IMG_0295.jpg",
-      "webp": "medium_IMG_0295.webp",
+      "jpg": "medium_IMG_0295_JPG.jpg",
+      "webp": "medium_IMG_0295_JPG.webp",
       "width": 1050,
       "height": 1400
     }
@@ -379,14 +379,14 @@ const photoList = [
       "height": 1432
     },
     "thumb": {
-      "jpg": "thumb_IMG_1311.jpg",
-      "webp": "thumb_IMG_1311.webp",
+      "jpg": "thumb_IMG_1311_JPG.jpg",
+      "webp": "thumb_IMG_1311_JPG.webp",
       "width": 480,
       "height": 320
     },
     "medium": {
-      "jpg": "medium_IMG_1311.jpg",
-      "webp": "medium_IMG_1311.webp",
+      "jpg": "medium_IMG_1311_JPG.jpg",
+      "webp": "medium_IMG_1311_JPG.webp",
       "width": 1400,
       "height": 934
     }
@@ -407,14 +407,14 @@ const photoList = [
       "height": 817
     },
     "thumb": {
-      "jpg": "thumb_IMG_1347.jpg",
-      "webp": "thumb_IMG_1347.webp",
+      "jpg": "thumb_IMG_1347_JPG.jpg",
+      "webp": "thumb_IMG_1347_JPG.webp",
       "width": 480,
       "height": 320
     },
     "medium": {
-      "jpg": "medium_IMG_1347.jpg",
-      "webp": "medium_IMG_1347.webp",
+      "jpg": "medium_IMG_1347_JPG.jpg",
+      "webp": "medium_IMG_1347_JPG.webp",
       "width": 1226,
       "height": 817
     }
@@ -435,14 +435,14 @@ const photoList = [
       "height": 2621
     },
     "thumb": {
-      "jpg": "thumb_IMG_0763_Original.jpg",
-      "webp": "thumb_IMG_0763_Original.webp",
+      "jpg": "thumb_IMG_0763_Original_jpeg.jpg",
+      "webp": "thumb_IMG_0763_Original_jpeg.webp",
       "width": 480,
       "height": 480
     },
     "medium": {
-      "jpg": "medium_IMG_0763_Original.jpg",
-      "webp": "medium_IMG_0763_Original.webp",
+      "jpg": "medium_IMG_0763_Original_jpeg.jpg",
+      "webp": "medium_IMG_0763_Original_jpeg.webp",
       "width": 1400,
       "height": 1400
     }
@@ -463,14 +463,14 @@ const photoList = [
       "height": 2448
     },
     "thumb": {
-      "jpg": "thumb_IMG_0732_Original.jpg",
-      "webp": "thumb_IMG_0732_Original.webp",
+      "jpg": "thumb_IMG_0732_Original_jpeg.jpg",
+      "webp": "thumb_IMG_0732_Original_jpeg.webp",
       "width": 480,
       "height": 360
     },
     "medium": {
-      "jpg": "medium_IMG_0732_Original.jpg",
-      "webp": "medium_IMG_0732_Original.webp",
+      "jpg": "medium_IMG_0732_Original_jpeg.jpg",
+      "webp": "medium_IMG_0732_Original_jpeg.webp",
       "width": 1400,
       "height": 1050
     }
@@ -491,14 +491,14 @@ const photoList = [
       "height": 1492
     },
     "thumb": {
-      "jpg": "thumb_IMG_4641.jpg",
-      "webp": "thumb_IMG_4641.webp",
+      "jpg": "thumb_IMG_4641_JPG.jpg",
+      "webp": "thumb_IMG_4641_JPG.webp",
       "width": 480,
       "height": 222
     },
     "medium": {
-      "jpg": "medium_IMG_4641.jpg",
-      "webp": "medium_IMG_4641.webp",
+      "jpg": "medium_IMG_4641_JPG.jpg",
+      "webp": "medium_IMG_4641_JPG.webp",
       "width": 1400,
       "height": 646
     }
@@ -519,14 +519,14 @@ const photoList = [
       "height": 2228
     },
     "thumb": {
-      "jpg": "thumb_IMG_8159-EDIT.jpg",
-      "webp": "thumb_IMG_8159-EDIT.webp",
+      "jpg": "thumb_IMG_8159-EDIT_jpg.jpg",
+      "webp": "thumb_IMG_8159-EDIT_jpg.webp",
       "width": 480,
       "height": 320
     },
     "medium": {
-      "jpg": "medium_IMG_8159-EDIT.jpg",
-      "webp": "medium_IMG_8159-EDIT.webp",
+      "jpg": "medium_IMG_8159-EDIT_jpg.jpg",
+      "webp": "medium_IMG_8159-EDIT_jpg.webp",
       "width": 1400,
       "height": 933
     }
@@ -547,14 +547,14 @@ const photoList = [
       "height": 2245
     },
     "thumb": {
-      "jpg": "thumb_IMG_5329 Copy.jpg",
-      "webp": "thumb_IMG_5329 Copy.webp",
+      "jpg": "thumb_IMG_5329 Copy_JPG.jpg",
+      "webp": "thumb_IMG_5329 Copy_JPG.webp",
       "width": 480,
       "height": 384
     },
     "medium": {
-      "jpg": "medium_IMG_5329 Copy.jpg",
-      "webp": "medium_IMG_5329 Copy.webp",
+      "jpg": "medium_IMG_5329 Copy_JPG.jpg",
+      "webp": "medium_IMG_5329 Copy_JPG.webp",
       "width": 1400,
       "height": 1120
     }
@@ -575,14 +575,14 @@ const photoList = [
       "height": 2089
     },
     "thumb": {
-      "jpg": "thumb_IMG_5329.jpg",
-      "webp": "thumb_IMG_5329.webp",
+      "jpg": "thumb_IMG_5329_JPG.jpg",
+      "webp": "thumb_IMG_5329_JPG.webp",
       "width": 480,
       "height": 384
     },
     "medium": {
-      "jpg": "medium_IMG_5329.jpg",
-      "webp": "medium_IMG_5329.webp",
+      "jpg": "medium_IMG_5329_JPG.jpg",
+      "webp": "medium_IMG_5329_JPG.webp",
       "width": 1400,
       "height": 1120
     }
@@ -603,14 +603,14 @@ const photoList = [
       "height": 2001
     },
     "thumb": {
-      "jpg": "thumb_IMG_5322-EDIT.jpg",
-      "webp": "thumb_IMG_5322-EDIT.webp",
+      "jpg": "thumb_IMG_5322-EDIT_jpg.jpg",
+      "webp": "thumb_IMG_5322-EDIT_jpg.webp",
       "width": 480,
       "height": 320
     },
     "medium": {
-      "jpg": "medium_IMG_5322-EDIT.jpg",
-      "webp": "medium_IMG_5322-EDIT.webp",
+      "jpg": "medium_IMG_5322-EDIT_jpg.jpg",
+      "webp": "medium_IMG_5322-EDIT_jpg.webp",
       "width": 1400,
       "height": 933
     }
@@ -631,14 +631,14 @@ const photoList = [
       "height": 2109
     },
     "thumb": {
-      "jpg": "thumb_IMG_5316 Copy Copy.jpg",
-      "webp": "thumb_IMG_5316 Copy Copy.webp",
+      "jpg": "thumb_IMG_5316 Copy Copy_JPG.jpg",
+      "webp": "thumb_IMG_5316 Copy Copy_JPG.webp",
       "width": 480,
       "height": 320
     },
     "medium": {
-      "jpg": "medium_IMG_5316 Copy Copy.jpg",
-      "webp": "medium_IMG_5316 Copy Copy.webp",
+      "jpg": "medium_IMG_5316 Copy Copy_JPG.jpg",
+      "webp": "medium_IMG_5316 Copy Copy_JPG.webp",
       "width": 1400,
       "height": 933
     }
@@ -659,14 +659,14 @@ const photoList = [
       "height": 1067
     },
     "thumb": {
-      "jpg": "thumb_IMG_3101.jpg",
-      "webp": "thumb_IMG_3101.webp",
+      "jpg": "thumb_IMG_3101_JPG.jpg",
+      "webp": "thumb_IMG_3101_JPG.webp",
       "width": 480,
       "height": 320
     },
     "medium": {
-      "jpg": "medium_IMG_3101.jpg",
-      "webp": "medium_IMG_3101.webp",
+      "jpg": "medium_IMG_3101_JPG.jpg",
+      "webp": "medium_IMG_3101_JPG.webp",
       "width": 1400,
       "height": 934
     }
@@ -687,14 +687,14 @@ const photoList = [
       "height": 2304
     },
     "thumb": {
-      "jpg": "thumb_IMG_5310.jpg",
-      "webp": "thumb_IMG_5310.webp",
+      "jpg": "thumb_IMG_5310_JPG.jpg",
+      "webp": "thumb_IMG_5310_JPG.webp",
       "width": 480,
       "height": 320
     },
     "medium": {
-      "jpg": "medium_IMG_5310.jpg",
-      "webp": "medium_IMG_5310.webp",
+      "jpg": "medium_IMG_5310_JPG.jpg",
+      "webp": "medium_IMG_5310_JPG.webp",
       "width": 1400,
       "height": 933
     }
@@ -715,14 +715,14 @@ const photoList = [
       "height": 2097
     },
     "thumb": {
-      "jpg": "thumb_IMG_5308.jpg",
-      "webp": "thumb_IMG_5308.webp",
+      "jpg": "thumb_IMG_5308_JPG.jpg",
+      "webp": "thumb_IMG_5308_JPG.webp",
       "width": 480,
       "height": 320
     },
     "medium": {
-      "jpg": "medium_IMG_5308.jpg",
-      "webp": "medium_IMG_5308.webp",
+      "jpg": "medium_IMG_5308_JPG.jpg",
+      "webp": "medium_IMG_5308_JPG.webp",
       "width": 1400,
       "height": 933
     }
@@ -743,14 +743,14 @@ const photoList = [
       "height": 1577
     },
     "thumb": {
-      "jpg": "thumb_IMG_5287-EDIT.jpg",
-      "webp": "thumb_IMG_5287-EDIT.webp",
+      "jpg": "thumb_IMG_5287-EDIT_jpg.jpg",
+      "webp": "thumb_IMG_5287-EDIT_jpg.webp",
       "width": 480,
       "height": 270
     },
     "medium": {
-      "jpg": "medium_IMG_5287-EDIT.jpg",
-      "webp": "medium_IMG_5287-EDIT.webp",
+      "jpg": "medium_IMG_5287-EDIT_jpg.jpg",
+      "webp": "medium_IMG_5287-EDIT_jpg.webp",
       "width": 1400,
       "height": 788
     }
@@ -771,14 +771,14 @@ const photoList = [
       "height": 491
     },
     "thumb": {
-      "jpg": "thumb_IMG_3120.jpg",
-      "webp": "thumb_IMG_3120.webp",
+      "jpg": "thumb_IMG_3120_JPG.jpg",
+      "webp": "thumb_IMG_3120_JPG.webp",
       "width": 480,
       "height": 360
     },
     "medium": {
-      "jpg": "medium_IMG_3120.jpg",
-      "webp": "medium_IMG_3120.webp",
+      "jpg": "medium_IMG_3120_JPG.jpg",
+      "webp": "medium_IMG_3120_JPG.webp",
       "width": 655,
       "height": 491
     }
@@ -799,14 +799,14 @@ const photoList = [
       "height": 640
     },
     "thumb": {
-      "jpg": "thumb_IMG_3121.jpg",
-      "webp": "thumb_IMG_3121.webp",
+      "jpg": "thumb_IMG_3121_JPG.jpg",
+      "webp": "thumb_IMG_3121_JPG.webp",
       "width": 480,
       "height": 480
     },
     "medium": {
-      "jpg": "medium_IMG_3121.jpg",
-      "webp": "medium_IMG_3121.webp",
+      "jpg": "medium_IMG_3121_JPG.jpg",
+      "webp": "medium_IMG_3121_JPG.webp",
       "width": 640,
       "height": 640
     }
@@ -827,14 +827,14 @@ const photoList = [
       "height": 1296
     },
     "thumb": {
-      "jpg": "thumb_IMG_1230.jpg",
-      "webp": "thumb_IMG_1230.webp",
+      "jpg": "thumb_IMG_1230_JPG.jpg",
+      "webp": "thumb_IMG_1230_JPG.webp",
       "width": 480,
       "height": 320
     },
     "medium": {
-      "jpg": "medium_IMG_1230.jpg",
-      "webp": "medium_IMG_1230.webp",
+      "jpg": "medium_IMG_1230_JPG.jpg",
+      "webp": "medium_IMG_1230_JPG.webp",
       "width": 1400,
       "height": 933
     }
@@ -855,14 +855,14 @@ const photoList = [
       "height": 2119
     },
     "thumb": {
-      "jpg": "thumb_IMG_1654.jpg",
-      "webp": "thumb_IMG_1654.webp",
+      "jpg": "thumb_IMG_1654_JPG.jpg",
+      "webp": "thumb_IMG_1654_JPG.webp",
       "width": 480,
       "height": 347
     },
     "medium": {
-      "jpg": "medium_IMG_1654.jpg",
-      "webp": "medium_IMG_1654.webp",
+      "jpg": "medium_IMG_1654_JPG.jpg",
+      "webp": "medium_IMG_1654_JPG.webp",
       "width": 1400,
       "height": 1013
     }
