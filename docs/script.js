@@ -21,6 +21,40 @@ function formatDate(dateStr) {
   });
 }
 
+// Filenames can contain spaces (e.g. "IMG_5439 Copy.jpeg"); a plain src
+// attribute tolerates that, but the srcset micro-syntax uses whitespace as
+// its own delimiter, so an unencoded space silently corrupts the candidate
+// and the browser drops it. Always encode filenames used in srcset/src.
+function imageUrl(filename) {
+  return `images/${encodeURIComponent(filename)}`;
+}
+
+// Build a <picture> (WebP + JPEG fallback) for one of a photo's size tiers
+function createPicture(photo, tier, altText, { eager = false } = {}) {
+  const sizeInfo = photo[tier];
+  const picture = document.createElement("picture");
+
+  if (sizeInfo.webp) {
+    const source = document.createElement("source");
+    source.type = "image/webp";
+    source.srcset = imageUrl(sizeInfo.webp);
+    picture.appendChild(source);
+  }
+
+  const img = document.createElement("img");
+  img.src = imageUrl(sizeInfo.jpg || sizeInfo.file);
+  img.alt = altText;
+  img.loading = eager ? "eager" : "lazy";
+  img.decoding = "async";
+  if (sizeInfo.width && sizeInfo.height) {
+    img.width = sizeInfo.width;
+    img.height = sizeInfo.height;
+  }
+  picture.appendChild(img);
+
+  return picture;
+}
+
 // Create photo element
 function createPhotoCard(photo) {
   const item = document.createElement("figure");
@@ -28,24 +62,25 @@ function createPhotoCard(photo) {
   item.tabIndex = 0;
   item.setAttribute("role", "button");
 
-  const img = document.createElement("img");
-  img.src = `images/${photo.name}`;
-  img.alt = photo.title || "Photo";
-  img.loading = "lazy";
-  img.decoding = "async";
+  const altText = photo.title || "Photo";
+  const picture = createPicture(photo, "thumb", altText);
 
   const ariaLabel = photo.title || photo.name || "View photo";
   item.setAttribute("aria-label", ariaLabel);
 
-  item.appendChild(img);
+  item.appendChild(picture);
 
   const formattedDate = formatDate(photo.date);
+  // The title already IS the formatted date whenever no better title was
+  // available (see scripts/update-images.js), so showing both repeats the
+  // same string twice.
+  const titleDuplicatesDate = photo.title === formattedDate;
 
-  if (photo.title || formattedDate) {
+  if ((photo.title && !titleDuplicatesDate) || formattedDate) {
     const overlay = document.createElement("figcaption");
     overlay.className = "photo-overlay";
 
-    if (photo.title) {
+    if (photo.title && !titleDuplicatesDate) {
       const titleEl = document.createElement("div");
       titleEl.className = "overlay-title";
       titleEl.textContent = photo.title;
@@ -63,19 +98,25 @@ function createPhotoCard(photo) {
   }
 
   const openModal = () => {
-    modalImg.src = img.src;
-    modalImg.alt = img.alt;
+    modalImg.alt = altText;
+    modalImg.src = imageUrl(photo.medium.jpg);
+    // Let the browser pull the untouched full-resolution original instead
+    // of the ~1400px medium tier when the viewport/DPR genuinely calls for
+    // it (e.g. a large hi-DPI monitor), without forcing that download on
+    // everyone else opening the lightbox.
+    modalImg.srcset = `${imageUrl(photo.medium.jpg)} ${photo.medium.width}w, ${imageUrl(photo.full.file)} ${photo.full.width}w`;
+    modalImg.sizes = "90vw";
 
     modalCaption.innerHTML = "";
 
-    if (photo.title) {
+    if (photo.title && !titleDuplicatesDate) {
       const titleEl = document.createElement("div");
       titleEl.className = "modal-title";
       titleEl.textContent = photo.title;
       modalCaption.appendChild(titleEl);
     }
 
-    const modalDate = formatDate(photo.date);
+    const modalDate = formattedDate;
     if (modalDate) {
       const dateEl = document.createElement("div");
       dateEl.className = "modal-date";
