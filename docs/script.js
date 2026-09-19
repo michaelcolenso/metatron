@@ -66,18 +66,23 @@ function createPhotoCard(photo) {
     modalImg.src = img.src;
     modalImg.alt = img.alt;
 
-    // Build caption with EXIF data
-    let captionHTML = photo.title
-      ? `<div class="modal-title">${photo.title}</div>`
-      : "";
+    modalCaption.innerHTML = "";
 
-    // Add date if available
-    const modalDate = formatDate(photo.date);
-    if (modalDate) {
-      captionHTML += `<div class="modal-date">${modalDate}</div>`;
+    if (photo.title) {
+      const titleEl = document.createElement("div");
+      titleEl.className = "modal-title";
+      titleEl.textContent = photo.title;
+      modalCaption.appendChild(titleEl);
     }
 
-    // Add EXIF metadata if available
+    const modalDate = formatDate(photo.date);
+    if (modalDate) {
+      const dateEl = document.createElement("div");
+      dateEl.className = "modal-date";
+      dateEl.textContent = modalDate;
+      modalCaption.appendChild(dateEl);
+    }
+
     const exifParts = [];
     if (photo.camera) exifParts.push(photo.camera);
     if (photo.lens) exifParts.push(photo.lens);
@@ -87,10 +92,12 @@ function createPhotoCard(photo) {
     if (photo.iso) exifParts.push(photo.iso);
 
     if (exifParts.length > 0) {
-      captionHTML += `<div class="modal-exif">${exifParts.join(' · ')}</div>`;
+      const exifEl = document.createElement("div");
+      exifEl.className = "modal-exif";
+      exifEl.textContent = exifParts.join(" · ");
+      modalCaption.appendChild(exifEl);
     }
 
-    modalCaption.innerHTML = captionHTML;
     modal.style.display = "block";
   };
 
