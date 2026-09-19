@@ -271,6 +271,20 @@ async function processImage(filename, sourceDir, docsImagesDir, standardBasename
     const mediumJpegName = `medium_${derivativeStem}.jpg`;
     const mediumWebpName = `medium_${derivativeStem}.webp`;
 
+    // A generated derivative name can never equal its own source's
+    // outputName (it's always thumb_/medium_-prefixed), but it could
+    // coincidentally match a *different* real source photo's actual
+    // filename (e.g. a source literally named "thumb_photo_jpg.jpg"
+    // alongside "photo.jpg"). Reject rather than silently overwrite --
+    // whichever file processed last would otherwise win, and both
+    // catalogue entries would keep pointing at the same physical file.
+    const derivativeCollision = [thumbJpegName, thumbWebpName, mediumJpegName, mediumWebpName]
+        .find((name) => standardBasenames.has(name));
+    if (derivativeCollision) {
+        console.warn(`Skipping ${filename}: generated derivative name "${derivativeCollision}" collides with an existing source photo's filename`);
+        return null;
+    }
+
     // Full tier: byte-identical copy of the original for standard formats
     // (never re-encode the showcase image), or the high-quality HEIC->JPEG
     // conversion when there is no other way to serve it in a browser.
