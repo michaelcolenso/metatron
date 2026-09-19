@@ -9,6 +9,7 @@ const photoList = [
     "iso": null,
     "focalLength": "6 mm",
     "lens": null,
+    "fromHeic": false,
     "full": {
       "file": "IMG_7046-EFFECTS.jpg",
       "width": 3024,
@@ -37,6 +38,7 @@ const photoList = [
     "iso": "ISO 25",
     "focalLength": "6 mm",
     "lens": "iPhone 12 Pro back dual camera 6mm f/2",
+    "fromHeic": false,
     "full": {
       "file": "IMG_5439 Copy.jpeg",
       "width": 2147,
@@ -65,6 +67,7 @@ const photoList = [
     "iso": null,
     "focalLength": null,
     "lens": null,
+    "fromHeic": false,
     "full": {
       "file": "IMG_2964_Original.jpeg",
       "width": 6000,
@@ -93,6 +96,7 @@ const photoList = [
     "iso": "ISO 400",
     "focalLength": "35 mm",
     "lens": null,
+    "fromHeic": false,
     "full": {
       "file": "IMG_2961.JPG",
       "width": 3088,
@@ -121,6 +125,7 @@ const photoList = [
     "iso": "ISO 100",
     "focalLength": "50 mm",
     "lens": null,
+    "fromHeic": false,
     "full": {
       "file": "IMG_1149 Copy.JPG",
       "width": 2480,
@@ -149,6 +154,7 @@ const photoList = [
     "iso": "ISO 640",
     "focalLength": "4.2 mm",
     "lens": "iPhone 12 Pro back triple camera 4.2mm f/1.6",
+    "fromHeic": false,
     "full": {
       "file": "IMG_2201 Copy Copy Copy.JPG",
       "width": 2009,
@@ -177,6 +183,7 @@ const photoList = [
     "iso": "ISO 400",
     "focalLength": "50 mm",
     "lens": null,
+    "fromHeic": false,
     "full": {
       "file": "IMG_1006 Copy.JPG",
       "width": 4073,
@@ -205,6 +212,7 @@ const photoList = [
     "iso": "ISO 400",
     "focalLength": "50 mm",
     "lens": "EF50mm f/1.4 USM",
+    "fromHeic": false,
     "full": {
       "file": "IMG_0999.jpeg",
       "width": 6000,
@@ -233,6 +241,7 @@ const photoList = [
     "iso": "ISO 32",
     "focalLength": "6 mm",
     "lens": "iPhone 12 Pro back triple camera 6mm f/2",
+    "fromHeic": false,
     "full": {
       "file": "IMG_1262-EDIT.jpg",
       "width": 3899,
@@ -261,6 +270,7 @@ const photoList = [
     "iso": "ISO 200",
     "focalLength": "1.5399999618512084 mm",
     "lens": "iPhone 12 Pro back triple camera 1.54mm f/2.4",
+    "fromHeic": false,
     "full": {
       "file": "IMG_0503.jpeg",
       "width": 4032,
@@ -289,6 +299,7 @@ const photoList = [
     "iso": "ISO 32",
     "focalLength": "4.2 mm",
     "lens": "iPhone 12 Pro back triple camera 4.2mm f/1.6",
+    "fromHeic": false,
     "full": {
       "file": "IMG_7577 Copy.JPG",
       "width": 2197,
@@ -317,6 +328,7 @@ const photoList = [
     "iso": "ISO 160",
     "focalLength": "6 mm",
     "lens": "iPhone XS back dual camera 6mm f/2.4",
+    "fromHeic": false,
     "full": {
       "file": "IMG_0452_Original.jpeg",
       "width": 2505,
@@ -345,6 +357,7 @@ const photoList = [
     "iso": "ISO 16",
     "focalLength": "6 mm",
     "lens": "iPhone XS back dual camera 6mm f/2.4",
+    "fromHeic": false,
     "full": {
       "file": "IMG_0295.JPG",
       "width": 3024,
@@ -373,6 +386,7 @@ const photoList = [
     "iso": "ISO 20",
     "focalLength": "3.99 mm",
     "lens": "iPhone 7 back camera 3.99mm f/1.8",
+    "fromHeic": false,
     "full": {
       "file": "IMG_1311.JPG",
       "width": 2147,
@@ -401,6 +415,7 @@ const photoList = [
     "iso": "ISO 20",
     "focalLength": "3.99 mm",
     "lens": "iPhone 7 back camera 3.99mm f/1.8",
+    "fromHeic": false,
     "full": {
       "file": "IMG_1347.JPG",
       "width": 1226,
@@ -429,6 +444,7 @@ const photoList = [
     "iso": "ISO 20",
     "focalLength": "3.99 mm",
     "lens": "iPhone 7 back camera 3.99mm f/1.8",
+    "fromHeic": false,
     "full": {
       "file": "IMG_0763_Original.jpeg",
       "width": 2621,
@@ -457,6 +473,7 @@ const photoList = [
     "iso": "ISO 32",
     "focalLength": "4.15 mm",
     "lens": "iPhone 6 back camera 4.15mm f/2.2",
+    "fromHeic": false,
     "full": {
       "file": "IMG_0732_Original.jpeg",
       "width": 3264,
@@ -485,6 +502,7 @@ const photoList = [
     "iso": "ISO 80",
     "focalLength": "19.2 mm",
     "lens": null,
+    "fromHeic": false,
     "full": {
       "file": "IMG_4641.JPG",
       "width": 3232,
@@ -513,6 +531,7 @@ const photoList = [
     "iso": "ISO 800",
     "focalLength": "55 mm",
     "lens": null,
+    "fromHeic": false,
     "full": {
       "file": "IMG_8159-EDIT.jpg",
       "width": 3343,
@@ -541,6 +560,7 @@ const photoList = [
     "iso": "ISO 800",
     "focalLength": "18 mm",
     "lens": null,
+    "fromHeic": false,
     "full": {
       "file": "IMG_5329 Copy.JPG",
       "width": 2806,
@@ -569,6 +589,7 @@ const photoList = [
     "iso": "ISO 800",
     "focalLength": "18 mm",
     "lens": null,
+    "fromHeic": false,
     "full": {
       "file": "IMG_5329.JPG",
       "width": 2612,
@@ -597,6 +618,7 @@ const photoList = [
     "iso": "ISO 800",
     "focalLength": "18 mm",
     "lens": null,
+    "fromHeic": false,
     "full": {
       "file": "IMG_5322-EDIT.jpg",
       "width": 3002,
@@ -625,6 +647,7 @@ const photoList = [
     "iso": "ISO 800",
     "focalLength": "22 mm",
     "lens": null,
+    "fromHeic": false,
     "full": {
       "file": "IMG_5316 Copy Copy.JPG",
       "width": 3164,
@@ -653,6 +676,7 @@ const photoList = [
     "iso": "ISO 800",
     "focalLength": "18 mm",
     "lens": null,
+    "fromHeic": false,
     "full": {
       "file": "IMG_3101.JPG",
       "width": 1600,
@@ -681,6 +705,7 @@ const photoList = [
     "iso": "ISO 800",
     "focalLength": "18 mm",
     "lens": null,
+    "fromHeic": false,
     "full": {
       "file": "IMG_5310.JPG",
       "width": 3456,
@@ -709,6 +734,7 @@ const photoList = [
     "iso": "ISO 800",
     "focalLength": "28 mm",
     "lens": null,
+    "fromHeic": false,
     "full": {
       "file": "IMG_5308.JPG",
       "width": 3145,
@@ -737,6 +763,7 @@ const photoList = [
     "iso": "ISO 800",
     "focalLength": "18 mm",
     "lens": null,
+    "fromHeic": false,
     "full": {
       "file": "IMG_5287-EDIT.jpg",
       "width": 2803,
@@ -765,6 +792,7 @@ const photoList = [
     "iso": null,
     "focalLength": null,
     "lens": null,
+    "fromHeic": false,
     "full": {
       "file": "IMG_3120.JPG",
       "width": 655,
@@ -793,6 +821,7 @@ const photoList = [
     "iso": null,
     "focalLength": null,
     "lens": null,
+    "fromHeic": false,
     "full": {
       "file": "IMG_3121.JPG",
       "width": 640,
@@ -821,6 +850,7 @@ const photoList = [
     "iso": null,
     "focalLength": null,
     "lens": null,
+    "fromHeic": false,
     "full": {
       "file": "IMG_1230.JPG",
       "width": 1944,
@@ -849,6 +879,7 @@ const photoList = [
     "iso": null,
     "focalLength": null,
     "lens": null,
+    "fromHeic": false,
     "full": {
       "file": "IMG_1654.JPG",
       "width": 2928,

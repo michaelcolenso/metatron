@@ -16,6 +16,14 @@ const THUMB_MAX = 480;
 const MEDIUM_MAX = 1400;
 const HEIC_FULL_QUALITY = 0.95;
 
+// Two HEIC-family sources sharing a stem but differing only in extension
+// (photo.heic / photo.heif) would otherwise both produce "photo.jpg" and
+// silently overwrite each other. Keep the source extension in the name.
+function heicOutputName(filename) {
+    const parsed = path.parse(filename);
+    return `${parsed.name}_${parsed.ext.slice(1)}.jpg`;
+}
+
 function extractDateFromFilename(filename) {
     const match = filename.match(/(\d{4}-\d{2}-\d{2})_/);
     if (!match) {
@@ -200,7 +208,7 @@ async function processImage(filename, sourceDir, docsImagesDir, standardBasename
     let outputName = filename;
 
     if (isHeic) {
-        outputName = `${path.parse(filename).name}.jpg`;
+        outputName = heicOutputName(filename);
         if (standardBasenames.has(outputName)) {
             console.warn(`Skipping ${filename}: converted name ${outputName} collides with an existing source photo`);
             return null;
@@ -279,11 +287,39 @@ async function processImage(filename, sourceDir, docsImagesDir, standardBasename
         date: imageDate,
         title,
         ...exifData,
+        // Recorded so a later run without INCLUDE_HEIC=1 can tell "this
+        // entry exists because a HEIC source was opted in" apart from
+        // "this entry exists because an unrelated standard-format source
+        // happens to produce the same output name" -- see
+        // loadPreviouslyPublishedHeicNames().
+        fromHeic: isHeic,
         full: { file: outputName, width: fullMeta.width, height: fullMeta.height },
         thumb: { jpg: thumbJpegName, webp: thumbWebpName, width: thumb.jpeg.width, height: thumb.jpeg.height },
         medium: { jpg: mediumJpegName, webp: mediumWebpName, width: medium.jpeg.width, height: medium.jpeg.height },
         expectedFiles: [outputName, thumbJpegName, thumbWebpName, mediumJpegName, mediumWebpName]
     };
+}
+
+// Reads the previously-generated catalogue (if any) and returns the set of
+// output names published from a HEIC/HEIF source. Checking *this* rather
+// than whether a same-named file exists in docs/images/ matters: a HEIC
+// file can coincidentally produce the same output name a standard-format
+// source once used (e.g. if that standard source is later deleted). File
+// existence alone can't tell those apart and would keep publishing a HEIC
+// photo that was never actually opted in via INCLUDE_HEIC. The catalogue
+// records provenance explicitly (see the fromHeic field), so it can.
+function loadPreviouslyPublishedHeicNames(outputFile) {
+    try {
+        const raw = fs.readFileSync(outputFile, 'utf8');
+        const match = raw.match(/const photoList = (\[[\s\S]*\]);?\s*$/);
+        if (!match) return new Set();
+        const previous = JSON.parse(match[1]);
+        return new Set(
+            previous.filter((entry) => entry && entry.fromHeic).map((entry) => entry.name)
+        );
+    } catch (error) {
+        return new Set();
+    }
 }
 
 function removeStaleFiles(docsImagesDir, expectedFiles) {
@@ -303,22 +339,21 @@ function removeStaleFiles(docsImagesDir, expectedFiles) {
     }
 }
 
-async function generateImageList(sourceDir, docsImagesDir) {
+async function generateImageList(sourceDir, docsImagesDir, outputFile) {
     const allFiles = fs.readdirSync(sourceDir);
     const standardFiles = allFiles.filter(file => STANDARD_EXTENSIONS.test(file));
     const standardBasenames = new Set(standardFiles);
 
     const heicFiles = allFiles.filter(file => HEIC_EXTENSIONS.test(file));
-    // Once a HEIC photo has been converted and published (its converted JPEG
-    // already exists in docs/images/), keep republishing it on every future
-    // run even without INCLUDE_HEIC=1 -- otherwise the opt-in would have to
-    // be remembered forever, and an ordinary maintenance run would silently
-    // un-publish it (removeStaleFiles would delete its derivatives and it
-    // would vanish from the catalogue).
+    // Once a HEIC photo has been converted and published, keep republishing
+    // it on every future run even without INCLUDE_HEIC=1 -- otherwise the
+    // opt-in would have to be remembered forever, and an ordinary
+    // maintenance run would silently un-publish it (removeStaleFiles would
+    // delete its derivatives and it would vanish from the catalogue).
+    const previouslyPublishedHeic = loadPreviouslyPublishedHeicNames(outputFile);
     const heicToProcess = heicFiles.filter(file => {
         if (INCLUDE_HEIC) return true;
-        const convertedName = `${path.parse(file).name}.jpg`;
-        return fs.existsSync(path.join(docsImagesDir, convertedName));
+        return previouslyPublishedHeic.has(heicOutputName(file));
     });
     const newHeicSkipped = heicFiles.filter(file => !heicToProcess.includes(file));
     if (newHeicSkipped.length > 0) {
@@ -360,7 +395,7 @@ async function generateImageList(sourceDir, docsImagesDir) {
         }
 
         console.log('Generating image catalogue (EXIF metadata + thumb/medium/full derivatives)...');
-        const jsContent = await generateImageList(sourceDir, docsImagesDir);
+        const jsContent = await generateImageList(sourceDir, docsImagesDir, outputFile);
 
         fs.writeFileSync(outputFile, jsContent);
         console.log('Successfully updated docs/images.js');
