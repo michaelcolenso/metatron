@@ -118,6 +118,11 @@ header {
     background-color: rgba(0,0,0,0.9);
     padding: 20px;
     box-sizing: border-box;
+    /* A portrait image can reach 90vh, leaving little room for the
+       caption and "View full resolution" link below it -- without this,
+       both are simply clipped with no way to reach them on a short or
+       landscape viewport. */
+    overflow-y: auto;
 }
 
 .modal-content {
@@ -129,9 +134,12 @@ header {
 }
 
 .close {
-    position: absolute;
+    /* Fixed to the viewport, not .modal, so it can't scroll out of reach
+       now that .modal itself scrolls (see .modal's overflow-y). */
+    position: fixed;
     right: 35px;
     top: 15px;
+    z-index: 1001;
     color: #f1f1f1;
     font-size: 40px;
     font-weight: bold;
@@ -170,6 +178,19 @@ header {
     background-color: rgba(0, 0, 0, 0.3);
     border-radius: 6px;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.modal-full-link {
+    display: inline-block;
+    margin-top: 0.75rem;
+    font-size: 0.85rem;
+    color: #ccc;
+    text-decoration: underline;
+}
+
+.modal-full-link:hover,
+.modal-full-link:focus-visible {
+    color: #fff;
 }
 
 /* Responsive adjustments */

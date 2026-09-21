@@ -9,11 +9,23 @@ const photoList = [
     "iso": null,
     "focalLength": "6 mm",
     "lens": null,
-    "hasWebP": false,
-    "sizes": {
-      "thumb": "thumb_IMG_7046-EFFECTS.jpg",
-      "medium": "medium_IMG_7046-EFFECTS.jpg",
-      "full": "IMG_7046-EFFECTS.jpg"
+    "fromHeic": false,
+    "full": {
+      "file": "IMG_7046-EFFECTS.jpg",
+      "width": 3024,
+      "height": 4032
+    },
+    "thumb": {
+      "jpg": "thumb_IMG_7046-EFFECTS_jpg.jpg",
+      "webp": "thumb_IMG_7046-EFFECTS_jpg.webp",
+      "width": 360,
+      "height": 480
+    },
+    "medium": {
+      "jpg": "medium_IMG_7046-EFFECTS_jpg.jpg",
+      "webp": "medium_IMG_7046-EFFECTS_jpg.webp",
+      "width": 1050,
+      "height": 1400
     }
   },
   {
@@ -26,11 +38,23 @@ const photoList = [
     "iso": "ISO 25",
     "focalLength": "6 mm",
     "lens": "iPhone 12 Pro back dual camera 6mm f/2",
-    "hasWebP": false,
-    "sizes": {
-      "thumb": "thumb_IMG_5439 Copy.jpeg",
-      "medium": "medium_IMG_5439 Copy.jpeg",
-      "full": "IMG_5439 Copy.jpeg"
+    "fromHeic": false,
+    "full": {
+      "file": "IMG_5439 Copy.jpeg",
+      "width": 2147,
+      "height": 2860
+    },
+    "thumb": {
+      "jpg": "thumb_IMG_5439 Copy_jpeg.jpg",
+      "webp": "thumb_IMG_5439 Copy_jpeg.webp",
+      "width": 360,
+      "height": 480
+    },
+    "medium": {
+      "jpg": "medium_IMG_5439 Copy_jpeg.jpg",
+      "webp": "medium_IMG_5439 Copy_jpeg.webp",
+      "width": 1051,
+      "height": 1400
     }
   },
   {
@@ -43,11 +67,23 @@ const photoList = [
     "iso": null,
     "focalLength": null,
     "lens": null,
-    "hasWebP": false,
-    "sizes": {
-      "thumb": "thumb_IMG_2964_Original.jpeg",
-      "medium": "medium_IMG_2964_Original.jpeg",
-      "full": "IMG_2964_Original.jpeg"
+    "fromHeic": false,
+    "full": {
+      "file": "IMG_2964_Original.jpeg",
+      "width": 6000,
+      "height": 4000
+    },
+    "thumb": {
+      "jpg": "thumb_IMG_2964_Original_jpeg.jpg",
+      "webp": "thumb_IMG_2964_Original_jpeg.webp",
+      "width": 480,
+      "height": 320
+    },
+    "medium": {
+      "jpg": "medium_IMG_2964_Original_jpeg.jpg",
+      "webp": "medium_IMG_2964_Original_jpeg.webp",
+      "width": 1400,
+      "height": 933
     }
   },
   {
@@ -60,11 +96,23 @@ const photoList = [
     "iso": "ISO 400",
     "focalLength": "35 mm",
     "lens": null,
-    "hasWebP": false,
-    "sizes": {
-      "thumb": "thumb_IMG_2961.JPG",
-      "medium": "medium_IMG_2961.JPG",
-      "full": "IMG_2961.JPG"
+    "fromHeic": false,
+    "full": {
+      "file": "IMG_2961.JPG",
+      "width": 3088,
+      "height": 3088
+    },
+    "thumb": {
+      "jpg": "thumb_IMG_2961_JPG.jpg",
+      "webp": "thumb_IMG_2961_JPG.webp",
+      "width": 480,
+      "height": 480
+    },
+    "medium": {
+      "jpg": "medium_IMG_2961_JPG.jpg",
+      "webp": "medium_IMG_2961_JPG.webp",
+      "width": 1400,
+      "height": 1400
     }
   },
   {
@@ -77,11 +125,23 @@ const photoList = [
     "iso": "ISO 100",
     "focalLength": "50 mm",
     "lens": null,
-    "hasWebP": false,
-    "sizes": {
-      "thumb": "thumb_IMG_1149 Copy.JPG",
-      "medium": "medium_IMG_1149 Copy.JPG",
-      "full": "IMG_1149 Copy.JPG"
+    "fromHeic": false,
+    "full": {
+      "file": "IMG_1149 Copy.JPG",
+      "width": 2480,
+      "height": 2480
+    },
+    "thumb": {
+      "jpg": "thumb_IMG_1149 Copy_JPG.jpg",
+      "webp": "thumb_IMG_1149 Copy_JPG.webp",
+      "width": 480,
+      "height": 480
+    },
+    "medium": {
+      "jpg": "medium_IMG_1149 Copy_JPG.jpg",
+      "webp": "medium_IMG_1149 Copy_JPG.webp",
+      "width": 1400,
+      "height": 1400
     }
   },
   {
@@ -94,11 +154,23 @@ const photoList = [
     "iso": "ISO 640",
     "focalLength": "4.2 mm",
     "lens": "iPhone 12 Pro back triple camera 4.2mm f/1.6",
-    "hasWebP": false,
-    "sizes": {
-      "thumb": "thumb_IMG_2201 Copy Copy Copy.JPG",
-      "medium": "medium_IMG_2201 Copy Copy Copy.JPG",
-      "full": "IMG_2201 Copy Copy Copy.JPG"
+    "fromHeic": false,
+    "full": {
+      "file": "IMG_2201 Copy Copy Copy.JPG",
+      "width": 2009,
+      "height": 1506
+    },
+    "thumb": {
+      "jpg": "thumb_IMG_2201 Copy Copy Copy_JPG.jpg",
+      "webp": "thumb_IMG_2201 Copy Copy Copy_JPG.webp",
+      "width": 480,
+      "height": 360
+    },
+    "medium": {
+      "jpg": "medium_IMG_2201 Copy Copy Copy_JPG.jpg",
+      "webp": "medium_IMG_2201 Copy Copy Copy_JPG.webp",
+      "width": 1400,
+      "height": 1049
     }
   },
   {
@@ -111,11 +183,23 @@ const photoList = [
     "iso": "ISO 400",
     "focalLength": "50 mm",
     "lens": null,
-    "hasWebP": false,
-    "sizes": {
-      "thumb": "thumb_IMG_1006 Copy.JPG",
-      "medium": "medium_IMG_1006 Copy.JPG",
-      "full": "IMG_1006 Copy.JPG"
+    "fromHeic": false,
+    "full": {
+      "file": "IMG_1006 Copy.JPG",
+      "width": 4073,
+      "height": 2715
+    },
+    "thumb": {
+      "jpg": "thumb_IMG_1006 Copy_JPG.jpg",
+      "webp": "thumb_IMG_1006 Copy_JPG.webp",
+      "width": 480,
+      "height": 320
+    },
+    "medium": {
+      "jpg": "medium_IMG_1006 Copy_JPG.jpg",
+      "webp": "medium_IMG_1006 Copy_JPG.webp",
+      "width": 1400,
+      "height": 933
     }
   },
   {
@@ -128,11 +212,23 @@ const photoList = [
     "iso": "ISO 400",
     "focalLength": "50 mm",
     "lens": "EF50mm f/1.4 USM",
-    "hasWebP": false,
-    "sizes": {
-      "thumb": "thumb_IMG_0999.jpeg",
-      "medium": "medium_IMG_0999.jpeg",
-      "full": "IMG_0999.jpeg"
+    "fromHeic": false,
+    "full": {
+      "file": "IMG_0999.jpeg",
+      "width": 6000,
+      "height": 4000
+    },
+    "thumb": {
+      "jpg": "thumb_IMG_0999_jpeg.jpg",
+      "webp": "thumb_IMG_0999_jpeg.webp",
+      "width": 480,
+      "height": 320
+    },
+    "medium": {
+      "jpg": "medium_IMG_0999_jpeg.jpg",
+      "webp": "medium_IMG_0999_jpeg.webp",
+      "width": 1400,
+      "height": 933
     }
   },
   {
@@ -145,11 +241,23 @@ const photoList = [
     "iso": "ISO 32",
     "focalLength": "6 mm",
     "lens": "iPhone 12 Pro back triple camera 6mm f/2",
-    "hasWebP": false,
-    "sizes": {
-      "thumb": "thumb_IMG_1262-EDIT.jpg",
-      "medium": "medium_IMG_1262-EDIT.jpg",
-      "full": "IMG_1262-EDIT.jpg"
+    "fromHeic": false,
+    "full": {
+      "file": "IMG_1262-EDIT.jpg",
+      "width": 3899,
+      "height": 2193
+    },
+    "thumb": {
+      "jpg": "thumb_IMG_1262-EDIT_jpg.jpg",
+      "webp": "thumb_IMG_1262-EDIT_jpg.webp",
+      "width": 480,
+      "height": 270
+    },
+    "medium": {
+      "jpg": "medium_IMG_1262-EDIT_jpg.jpg",
+      "webp": "medium_IMG_1262-EDIT_jpg.webp",
+      "width": 1400,
+      "height": 787
     }
   },
   {
@@ -162,11 +270,23 @@ const photoList = [
     "iso": "ISO 200",
     "focalLength": "1.5399999618512084 mm",
     "lens": "iPhone 12 Pro back triple camera 1.54mm f/2.4",
-    "hasWebP": false,
-    "sizes": {
-      "thumb": "thumb_IMG_0503.jpeg",
-      "medium": "medium_IMG_0503.jpeg",
-      "full": "IMG_0503.jpeg"
+    "fromHeic": false,
+    "full": {
+      "file": "IMG_0503.jpeg",
+      "width": 4032,
+      "height": 2268
+    },
+    "thumb": {
+      "jpg": "thumb_IMG_0503_jpeg.jpg",
+      "webp": "thumb_IMG_0503_jpeg.webp",
+      "width": 480,
+      "height": 270
+    },
+    "medium": {
+      "jpg": "medium_IMG_0503_jpeg.jpg",
+      "webp": "medium_IMG_0503_jpeg.webp",
+      "width": 1400,
+      "height": 788
     }
   },
   {
@@ -179,11 +299,23 @@ const photoList = [
     "iso": "ISO 32",
     "focalLength": "4.2 mm",
     "lens": "iPhone 12 Pro back triple camera 4.2mm f/1.6",
-    "hasWebP": false,
-    "sizes": {
-      "thumb": "thumb_IMG_7577 Copy.JPG",
-      "medium": "medium_IMG_7577 Copy.JPG",
-      "full": "IMG_7577 Copy.JPG"
+    "fromHeic": false,
+    "full": {
+      "file": "IMG_7577 Copy.JPG",
+      "width": 2197,
+      "height": 1757
+    },
+    "thumb": {
+      "jpg": "thumb_IMG_7577 Copy_JPG.jpg",
+      "webp": "thumb_IMG_7577 Copy_JPG.webp",
+      "width": 480,
+      "height": 384
+    },
+    "medium": {
+      "jpg": "medium_IMG_7577 Copy_JPG.jpg",
+      "webp": "medium_IMG_7577 Copy_JPG.webp",
+      "width": 1400,
+      "height": 1120
     }
   },
   {
@@ -196,11 +328,23 @@ const photoList = [
     "iso": "ISO 160",
     "focalLength": "6 mm",
     "lens": "iPhone XS back dual camera 6mm f/2.4",
-    "hasWebP": false,
-    "sizes": {
-      "thumb": "thumb_IMG_0452_Original.jpeg",
-      "medium": "medium_IMG_0452_Original.jpeg",
-      "full": "IMG_0452_Original.jpeg"
+    "fromHeic": false,
+    "full": {
+      "file": "IMG_0452_Original.jpeg",
+      "width": 2505,
+      "height": 3134
+    },
+    "thumb": {
+      "jpg": "thumb_IMG_0452_Original_jpeg.jpg",
+      "webp": "thumb_IMG_0452_Original_jpeg.webp",
+      "width": 384,
+      "height": 480
+    },
+    "medium": {
+      "jpg": "medium_IMG_0452_Original_jpeg.jpg",
+      "webp": "medium_IMG_0452_Original_jpeg.webp",
+      "width": 1119,
+      "height": 1400
     }
   },
   {
@@ -213,11 +357,23 @@ const photoList = [
     "iso": "ISO 16",
     "focalLength": "6 mm",
     "lens": "iPhone XS back dual camera 6mm f/2.4",
-    "hasWebP": false,
-    "sizes": {
-      "thumb": "thumb_IMG_0295.JPG",
-      "medium": "medium_IMG_0295.JPG",
-      "full": "IMG_0295.JPG"
+    "fromHeic": false,
+    "full": {
+      "file": "IMG_0295.JPG",
+      "width": 3024,
+      "height": 4032
+    },
+    "thumb": {
+      "jpg": "thumb_IMG_0295_JPG.jpg",
+      "webp": "thumb_IMG_0295_JPG.webp",
+      "width": 360,
+      "height": 480
+    },
+    "medium": {
+      "jpg": "medium_IMG_0295_JPG.jpg",
+      "webp": "medium_IMG_0295_JPG.webp",
+      "width": 1050,
+      "height": 1400
     }
   },
   {
@@ -230,11 +386,23 @@ const photoList = [
     "iso": "ISO 20",
     "focalLength": "3.99 mm",
     "lens": "iPhone 7 back camera 3.99mm f/1.8",
-    "hasWebP": false,
-    "sizes": {
-      "thumb": "thumb_IMG_1311.JPG",
-      "medium": "medium_IMG_1311.JPG",
-      "full": "IMG_1311.JPG"
+    "fromHeic": false,
+    "full": {
+      "file": "IMG_1311.JPG",
+      "width": 2147,
+      "height": 1432
+    },
+    "thumb": {
+      "jpg": "thumb_IMG_1311_JPG.jpg",
+      "webp": "thumb_IMG_1311_JPG.webp",
+      "width": 480,
+      "height": 320
+    },
+    "medium": {
+      "jpg": "medium_IMG_1311_JPG.jpg",
+      "webp": "medium_IMG_1311_JPG.webp",
+      "width": 1400,
+      "height": 934
     }
   },
   {
@@ -247,11 +415,23 @@ const photoList = [
     "iso": "ISO 20",
     "focalLength": "3.99 mm",
     "lens": "iPhone 7 back camera 3.99mm f/1.8",
-    "hasWebP": false,
-    "sizes": {
-      "thumb": "thumb_IMG_1347.JPG",
-      "medium": "medium_IMG_1347.JPG",
-      "full": "IMG_1347.JPG"
+    "fromHeic": false,
+    "full": {
+      "file": "IMG_1347.JPG",
+      "width": 1226,
+      "height": 817
+    },
+    "thumb": {
+      "jpg": "thumb_IMG_1347_JPG.jpg",
+      "webp": "thumb_IMG_1347_JPG.webp",
+      "width": 480,
+      "height": 320
+    },
+    "medium": {
+      "jpg": "medium_IMG_1347_JPG.jpg",
+      "webp": "medium_IMG_1347_JPG.webp",
+      "width": 1226,
+      "height": 817
     }
   },
   {
@@ -264,11 +444,23 @@ const photoList = [
     "iso": "ISO 20",
     "focalLength": "3.99 mm",
     "lens": "iPhone 7 back camera 3.99mm f/1.8",
-    "hasWebP": false,
-    "sizes": {
-      "thumb": "thumb_IMG_0763_Original.jpeg",
-      "medium": "medium_IMG_0763_Original.jpeg",
-      "full": "IMG_0763_Original.jpeg"
+    "fromHeic": false,
+    "full": {
+      "file": "IMG_0763_Original.jpeg",
+      "width": 2621,
+      "height": 2621
+    },
+    "thumb": {
+      "jpg": "thumb_IMG_0763_Original_jpeg.jpg",
+      "webp": "thumb_IMG_0763_Original_jpeg.webp",
+      "width": 480,
+      "height": 480
+    },
+    "medium": {
+      "jpg": "medium_IMG_0763_Original_jpeg.jpg",
+      "webp": "medium_IMG_0763_Original_jpeg.webp",
+      "width": 1400,
+      "height": 1400
     }
   },
   {
@@ -281,11 +473,23 @@ const photoList = [
     "iso": "ISO 32",
     "focalLength": "4.15 mm",
     "lens": "iPhone 6 back camera 4.15mm f/2.2",
-    "hasWebP": false,
-    "sizes": {
-      "thumb": "thumb_IMG_0732_Original.jpeg",
-      "medium": "medium_IMG_0732_Original.jpeg",
-      "full": "IMG_0732_Original.jpeg"
+    "fromHeic": false,
+    "full": {
+      "file": "IMG_0732_Original.jpeg",
+      "width": 3264,
+      "height": 2448
+    },
+    "thumb": {
+      "jpg": "thumb_IMG_0732_Original_jpeg.jpg",
+      "webp": "thumb_IMG_0732_Original_jpeg.webp",
+      "width": 480,
+      "height": 360
+    },
+    "medium": {
+      "jpg": "medium_IMG_0732_Original_jpeg.jpg",
+      "webp": "medium_IMG_0732_Original_jpeg.webp",
+      "width": 1400,
+      "height": 1050
     }
   },
   {
@@ -298,11 +502,23 @@ const photoList = [
     "iso": "ISO 80",
     "focalLength": "19.2 mm",
     "lens": null,
-    "hasWebP": false,
-    "sizes": {
-      "thumb": "thumb_IMG_4641.JPG",
-      "medium": "medium_IMG_4641.JPG",
-      "full": "IMG_4641.JPG"
+    "fromHeic": false,
+    "full": {
+      "file": "IMG_4641.JPG",
+      "width": 3232,
+      "height": 1492
+    },
+    "thumb": {
+      "jpg": "thumb_IMG_4641_JPG.jpg",
+      "webp": "thumb_IMG_4641_JPG.webp",
+      "width": 480,
+      "height": 222
+    },
+    "medium": {
+      "jpg": "medium_IMG_4641_JPG.jpg",
+      "webp": "medium_IMG_4641_JPG.webp",
+      "width": 1400,
+      "height": 646
     }
   },
   {
@@ -315,11 +531,23 @@ const photoList = [
     "iso": "ISO 800",
     "focalLength": "55 mm",
     "lens": null,
-    "hasWebP": false,
-    "sizes": {
-      "thumb": "thumb_IMG_8159-EDIT.jpg",
-      "medium": "medium_IMG_8159-EDIT.jpg",
-      "full": "IMG_8159-EDIT.jpg"
+    "fromHeic": false,
+    "full": {
+      "file": "IMG_8159-EDIT.jpg",
+      "width": 3343,
+      "height": 2228
+    },
+    "thumb": {
+      "jpg": "thumb_IMG_8159-EDIT_jpg.jpg",
+      "webp": "thumb_IMG_8159-EDIT_jpg.webp",
+      "width": 480,
+      "height": 320
+    },
+    "medium": {
+      "jpg": "medium_IMG_8159-EDIT_jpg.jpg",
+      "webp": "medium_IMG_8159-EDIT_jpg.webp",
+      "width": 1400,
+      "height": 933
     }
   },
   {
@@ -332,11 +560,23 @@ const photoList = [
     "iso": "ISO 800",
     "focalLength": "18 mm",
     "lens": null,
-    "hasWebP": false,
-    "sizes": {
-      "thumb": "thumb_IMG_5329 Copy.JPG",
-      "medium": "medium_IMG_5329 Copy.JPG",
-      "full": "IMG_5329 Copy.JPG"
+    "fromHeic": false,
+    "full": {
+      "file": "IMG_5329 Copy.JPG",
+      "width": 2806,
+      "height": 2245
+    },
+    "thumb": {
+      "jpg": "thumb_IMG_5329 Copy_JPG.jpg",
+      "webp": "thumb_IMG_5329 Copy_JPG.webp",
+      "width": 480,
+      "height": 384
+    },
+    "medium": {
+      "jpg": "medium_IMG_5329 Copy_JPG.jpg",
+      "webp": "medium_IMG_5329 Copy_JPG.webp",
+      "width": 1400,
+      "height": 1120
     }
   },
   {
@@ -349,11 +589,23 @@ const photoList = [
     "iso": "ISO 800",
     "focalLength": "18 mm",
     "lens": null,
-    "hasWebP": false,
-    "sizes": {
-      "thumb": "thumb_IMG_5329.JPG",
-      "medium": "medium_IMG_5329.JPG",
-      "full": "IMG_5329.JPG"
+    "fromHeic": false,
+    "full": {
+      "file": "IMG_5329.JPG",
+      "width": 2612,
+      "height": 2089
+    },
+    "thumb": {
+      "jpg": "thumb_IMG_5329_JPG.jpg",
+      "webp": "thumb_IMG_5329_JPG.webp",
+      "width": 480,
+      "height": 384
+    },
+    "medium": {
+      "jpg": "medium_IMG_5329_JPG.jpg",
+      "webp": "medium_IMG_5329_JPG.webp",
+      "width": 1400,
+      "height": 1120
     }
   },
   {
@@ -366,11 +618,23 @@ const photoList = [
     "iso": "ISO 800",
     "focalLength": "18 mm",
     "lens": null,
-    "hasWebP": false,
-    "sizes": {
-      "thumb": "thumb_IMG_5322-EDIT.jpg",
-      "medium": "medium_IMG_5322-EDIT.jpg",
-      "full": "IMG_5322-EDIT.jpg"
+    "fromHeic": false,
+    "full": {
+      "file": "IMG_5322-EDIT.jpg",
+      "width": 3002,
+      "height": 2001
+    },
+    "thumb": {
+      "jpg": "thumb_IMG_5322-EDIT_jpg.jpg",
+      "webp": "thumb_IMG_5322-EDIT_jpg.webp",
+      "width": 480,
+      "height": 320
+    },
+    "medium": {
+      "jpg": "medium_IMG_5322-EDIT_jpg.jpg",
+      "webp": "medium_IMG_5322-EDIT_jpg.webp",
+      "width": 1400,
+      "height": 933
     }
   },
   {
@@ -383,11 +647,23 @@ const photoList = [
     "iso": "ISO 800",
     "focalLength": "22 mm",
     "lens": null,
-    "hasWebP": false,
-    "sizes": {
-      "thumb": "thumb_IMG_5316 Copy Copy.JPG",
-      "medium": "medium_IMG_5316 Copy Copy.JPG",
-      "full": "IMG_5316 Copy Copy.JPG"
+    "fromHeic": false,
+    "full": {
+      "file": "IMG_5316 Copy Copy.JPG",
+      "width": 3164,
+      "height": 2109
+    },
+    "thumb": {
+      "jpg": "thumb_IMG_5316 Copy Copy_JPG.jpg",
+      "webp": "thumb_IMG_5316 Copy Copy_JPG.webp",
+      "width": 480,
+      "height": 320
+    },
+    "medium": {
+      "jpg": "medium_IMG_5316 Copy Copy_JPG.jpg",
+      "webp": "medium_IMG_5316 Copy Copy_JPG.webp",
+      "width": 1400,
+      "height": 933
     }
   },
   {
@@ -400,11 +676,23 @@ const photoList = [
     "iso": "ISO 800",
     "focalLength": "18 mm",
     "lens": null,
-    "hasWebP": false,
-    "sizes": {
-      "thumb": "thumb_IMG_3101.JPG",
-      "medium": "medium_IMG_3101.JPG",
-      "full": "IMG_3101.JPG"
+    "fromHeic": false,
+    "full": {
+      "file": "IMG_3101.JPG",
+      "width": 1600,
+      "height": 1067
+    },
+    "thumb": {
+      "jpg": "thumb_IMG_3101_JPG.jpg",
+      "webp": "thumb_IMG_3101_JPG.webp",
+      "width": 480,
+      "height": 320
+    },
+    "medium": {
+      "jpg": "medium_IMG_3101_JPG.jpg",
+      "webp": "medium_IMG_3101_JPG.webp",
+      "width": 1400,
+      "height": 934
     }
   },
   {
@@ -417,11 +705,23 @@ const photoList = [
     "iso": "ISO 800",
     "focalLength": "18 mm",
     "lens": null,
-    "hasWebP": false,
-    "sizes": {
-      "thumb": "thumb_IMG_5310.JPG",
-      "medium": "medium_IMG_5310.JPG",
-      "full": "IMG_5310.JPG"
+    "fromHeic": false,
+    "full": {
+      "file": "IMG_5310.JPG",
+      "width": 3456,
+      "height": 2304
+    },
+    "thumb": {
+      "jpg": "thumb_IMG_5310_JPG.jpg",
+      "webp": "thumb_IMG_5310_JPG.webp",
+      "width": 480,
+      "height": 320
+    },
+    "medium": {
+      "jpg": "medium_IMG_5310_JPG.jpg",
+      "webp": "medium_IMG_5310_JPG.webp",
+      "width": 1400,
+      "height": 933
     }
   },
   {
@@ -434,11 +734,23 @@ const photoList = [
     "iso": "ISO 800",
     "focalLength": "28 mm",
     "lens": null,
-    "hasWebP": false,
-    "sizes": {
-      "thumb": "thumb_IMG_5308.JPG",
-      "medium": "medium_IMG_5308.JPG",
-      "full": "IMG_5308.JPG"
+    "fromHeic": false,
+    "full": {
+      "file": "IMG_5308.JPG",
+      "width": 3145,
+      "height": 2097
+    },
+    "thumb": {
+      "jpg": "thumb_IMG_5308_JPG.jpg",
+      "webp": "thumb_IMG_5308_JPG.webp",
+      "width": 480,
+      "height": 320
+    },
+    "medium": {
+      "jpg": "medium_IMG_5308_JPG.jpg",
+      "webp": "medium_IMG_5308_JPG.webp",
+      "width": 1400,
+      "height": 933
     }
   },
   {
@@ -451,11 +763,23 @@ const photoList = [
     "iso": "ISO 800",
     "focalLength": "18 mm",
     "lens": null,
-    "hasWebP": false,
-    "sizes": {
-      "thumb": "thumb_IMG_5287-EDIT.jpg",
-      "medium": "medium_IMG_5287-EDIT.jpg",
-      "full": "IMG_5287-EDIT.jpg"
+    "fromHeic": false,
+    "full": {
+      "file": "IMG_5287-EDIT.jpg",
+      "width": 2803,
+      "height": 1577
+    },
+    "thumb": {
+      "jpg": "thumb_IMG_5287-EDIT_jpg.jpg",
+      "webp": "thumb_IMG_5287-EDIT_jpg.webp",
+      "width": 480,
+      "height": 270
+    },
+    "medium": {
+      "jpg": "medium_IMG_5287-EDIT_jpg.jpg",
+      "webp": "medium_IMG_5287-EDIT_jpg.webp",
+      "width": 1400,
+      "height": 788
     }
   },
   {
@@ -468,11 +792,23 @@ const photoList = [
     "iso": null,
     "focalLength": null,
     "lens": null,
-    "hasWebP": false,
-    "sizes": {
-      "thumb": "thumb_IMG_3120.JPG",
-      "medium": "medium_IMG_3120.JPG",
-      "full": "IMG_3120.JPG"
+    "fromHeic": false,
+    "full": {
+      "file": "IMG_3120.JPG",
+      "width": 655,
+      "height": 491
+    },
+    "thumb": {
+      "jpg": "thumb_IMG_3120_JPG.jpg",
+      "webp": "thumb_IMG_3120_JPG.webp",
+      "width": 480,
+      "height": 360
+    },
+    "medium": {
+      "jpg": "medium_IMG_3120_JPG.jpg",
+      "webp": "medium_IMG_3120_JPG.webp",
+      "width": 655,
+      "height": 491
     }
   },
   {
@@ -485,45 +821,81 @@ const photoList = [
     "iso": null,
     "focalLength": null,
     "lens": null,
-    "hasWebP": false,
-    "sizes": {
-      "thumb": "thumb_IMG_3121.JPG",
-      "medium": "medium_IMG_3121.JPG",
-      "full": "IMG_3121.JPG"
+    "fromHeic": false,
+    "full": {
+      "file": "IMG_3121.JPG",
+      "width": 640,
+      "height": 640
+    },
+    "thumb": {
+      "jpg": "thumb_IMG_3121_JPG.jpg",
+      "webp": "thumb_IMG_3121_JPG.webp",
+      "width": 480,
+      "height": 480
+    },
+    "medium": {
+      "jpg": "medium_IMG_3121_JPG.jpg",
+      "webp": "medium_IMG_3121_JPG.webp",
+      "width": 640,
+      "height": 640
     }
   },
   {
     "name": "IMG_1230.JPG",
-    "date": "1970-01-01T00:00:00.000Z",
-    "title": "January 1, 1970",
+    "date": null,
+    "title": "IMG 1230",
     "camera": null,
     "exposure": null,
     "aperture": null,
     "iso": null,
     "focalLength": null,
     "lens": null,
-    "hasWebP": false,
-    "sizes": {
-      "thumb": "thumb_IMG_1230.JPG",
-      "medium": "medium_IMG_1230.JPG",
-      "full": "IMG_1230.JPG"
+    "fromHeic": false,
+    "full": {
+      "file": "IMG_1230.JPG",
+      "width": 1944,
+      "height": 1296
+    },
+    "thumb": {
+      "jpg": "thumb_IMG_1230_JPG.jpg",
+      "webp": "thumb_IMG_1230_JPG.webp",
+      "width": 480,
+      "height": 320
+    },
+    "medium": {
+      "jpg": "medium_IMG_1230_JPG.jpg",
+      "webp": "medium_IMG_1230_JPG.webp",
+      "width": 1400,
+      "height": 933
     }
   },
   {
     "name": "IMG_1654.JPG",
-    "date": "1970-01-01T00:00:00.000Z",
-    "title": "January 1, 1970",
+    "date": null,
+    "title": "IMG 1654",
     "camera": null,
     "exposure": null,
     "aperture": null,
     "iso": null,
     "focalLength": null,
     "lens": null,
-    "hasWebP": false,
-    "sizes": {
-      "thumb": "thumb_IMG_1654.JPG",
-      "medium": "medium_IMG_1654.JPG",
-      "full": "IMG_1654.JPG"
+    "fromHeic": false,
+    "full": {
+      "file": "IMG_1654.JPG",
+      "width": 2928,
+      "height": 2119
+    },
+    "thumb": {
+      "jpg": "thumb_IMG_1654_JPG.jpg",
+      "webp": "thumb_IMG_1654_JPG.webp",
+      "width": 480,
+      "height": 347
+    },
+    "medium": {
+      "jpg": "medium_IMG_1654_JPG.jpg",
+      "webp": "medium_IMG_1654_JPG.webp",
+      "width": 1400,
+      "height": 1013
     }
   }
 ];

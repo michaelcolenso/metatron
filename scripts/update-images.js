@@ -1,6 +1,28 @@
 const fs = require('fs');
 const path = require('path');
 const ExifReader = require('exifreader');
+const sharp = require('sharp');
+const heicConvert = require('heic-convert');
+
+// HEIC/HEIF source photos are decoded and published only when explicitly
+// requested — publishing previously-unpublished personal photos to the
+// public gallery is the repo owner's call, not this script's default.
+const INCLUDE_HEIC = process.env.INCLUDE_HEIC === '1';
+
+const STANDARD_EXTENSIONS = /\.(jpg|jpeg|png)$/i;
+const HEIC_EXTENSIONS = /\.(heic|heif)$/i;
+
+const THUMB_MAX = 480;
+const MEDIUM_MAX = 1400;
+const HEIC_FULL_QUALITY = 0.95;
+
+// Two HEIC-family sources sharing a stem but differing only in extension
+// (photo.heic / photo.heif) would otherwise both produce "photo.jpg" and
+// silently overwrite each other. Keep the source extension in the name.
+function heicOutputName(filename) {
+    const parsed = path.parse(filename);
+    return `${parsed.name}_${parsed.ext.slice(1)}.jpg`;
+}
 
 function extractDateFromFilename(filename) {
     const match = filename.match(/(\d{4}-\d{2}-\d{2})_/);
@@ -94,7 +116,7 @@ function extractCaptureDate(tags) {
     return null;
 }
 
-function extractExifData(filePath) {
+function extractExifData(buffer, warningLabel) {
     const defaults = {
         captureDate: null,
         camera: null,
@@ -106,8 +128,7 @@ function extractExifData(filePath) {
     };
 
     try {
-        const fileBuffer = fs.readFileSync(filePath);
-        const tags = ExifReader.load(fileBuffer);
+        const tags = ExifReader.load(buffer);
 
         const exifData = { ...defaults };
         exifData.captureDate = extractCaptureDate(tags);
@@ -146,39 +167,227 @@ function extractExifData(filePath) {
 
         return exifData;
     } catch (error) {
-        console.warn(`Could not extract EXIF from ${path.basename(filePath)}: ${error.message}`);
+        console.warn(`Could not extract EXIF from ${warningLabel}: ${error.message}`);
         return defaults;
     }
 }
 
-function generateImageList(sourceDir) {
-    const files = fs.readdirSync(sourceDir)
-        .filter(file => /\.(jpg|jpeg|png)$/i.test(file));
-
-    const images = files.map(filename => {
-        const filePath = path.join(sourceDir, filename);
-        const { captureDate, ...exifData } = extractExifData(filePath);
-        const filenameDate = extractDateFromFilename(filename);
-        let imageDate = filenameDate || captureDate;
-        if (!imageDate) {
-            const stats = fs.statSync(filePath);
-            imageDate = stats.birthtime ? stats.birthtime.toISOString() : null;
-        }
-        const title = formatDateForTitle(imageDate) || humaniseFilename(filename);
-
-        return {
-            name: filename,
-            date: imageDate,
-            title,
-            ...exifData,
-            hasWebP: false,
-            sizes: {
-                thumb: `thumb_${filename}`,
-                medium: `medium_${filename}`,
-                full: filename
-            }
-        };
+// Resize `buffer` so its longest edge is at most `maxDimension`, honouring
+// EXIF orientation, and return matching JPEG + WebP derivatives with their
+// real output dimensions (needed for <img>/<source> width/height + srcset).
+async function buildDerivative(buffer, maxDimension, jpegQuality, webpQuality) {
+    const pipeline = sharp(buffer).rotate().resize({
+        width: maxDimension,
+        height: maxDimension,
+        fit: 'inside',
+        withoutEnlargement: true
     });
+
+    const [jpeg, webp] = await Promise.all([
+        // JPEG has no alpha channel; flatten against a documented white
+        // background instead of leaving it to sharp's implicit default, so
+        // a transparent PNG source doesn't silently pick up whatever the
+        // library defaults to. WebP supports alpha natively, so it's left
+        // untouched and remains the fully-correct candidate for it.
+        pipeline.clone().flatten({ background: '#ffffff' }).jpeg({ quality: jpegQuality, mozjpeg: true }).toBuffer({ resolveWithObject: true }),
+        pipeline.clone().webp({ quality: webpQuality }).toBuffer({ resolveWithObject: true })
+    ]);
+
+    return {
+        jpeg: { buffer: jpeg.data, width: jpeg.info.width, height: jpeg.info.height },
+        webp: { buffer: webp.data, width: webp.info.width, height: webp.info.height }
+    };
+}
+
+async function processImage(filename, sourceDir, docsImagesDir, standardBasenames) {
+    const filePath = path.join(sourceDir, filename);
+    const isHeic = HEIC_EXTENSIONS.test(filename);
+    const originalBuffer = fs.readFileSync(filePath);
+
+    let fullBuffer = originalBuffer;
+    let outputName = filename;
+
+    if (isHeic) {
+        outputName = heicOutputName(filename);
+        if (standardBasenames.has(outputName)) {
+            console.warn(`Skipping ${filename}: converted name ${outputName} collides with an existing source photo`);
+            return null;
+        }
+        // Some ".heic"/".heif"-named files are actually already JPEG (a
+        // common export/transfer mislabeling) -- detect that via the JPEG
+        // magic bytes before attempting a HEIC decode, so they're handled
+        // as what they really are instead of failing to decode.
+        const looksLikeJpeg = originalBuffer.length >= 3
+            && originalBuffer[0] === 0xFF && originalBuffer[1] === 0xD8 && originalBuffer[2] === 0xFF;
+        if (!looksLikeJpeg) {
+            try {
+                fullBuffer = await heicConvert({ buffer: originalBuffer, format: 'JPEG', quality: HEIC_FULL_QUALITY });
+            } catch (error) {
+                console.warn(`Skipping ${filename}: HEIC decode failed (${error.message})`);
+                return null;
+            }
+        }
+    }
+
+    // EXIF lives in the original container even when we convert HEIC -> JPEG
+    // for display, since the decode step re-encodes pixels without tags.
+    const { captureDate, ...exifData } = extractExifData(originalBuffer, filename);
+    const filenameDate = extractDateFromFilename(filename);
+    // Deliberately no filesystem-timestamp fallback: birthtime/mtime reflect
+    // when the file was checked out or copied, not when the photo was
+    // taken, and are meaningless (and inconsistent across environments)
+    // in a git checkout. A photo with no filename-date and no EXIF date
+    // stays undated rather than showing a fabricated one.
+    const imageDate = filenameDate || captureDate || null;
+    const title = formatDateForTitle(imageDate) || humaniseFilename(filename);
+
+    let fullMeta;
+    try {
+        fullMeta = await sharp(fullBuffer).rotate().metadata();
+    } catch (error) {
+        console.warn(`Skipping ${filename}: could not read image (${error.message})`);
+        return null;
+    }
+
+    let thumb;
+    let medium;
+    try {
+        [thumb, medium] = await Promise.all([
+            buildDerivative(fullBuffer, THUMB_MAX, 82, 76),
+            buildDerivative(fullBuffer, MEDIUM_MAX, 85, 80)
+        ]);
+    } catch (error) {
+        console.warn(`Skipping ${filename}: could not generate thumbnails (${error.message})`);
+        return null;
+    }
+
+    // Keep the source extension in the derivative stem: two sources that
+    // share a name but differ only in extension (e.g. "photo.jpg" and
+    // "photo.png") would otherwise both produce "thumb_photo.jpg" etc. and
+    // silently overwrite each other's derivatives.
+    const derivativeStem = outputName.replace(/\.([^.]+)$/, '_$1');
+    const thumbJpegName = `thumb_${derivativeStem}.jpg`;
+    const thumbWebpName = `thumb_${derivativeStem}.webp`;
+    const mediumJpegName = `medium_${derivativeStem}.jpg`;
+    const mediumWebpName = `medium_${derivativeStem}.webp`;
+
+    // A generated derivative name can never equal its own source's
+    // outputName (it's always thumb_/medium_-prefixed), but it could
+    // coincidentally match a *different* real source photo's actual
+    // filename (e.g. a source literally named "thumb_photo_jpg.jpg"
+    // alongside "photo.jpg"). Reject rather than silently overwrite --
+    // whichever file processed last would otherwise win, and both
+    // catalogue entries would keep pointing at the same physical file.
+    const derivativeCollision = [thumbJpegName, thumbWebpName, mediumJpegName, mediumWebpName]
+        .find((name) => standardBasenames.has(name));
+    if (derivativeCollision) {
+        console.warn(`Skipping ${filename}: generated derivative name "${derivativeCollision}" collides with an existing source photo's filename`);
+        return null;
+    }
+
+    // Full tier: byte-identical copy of the original for standard formats
+    // (never re-encode the showcase image), or the high-quality HEIC->JPEG
+    // conversion when there is no other way to serve it in a browser.
+    fs.writeFileSync(path.join(docsImagesDir, outputName), fullBuffer);
+    fs.writeFileSync(path.join(docsImagesDir, thumbJpegName), thumb.jpeg.buffer);
+    fs.writeFileSync(path.join(docsImagesDir, thumbWebpName), thumb.webp.buffer);
+    fs.writeFileSync(path.join(docsImagesDir, mediumJpegName), medium.jpeg.buffer);
+    fs.writeFileSync(path.join(docsImagesDir, mediumWebpName), medium.webp.buffer);
+
+    console.log(`Processed: ${filename}${isHeic ? ` -> ${outputName} (converted)` : ''}`);
+
+    return {
+        name: outputName,
+        date: imageDate,
+        title,
+        ...exifData,
+        // Recorded so a later run without INCLUDE_HEIC=1 can tell "this
+        // entry exists because a HEIC source was opted in" apart from
+        // "this entry exists because an unrelated standard-format source
+        // happens to produce the same output name" -- see
+        // loadPreviouslyPublishedHeicNames().
+        fromHeic: isHeic,
+        full: { file: outputName, width: fullMeta.width, height: fullMeta.height },
+        thumb: { jpg: thumbJpegName, webp: thumbWebpName, width: thumb.jpeg.width, height: thumb.jpeg.height },
+        medium: { jpg: mediumJpegName, webp: mediumWebpName, width: medium.jpeg.width, height: medium.jpeg.height },
+        expectedFiles: [outputName, thumbJpegName, thumbWebpName, mediumJpegName, mediumWebpName]
+    };
+}
+
+// Reads the previously-generated catalogue (if any) and returns the set of
+// output names published from a HEIC/HEIF source. Checking *this* rather
+// than whether a same-named file exists in docs/images/ matters: a HEIC
+// file can coincidentally produce the same output name a standard-format
+// source once used (e.g. if that standard source is later deleted). File
+// existence alone can't tell those apart and would keep publishing a HEIC
+// photo that was never actually opted in via INCLUDE_HEIC. The catalogue
+// records provenance explicitly (see the fromHeic field), so it can.
+function loadPreviouslyPublishedHeicNames(outputFile) {
+    try {
+        const raw = fs.readFileSync(outputFile, 'utf8');
+        const match = raw.match(/const photoList = (\[[\s\S]*\]);?\s*$/);
+        if (!match) return new Set();
+        const previous = JSON.parse(match[1]);
+        return new Set(
+            previous.filter((entry) => entry && entry.fromHeic).map((entry) => entry.name)
+        );
+    } catch (error) {
+        return new Set();
+    }
+}
+
+function removeStaleFiles(docsImagesDir, expectedFiles) {
+    const expected = new Set(expectedFiles);
+    const existing = fs.readdirSync(docsImagesDir);
+    let removed = 0;
+
+    for (const file of existing) {
+        if (!expected.has(file)) {
+            fs.unlinkSync(path.join(docsImagesDir, file));
+            removed += 1;
+        }
+    }
+
+    if (removed > 0) {
+        console.log(`Removed ${removed} stale file(s) from docs/images (no longer matching a source photo).`);
+    }
+}
+
+async function generateImageList(sourceDir, docsImagesDir, outputFile) {
+    const allFiles = fs.readdirSync(sourceDir);
+    const standardFiles = allFiles.filter(file => STANDARD_EXTENSIONS.test(file));
+    const standardBasenames = new Set(standardFiles);
+
+    const heicFiles = allFiles.filter(file => HEIC_EXTENSIONS.test(file));
+    // Once a HEIC photo has been converted and published, keep republishing
+    // it on every future run even without INCLUDE_HEIC=1 -- otherwise the
+    // opt-in would have to be remembered forever, and an ordinary
+    // maintenance run would silently un-publish it (removeStaleFiles would
+    // delete its derivatives and it would vanish from the catalogue).
+    const previouslyPublishedHeic = loadPreviouslyPublishedHeicNames(outputFile);
+    const heicToProcess = heicFiles.filter(file => {
+        if (INCLUDE_HEIC) return true;
+        return previouslyPublishedHeic.has(heicOutputName(file));
+    });
+    const newHeicSkipped = heicFiles.filter(file => !heicToProcess.includes(file));
+    if (newHeicSkipped.length > 0) {
+        console.log(`Skipping ${newHeicSkipped.length} HEIC/HEIF source photo(s) (set INCLUDE_HEIC=1 to convert and publish them): ${newHeicSkipped.join(', ')}`);
+    }
+
+    const filesToProcess = [...standardFiles, ...heicToProcess];
+
+    const images = [];
+    const expectedFiles = [];
+    for (const filename of filesToProcess) {
+        const result = await processImage(filename, sourceDir, docsImagesDir, standardBasenames);
+        if (result) {
+            const { expectedFiles: fileList, ...entry } = result;
+            images.push(entry);
+            expectedFiles.push(...fileList);
+        }
+    }
+
+    removeStaleFiles(docsImagesDir, expectedFiles);
 
     images.sort((a, b) => {
         const dateA = a.date ? new Date(a.date).getTime() : -Infinity;
@@ -189,33 +398,23 @@ function generateImageList(sourceDir) {
     return `const photoList = ${JSON.stringify(images, null, 2)};`;
 }
 
-try {
-    const sourceDir = path.join(__dirname, '..', 'images');
-    const outputFile = path.join(__dirname, '..', 'docs', 'images.js');
+(async () => {
+    try {
+        const sourceDir = path.join(__dirname, '..', 'images');
+        const outputFile = path.join(__dirname, '..', 'docs', 'images.js');
+        const docsImagesDir = path.join(__dirname, '..', 'docs', 'images');
 
-    console.log('Generating image list with EXIF metadata...');
-    const jsContent = generateImageList(sourceDir);
+        if (!fs.existsSync(docsImagesDir)) {
+            fs.mkdirSync(docsImagesDir, { recursive: true });
+        }
 
-    fs.writeFileSync(outputFile, jsContent);
-    console.log('Successfully updated images.js with EXIF data');
+        console.log('Generating image catalogue (EXIF metadata + thumb/medium/full derivatives)...');
+        const jsContent = await generateImageList(sourceDir, docsImagesDir, outputFile);
 
-    const docsImagesDir = path.join(__dirname, '..', 'docs', 'images');
-    if (!fs.existsSync(docsImagesDir)) {
-        fs.mkdirSync(docsImagesDir, { recursive: true });
+        fs.writeFileSync(outputFile, jsContent);
+        console.log('Successfully updated docs/images.js');
+    } catch (error) {
+        console.error('Error:', error.message);
+        process.exit(1);
     }
-
-    const files = fs.readdirSync(sourceDir)
-        .filter(file => /\.(jpg|jpeg|png)$/i.test(file));
-
-    files.forEach(file => {
-        const sourcePath = path.join(sourceDir, file);
-        const destPath = path.join(docsImagesDir, file);
-        fs.copyFileSync(sourcePath, destPath);
-        console.log(`Copied: ${file}`);
-    });
-
-    console.log('All images copied to docs/images');
-} catch (error) {
-    console.error('Error:', error.message);
-    process.exit(1);
-}
+})();
