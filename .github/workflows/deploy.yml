@@ -1,4 +1,22 @@
-name: Update and Deploy Photos
+
+#
+# This couldn't be pushed directly: GitHub requires the OAuth "workflow" scope
+# to touch any file under .github/workflows/, and neither the git credential
+# nor the GitHub App/API credential available in this session has it (both
+# were rejected with the identical "Insufficient scope: required repo
+# workflow" error). A human committing this same content through the GitHub
+# web UI, or a session with that scope granted, isn't subject to that
+# restriction. See AUDIT.md's "Blocker" note for the full context.
+#
+# ---8<--- copy from the next line down into .github/workflows/deploy.yml --->8---
+name: Update Photo Catalogue
+
+# GitHub Pages is configured as "Deploy from a branch" (main -> /docs, see
+# README.md), so publishing itself needs no workflow steps: any push to
+# main republishes automatically. This workflow's only job is regenerating
+# docs/images.js and docs/images/ from images/ using the same
+# scripts/update-images.js a contributor would run locally, and committing
+# the result.
 
 on:
   push:
@@ -12,15 +30,10 @@ on:
 
 permissions:
   contents: write
-  pages: write
-  id-token: write
 
 jobs:
-  update-and-deploy:
+  update-catalogue:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
       - name: Checkout repository
@@ -30,142 +43,21 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
+          cache: "npm"
 
-      - name: Setup project
-        run: |
-          # Create minimal package.json
-          echo '{
-            "name": "photo-portfolio",
-            "version": "1.0.0",
-            "private": true,
-            "dependencies": {
-              "exiftool-vendored": "^22.0.0"
-            }
-          }' > package.json
+      - name: Install dependencies
+        run: npm ci
 
-          # Install dependencies
-          npm install
-
-      - name: Install system dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y imagemagick exiftool
-
-          # Configure ImageMagick policy
-          sudo sed -i 's/rights="none" pattern="PDF"/rights="read|write" pattern="PDF"/' /etc/ImageMagick-6/policy.xml
-
-      - name: Process images
-        run: |
-          mkdir -p docs/images
-
-          for img in images/*; do
-            if [ -f "$img" ]; then
-              filename=$(basename "$img")
-              echo "Processing: $filename"
-              
-              # Strip metadata except copyright and date
-              exiftool -all:all= -tagsfromfile @ -copyright -createdate "$img" -o "temp_${filename}"
-              
-              # Create multiple sizes
-              convert "temp_${filename}" -strip -quality 85 -resize "1920x1920>" "docs/images/${filename}"
-              convert "temp_${filename}" -strip -quality 85 -resize "800x800>" "docs/images/medium_${filename}"
-              convert "temp_${filename}" -strip -quality 85 -resize "400x400>" "docs/images/thumb_${filename}"
-              
-              # Create WebP versions
-              convert "docs/images/${filename}" -quality 85 "docs/images/${filename%.*}.webp"
-              convert "docs/images/medium_${filename}" -quality 85 "docs/images/medium_${filename%.*}.webp"
-              convert "docs/images/thumb_${filename}" -quality 85 "docs/images/thumb_${filename%.*}.webp"
-              
-              rm "temp_${filename}"
-            fi
-          done
-
-      - name: Generate image list
-        run: |
-          cat << 'EOF' > create-image-list.js
-          const fs = require('fs');
-          const path = require('path');
-          const { ExifTool } = require('exiftool-vendored');
-          const exiftool = new ExifTool();
-
-          async function generateImageList() {
-            const imageDir = 'images';
-            const files = fs.readdirSync(imageDir)
-              .filter(file => /\.(jpg|jpeg|png)$/i.test(file));
-            
-            const imageList = await Promise.all(files.map(async file => {
-              const filepath = path.join(imageDir, file);
-              const stats = fs.statSync(filepath);
-              let metadata;
-              
-              try {
-                metadata = await exiftool.read(filepath);
-              } catch (error) {
-                console.warn(`No EXIF for ${filepath}`);
-                metadata = {};
-              }
-              
-              const title = path.basename(file, path.extname(file))
-                .replace(/[-_]/g, ' ')
-                .replace(/\b\w/g, c => c.toUpperCase());
-              
-              return {
-                name: file,
-                title,
-                date: (metadata.CreateDate ? new Date(metadata.CreateDate) : stats.birthtime).toISOString(),
-                camera: metadata.Model || null,
-                exposure: metadata.ExposureTime || null,
-                aperture: metadata.FNumber || null,
-                iso: metadata.ISO || null,
-                hasWebP: true,
-                sizes: {
-                  thumb: `thumb_${file}`,
-                  medium: `medium_${file}`,
-                  full: file
-                }
-              };
-            }));
-            
-            imageList.sort((a, b) => new Date(b.date) - new Date(a.date));
-            
-            fs.writeFileSync(
-              'docs/images.js', 
-              `const photoList = ${JSON.stringify(imageList, null, 2)};\n`
-            );
-            
-            await exiftool.end();
-          }
-
-          generateImageList().catch(console.error);
-          EOF
-
-          node create-image-list.js
+      - name: Regenerate image catalogue
+        run: npm run update-images
 
       - name: Commit changes
         run: |
           if [[ -n "$(git status --porcelain)" ]]; then
             git config --local user.email "action@github.com"
             git config --local user.name "GitHub Action"
-            
-            git add docs/images/* docs/images.js
-            git commit -m "Update photo gallery
-            
-            - Generated responsive image sizes
-            - Created WebP versions
-            - Updated image metadata
-            - Optimized for web delivery"
-            
+
+            git add docs/images docs/images.js
+            git commit -m "Update photo gallery catalogue"
             git push
           fi
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: docs
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
